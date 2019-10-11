@@ -1,21 +1,45 @@
 import React from 'react';
 import { useEffect, useRef }  from 'react';
 
+const WIDTH = 600;
+const HEIGHT = 500;
+const PADDING = 50;
+const STEP_Y = 5;
+
+const data = [
+  { name: '1111', value: 300 },
+  { name: '1111', value: 300 },
+  { name: '1111', value: 300 },
+  { name: '1111', value: 300 },
+  { name: '1111', value: 300 },
+];
+
+// 1. 绘制坐标轴
+const drawAxis = (canvas) => {
+  const ctx = canvas.getContext('2d');
+  canvas.width = WIDTH;
+  canvas.height = HEIGHT;
+
+  ctx.beginPath();
+  ctx.moveTo(PADDING, PADDING);
+  ctx.lineTo(PADDING, HEIGHT - PADDING);
+  ctx.lineTo(WIDTH - PADDING, HEIGHT - PADDING);
+  ctx.strokeStyle = '#fff';
+  ctx.stroke();
+
+  // 标点
+  const stepLengthY = Math.floor((HEIGHT - 2 * PADDING) / STEP_Y);
+  const stepLengthX = Math.floor((WIDTH - 2 * PADDING) / data.length);
+
+
+}
+
 const useStateHook = () => {
   const canvasRef = useRef();
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const ctx = canvas.getContext('2d');
-    canvas.width="500";
-    canvas.height="500";
-
-    ctx.beginPath();
-    ctx.moveTo(50, 50);
-    ctx.lineTo(50, 450);
-    ctx.lineTo(450, 450);
-    ctx.strokeStyle = '#fff';
-    ctx.stroke();
+    drawAxis(canvas);
 
   }, []);
 
