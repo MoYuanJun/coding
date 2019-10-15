@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useRef }  from 'react';
+import Bar from './bar';
 
 const WIDTH = 600;
 const HEIGHT = 500;
@@ -7,12 +8,31 @@ const PADDING = 50;
 const STEP_Y = 5;
 
 const data = [
-  { name: '1111', value: 300 },
-  { name: '1111', value: 300 },
-  { name: '1111', value: 300 },
-  { name: '1111', value: 300 },
-  { name: '1111', value: 300 },
+  { name: '周一', value: 300 },
+  { name: '周二', value: 250 },
+  { name: '周三', value: 100 },
+  { name: '周四', value: 220 },
+  { name: '周五', value: 280 },
 ];
+
+// 绘制动画
+const drawBar = (ctx, x, y, w, h) => {
+  const frameNum = 50;
+  let num = 1;
+  const draw = () => {
+    ctx.clearRect(x, y - 5, w, h + 5 );
+
+    ctx.fillStyle = "#1890ff";
+    ctx.textAlign = 'center';
+    ctx.fillRect(x, y + (h - ((h / frameNum) * num)), w, (h / frameNum) * num);
+    ctx.fillText('111', x + w / 2, y + (h - ((h / frameNum) * num)) - 5 );
+
+    num += 1;
+    num <= frameNum && requestAnimationFrame(draw);
+  };
+
+  requestAnimationFrame(draw);
+}
 
 // 1. 绘制坐标轴
 const drawAxis = (canvas) => {
@@ -30,7 +50,7 @@ const drawAxis = (canvas) => {
   // 坐标点
   const stepLengthY = Math.floor((HEIGHT - 2 * PADDING) / STEP_Y);
   const stepLengthX = Math.floor((WIDTH - 2 * PADDING) / data.length);
-  
+
   // x 轴
   for (let i = 0; i < data.length; i++){
     const xAxis = data[i].name;
@@ -58,25 +78,40 @@ const drawAxis = (canvas) => {
     ctx.textAlign = 'right';
     ctx.fillText(yAxis, PADDING - 15, HEIGHT - PADDING - yLen + 5);
   }
+
+  // 绘制柱状图
+  // HEIGHT - 2 * PADDING
+  const barWidth = 50;
+  
+  for (let i = 0; i < data.length; i ++ ){
+    const height = ((HEIGHT - 2 * PADDING) / Math.max(...data.map(v => v.value))) * data[i].value;
+
+    drawBar(
+      ctx, 
+      PADDING + stepLengthX * i + ((stepLengthX - barWidth) / 2), 
+      HEIGHT - height - PADDING, 
+      barWidth, 
+      height
+    );
+  }
 }
 
 const useStateHook = () => {
-  const canvasRef = useRef();
+  const containerRef = useRef();
 
   useEffect(() => {
-    const canvas = canvasRef.current;
-    drawAxis(canvas);
-
+    const bar = new Bar({});
+    bar.init(containerRef.current);
   }, []);
 
-  return { canvasRef };
+  return { containerRef };
 }
 
 export default (props) => {
   const state = useStateHook(props);
   return (
-    <canvas ref={state.canvasRef} style={{ background: '#829dba' }}>
-      demo-1
-    </canvas>
+    <div ref={state.containerRef} style={{ width: 600, height: 500, background: 'red' }}>
+      
+    </div>
   );
 }
