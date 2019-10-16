@@ -6,6 +6,10 @@ export default [
     page: pages.Bar,
   },
   {
+    path: 'canvas/图表/折线图',
+    page: pages.Line,
+  },
+  {
     path: 'demo/demo1',
     page: pages.Demo1,
   }
