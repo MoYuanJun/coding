@@ -88,12 +88,17 @@ export default class Line {
     this.ctx.beginPath();
     for (let i = 0; i < this.data.length; i++){
       const x = Math.floor((this.width - 2 * this.padding) / this.data.length * (i + 0.5)) + this.padding;
-      const yLength = Math.floor((this.width - 2 * this.padding) / Math.max(...this.data.map(v => v.value)) * this.data[i].value);
-
+      const yHeight = Math.floor((this.height - 2 * this.padding) / Math.max(...this.data.map(v => v.value)) * this.data[i].value);
+      const y = this.height - yHeight - this.padding;
       this.ctx.lineTo(x, y);
-
     } 
     this.ctx.stroke();
   }
 
+  // 绘制线段
+  drawLine = () => {
+    // 按照第二个坐标点为准计算 tan
+    // 1. tan = y / x
+    // 2. y = x * tan
+  }
 }
