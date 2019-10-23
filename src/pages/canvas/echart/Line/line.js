@@ -85,20 +85,39 @@ export default class Line {
 
   // 绘制折线图
   drawLines = () => {
-    this.ctx.beginPath();
-    for (let i = 0; i < this.data.length; i++){
+    this.getPoints();
+  }
+
+  // 获取点
+  getPoints = () => {
+    const subsection = [];
+    const points = [];
+    for(let i = 0; i < this.data.length; i++){
       const x = Math.floor((this.width - 2 * this.padding) / this.data.length * (i + 0.5)) + this.padding;
       const yHeight = Math.floor((this.height - 2 * this.padding) / Math.max(...this.data.map(v => v.value)) * this.data[i].value);
       const y = this.height - yHeight - this.padding;
-      this.ctx.lineTo(x, y);
-    } 
-    this.ctx.stroke();
+      subsection.push([x, y])
+    }
+
+    for(let i = 0; i < subsection.length - 1; i++ ){
+      const x1 = subsection[i][0];
+      const y1 = subsection[i][1];
+      const x2 = subsection[i + 1][0];
+      const y2 = subsection[i + 1][1];
+      const tan = (x2 - x1) / (y2 - y1);
+      const stepY = (y2 - y1) / this.frameNum;
+      for(let i = 0; i < this.frameNum; i++){
+        const y = y1 + stepY * i;
+        const x = x2 - (tan * (y2 - y));
+        points.push([x, y]);
+      }
+    }
+    points.push(subsection[subsection.length - 1]);
+    this.drawLine(points);
   }
 
   // 绘制线段
-  drawLine = () => {
-    // 按照第二个坐标点为准计算 tan
-    // 1. tan = y / x
-    // 2. y = x * tan
-  }
+  drawLine = (points) => {
+    console.log(points);
+  } 
 }
