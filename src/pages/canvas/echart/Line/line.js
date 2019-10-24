@@ -118,6 +118,13 @@ export default class Line {
 
   // 绘制线段
   drawLine = (points) => {
-    console.log(points);
+    this.ctx.beginPath();
+    const recursion = () => {
+      const [x, y] = points.shift();
+      this.ctx.lineTo(x, y);
+      this.ctx.stroke();
+      points.length !== 0 && requestAnimationFrame(recursion);
+    }
+    requestAnimationFrame(recursion);
   } 
 }
