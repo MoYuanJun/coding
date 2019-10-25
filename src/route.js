@@ -10,6 +10,10 @@ export default [
     page: pages.Line,
   },
   {
+    path: 'canvas/图表/饼图',
+    page: pages.Pie,
+  },
+  {
     path: 'demo/demo1',
     page: pages.Demo1,
   }
