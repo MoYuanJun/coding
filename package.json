@@ -1,13 +1,15 @@
 {
-  "name": "canvas",
+  "name": "code-snippet",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "commit": "git-cz",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook",
     "start": "npm run storybook",
-    "storybook": "start-storybook",
+    "build": "npm run build-storybook",
+    "commit": "git-cz",
     "release": "standard-version"
   },
   "repository": {
@@ -21,16 +23,20 @@
     "url": "https://github.com/qianyin925/canvas/issues"
   },
   "homepage": "https://github.com/qianyin925/canvas#readme",
+  "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.6.3",
-    "@commitlint/cli": "^8.2.0",
-    "@commitlint/config-angular": "^8.2.0",
-    "@storybook/react": "^5.2.3",
+    "@babel/core": "^7.8.4",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
+    "@storybook/addon-actions": "^5.3.12",
+    "@storybook/addon-links": "^5.3.12",
+    "@storybook/addons": "^5.3.12",
+    "@storybook/react": "^5.3.12",
     "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "husky": "^3.0.8",
-    "standard-version": "^7.0.0"
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3",
+    "standard-version": "^7.1.0"
   },
   "config": {
     "commitizen": {
@@ -41,10 +47,5 @@
     "hooks": {
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
-  },
-  "dependencies": {
-    "antd": "^3.23.6",
-    "react": "^16.10.2",
-    "react-dom": "^16.10.2"
   }
 }
