@@ -13,3 +13,5 @@ export default () => {
     <div ref={container} style={{ height: 600, width: 600 }}></div>
   );
 }
+
+export const path = ['Canvas', '图表', '饼图'];

@@ -28,3 +28,5 @@ export default (props) => {
     <div ref={state.containerRef} style={{ width: 600, height: 500}}></div>
   );
 }
+
+export const path = ['Canvas', '图表', '柱状图'];
