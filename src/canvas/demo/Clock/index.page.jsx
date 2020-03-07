@@ -9,7 +9,6 @@ const useStateHook = () => {
 
   useEffect(() => {
     const clock = new Clock({ container: containerRef.current });
-    clock.render();
   }, []);
 
   return { containerRef };
