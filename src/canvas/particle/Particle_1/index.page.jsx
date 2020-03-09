@@ -1,38 +1,27 @@
-// 参考: https://codepen.io/JulianLaval/pen/KpLXOO
 import React, {
   useRef,
   useEffect,
 } from 'react';
 
+import Paiticle from './Paiticle';
 import './x';
 
 const useStateHook = () => {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    var canvasDiv = document.getElementById('particle-canvas');
-    var options = {
-      particleColor: '#888',
-      // background: 'https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/demo-bg.jpg',
-      interactive: true,
-      speed: 'medium',
-      density: 'high',
-      background: '#fff',
-    };
-    var particleCanvas = new ParticleNetwork(canvasDiv, options);
-    console.log('--------->>>', particleCanvas);
-    // if (containerRef.current){
-    //   var options = {
-    //     particleColor: '#888',
-    //     background: 'https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/demo-bg.jpg',
-    //     interactive: true,
-    //     speed: 'medium',
-    //     density: 'high'
-    //   };
-  
-    //   var particleCanvas = new ParticleNetwork(containerRef.current, options);
-    //   containerRef.current.appendChild(particleCanvas);
-    // }
+    const paiticle = new Paiticle({ container: containerRef.current });
+
+    // var canvasDiv = document.getElementById('particle-canvas');
+    // var options = {
+    //   particleColor: '#888',
+    //   // background: 'https://raw.githubusercontent.com/JulianLaval/canvas-particle-network/master/img/demo-bg.jpg',
+    //   interactive: true,
+    //   speed: 'medium',
+    //   density: 'high',
+    //   background: '#fff',
+    // };
+    // var particleCanvas = new ParticleNetwork(canvasDiv, options);
   }, []);
 
   return { containerRef };
