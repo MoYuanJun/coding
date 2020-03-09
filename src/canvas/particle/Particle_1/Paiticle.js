@@ -6,7 +6,7 @@ class Spots {
     height = 0,
     density = 5e3,
     globalAlpha = 0.7,
-    velocity = 0.33,            // 速度
+    velocity = 1,            // 速度
     particleColor = '#888',
   } = {}){
     this.i = 0;
@@ -30,6 +30,10 @@ class Spots {
       spots.push({
         x: Math.random() * this.width,
         y: Math.random() * this.height,
+        velocity: {
+          x: (Math.random() - .5) * this.velocity,
+          y: (Math.random() - .5) * this.velocity,
+        },
       });
     }
     this.spots = spots;
@@ -78,8 +82,10 @@ class Spots {
   draw = () => {
     // 更新 spots 值
     this.spots.forEach(v => {
-      v.x += ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * (Math.random() - .5) * this.velocity;
-      v.y += ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * (Math.random() - .5) * this.velocity;
+      v.velocity.x = ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * v.velocity.x;
+      v.velocity.y = ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * v.velocity.y;
+      v.x += v.velocity.x;
+      v.y += v.velocity.y;
     });
     
     this.ctx.clearRect(0, 0, this.width, this.height);
