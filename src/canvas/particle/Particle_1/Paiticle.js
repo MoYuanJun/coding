@@ -1,26 +1,75 @@
 // 参考: https://codepen.io/JulianLaval/pen/KpLXOO
-class Spots {
+export default class Paiticle {
   constructor({
-    ctx = null,
-    width = 0,
-    height = 0,
-    density = 5e3,
-    globalAlpha = 0.7,
-    velocity = 1,            // 速度
-    particleColor = '#888',
+    container,              // 父级容器
+    density = 5e3,          // 粒子密度: width * height / density = 粒子初始个数
+    velocity = 0.66,        // 粒子速度
+    globalAlpha = 0.8,      // 全局透明度
+    maxLineLength = 120,    // 粒子间最长连线
+    particleColor = '#888', // 粒子颜色
   } = {}){
-    this.i = 0;
-    this.ctx = ctx;
-    this.spots = [];
-    this.tmp = null;
-    this.width = width;
-    this.height = height;
-    this.density = density;
-    this.velocity = velocity;
-    this.globalAlpha = globalAlpha;
-    this.particleColor = particleColor;
+    this.ctx = null;                       // canvas 2d 上下文
+    this.width = 0;                        // 画布宽
+    this.height = 0;                       // 画布高
+    this.spots = [];                       // 所有点
+    this.canvas = null,                    // canvas dom
+    this.density = density;                // 粒子密度
+    this.tmpSpotSpot = null;               // 临时点
+    this.velocity = velocity;              // 粒子速度
+    this.container = container;            // 父级容器
+    this.globalAlpha = globalAlpha;        // 全局透明度
+    this.particleColor = particleColor;    // 粒子颜色
+    this.maxLineLength = maxLineLength;    // 粒子间最长连线
 
+    this.createCanvas();
+    this.render();
+    this.bindEvent();
+  }
+
+  // 创建画布
+  createCanvas = () => {
+    this.canvas = document.createElement('canvas');
+    this.container.appendChild(this.canvas);
+    this.ctx = this.canvas.getContext('2d');
+  }
+
+  // 渲染: canvas
+  render = () => {
+    const { width, height } = getComputedStyle(this.container);
+    this.width = parseFloat(width, 10)
+    this.height = parseFloat(height, 10);
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
     this.draw();
+  }
+
+  // 绘制
+  draw = () => {
+    // 1. 更新 spots 速度
+    this.spots.forEach(v => {
+      v.velocity.x = ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * v.velocity.x;
+      v.velocity.y = ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * v.velocity.y;
+      v.x += v.velocity.x;
+      v.y += v.velocity.y;
+    });
+    
+    // 2. 清除画布
+    this.ctx.clearRect(0, 0, this.width, this.height);
+
+    // 3. 绘制点、直线
+    this.drawSpots();
+    this.drawLines();
+
+    // 4. 添加动画
+    requestAnimationFrame(this.draw);
+  }
+
+  // 绑定事件
+  bindEvent = () => {
+    window.addEventListener('resize', this.onResize);
+    this.canvas.addEventListener('click', this.onClick);
+    this.canvas.addEventListener('mousemove', this.onMouseMove);
+    this.canvas.addEventListener('mouseleave', this.onMouseLeave);
   }
 
   // 创建 spots
@@ -42,11 +91,13 @@ class Spots {
   // 绘制圆点
   drawSpots = () => {
     this.spots.length === 0 && this.createSpots();
+    const spots = this.tmpSpot ? [this.tmpSpot, ... this.spots] : this.spots;
 
+    // 绘制点
     this.ctx.save();
     this.ctx.fillStyle = this.particleColor;
     this.ctx.globalAlpha = this.globalAlpha;
-    this.spots.forEach(v => {
+    spots.forEach(v => {
       this.ctx.beginPath();
       this.ctx.arc(v.x, v.y, 1.5, 0, 2 * Math.PI);
       this.ctx.fill();
@@ -57,20 +108,24 @@ class Spots {
 
   // 绘制线线条
   drawLines = () => {
+    const spots = this.tmpSpot ? [this.tmpSpot, ... this.spots] : this.spots;
+
+    // 循环绘制直线: 只有相邻的点之间才绘制连线
     this.ctx.save();
     this.ctx.strokeStyle = this.particleColor;
     this.ctx.lineWidth = .7;
-    for (let i = 0; i < this.spots.length; i ++){
-      for (let j = i + 1; j < this.spots.length; j ++){
+    for (let i = 0; i < spots.length; i ++){
+      for (let j = i + 1; j < spots.length; j ++){
+        // 根据直角三角形定理计算两个点之间的距离
         const lineLength = Math.sqrt(
-          Math.pow(this.spots[i].x - this.spots[j].x, 2) + 
-          Math.pow(this.spots[i].y - this.spots[j].y, 2)
+          Math.pow(spots[i].x - spots[j].x, 2) + 
+          Math.pow(spots[i].y - spots[j].y, 2)
         );
-        lineLength < 120 && (
+        lineLength < this.maxLineLength && (
           this.ctx.beginPath(),
-          this.ctx.moveTo(this.spots[i].x, this.spots[i].y),
-          this.ctx.lineTo(this.spots[j].x, this.spots[j].y),
-          this.ctx.globalAlpha = (120 - lineLength) / 120,
+          this.ctx.moveTo(spots[i].x, spots[i].y),
+          this.ctx.lineTo(spots[j].x, spots[j].y),
+          this.ctx.globalAlpha = this.globalAlpha * (120 - lineLength) / 120,
           this.ctx.stroke()
         );
       }
@@ -78,57 +133,37 @@ class Spots {
     this.ctx.restore();
   }
 
-  // 绘制
-  draw = () => {
-    // 更新 spots 值
-    this.spots.forEach(v => {
-      v.velocity.x = ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * v.velocity.x;
-      v.velocity.y = ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * v.velocity.y;
-      v.x += v.velocity.x;
-      v.y += v.velocity.y;
+  // 容器大小改变
+  onResize = () => {
+    this.render();
+  }
+
+  // 画布上点击鼠标: 以当前位置为左边插入点
+  onClick = event => {
+    this.spots.push({
+      x: event.offsetX,
+      y: event.offsetY,
+      velocity: {
+        x: (Math.random() - .5) * this.velocity,
+        y: (Math.random() - .5) * this.velocity,
+      },
     });
-    
-    this.ctx.clearRect(0, 0, this.width, this.height);
-    this.drawSpots();
-    this.drawLines();
-    requestAnimationFrame(this.draw);
+  }
+
+  // 画布上鼠标移动: 设置临时点
+  onMouseMove = event => {
+    this.tmpSpot = {
+      x: event.offsetX,
+      y: event.offsetY,
+      velocity: {
+        x: 0,
+        y: 0,
+      },
+    };
+  }
+
+  // 鼠标移出画布: 清除临时点
+  onMouseLeave = () => {
+    this.tmpSpot = null;
   }
 }
-
-// 1. 绘制原点
-// 2. 两原点之间距离小于给定值时使用直线连接两点
-export default class {
-  constructor({
-    container = null,   // 容器
-    density = 5e3,      // 密度, 圆点个数 = 画布宽 * 高 / 密度
-  } = {}){
-    this.container = container;
-    this.density = density;
-    this.spots = null
-
-    this.init();
-  }
-
-  // 初始化
-  init = () => {
-    // 1. 获取父级容器的宽高
-    const { width, height } = getComputedStyle(this.container);
-    this.width = parseFloat(width, 10)
-    this.height = parseFloat(height, 10);
-
-    // 2. 创建 canvas 元素并插入到页面中
-    this.canvas = document.createElement('canvas');
-    this.canvas.width = this.width;
-    this.canvas.height = this.height;
-    this.container.appendChild(this.canvas);
-    this.ctx = this.canvas.getContext('2d');
-
-    // 3. 初始化原点
-    this.spots = new Spots({
-      ctx: this.ctx,
-      width: this.width,
-      height: this.height,
-      density: this.density,
-    });
-  }
-};
