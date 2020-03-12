@@ -1,24 +1,30 @@
 import React, {
+  useRef,
   useEffect,
 } from 'react';
 
+import Paricle from './Paricle';
+
 const useStateHook = () => {
+  const containerRef = useRef(null);
+
   useEffect(() => {
-    require('./d');
+    new Paricle({
+      container: containerRef.current,
+    });
   }, []);
+
+  return { containerRef };
 }
 
 export default () => {
 
-  useStateHook();
+  const state = useStateHook();
 
   return (
-    <div>
-      <canvas 
-        id="c" 
-        style={{ position: 'absolute', left: 0, top: 0 }}>
-
-      </canvas>
+    <div 
+      ref={state.containerRef}
+      style={{ width: '100vw', height: '100vh' }}>
     </div>
   );
 };
