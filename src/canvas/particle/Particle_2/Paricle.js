@@ -97,12 +97,13 @@ export default class {
   constructor({
     container = null,
   } = {}){
-    this.container = container;
+    this.count = 50;
     this.lines = [];
     this.width = 0;
+    this.ctx = null;
     this.height = 0;
     this.canvas = null;
-    this.ctx = null;
+    this.container = container;
 
     this.createCanvas();
     this.loop();
@@ -123,12 +124,16 @@ export default class {
 
   // 循环
   loop = () => {
-    !this.lines[0] && this.lines.push(new Line({
-      ctx: this.ctx,
-      width: this.width,
-      height: this.height,
-    }));
-    this.lines[0].step();
+    if (this.lines < this.count) {
+      this.lines.push(new Line({
+        ctx: this.ctx,
+        width: this.width,
+        height: this.height,
+      }));
+    }
+    this.lines.forEach(v => {
+      v.step();
+    });
     requestAnimationFrame(this.loop);
   }
 }
