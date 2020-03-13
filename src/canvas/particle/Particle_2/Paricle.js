@@ -1,4 +1,4 @@
-// 参考: https://codepen.io/jscottsmith/pen/VjPaLO
+// 参考: https://codepen.io/towc/details/mJzOWJ
 
 class Line {
   constructor({
@@ -6,40 +6,88 @@ class Line {
     originX = 0,      // 源头坐标 x
     originY = 0,      // 源头坐标 y
 
-    segmentLen = 10,  // 线段长度(粒子数)
+    width = 0,   // 画布宽
+    height = 0, // 画布高
+    color = 'hsl(hue,100%,light%)',
+    baseLightInputMultiplier = .01,
+    addedLightInputMultiplier = .02,
+    baseLight = 50,
+    addedLight = 10, // [50-10,50+10]
+
+    segmentLen = 20,  // 线段长度(粒子数)
+    hueChange = .1,           // 颜色变化概率
     particleSize = 2, // 粒子大小
   } = {}){
     this.ctx = ctx;
+    this.width = width;
+    this.color = color;         
+    this.height = height;
     this.originX = originX;
-    this.originY = originY;         
+    this.originY = originY;
     this.segmentLen = segmentLen;
     this.particleSize = particleSize;
+    this.baseLight = baseLight;
+    this.addedLight = addedLight;
+    this.hueChange = hueChange;
 
-    this.angle = (Math.random() < 0.5 ? 1 : -1) * Math.PI / 3; // 当前线条行走方向(角度, 相对 x 轴, 逆时针为正)
+    this.baseLightInputMultiplier = baseLightInputMultiplier;
+    this.addedLightInputMultiplier = addedLightInputMultiplier;
+
+    this.lightInputMultiplier = 0;
+    this.cumulativeTime = 0;                             // 存活时间
     this.currentSegmentLen = 0;                                // 当前线段长度(粒子数)
-    this.turningX = this.originX;                              // 上一个转折点坐标 x
-    this.turningY = this.originY;                              // 上一个转折点坐标 y
+    this.turningX = 0;                              // 上一个转折点坐标 x
+    this.turningY = 0;                              // 上一个转折点坐标 y
+    this.angle = 0; // 当前线条行走方向(角度, 相对 x 轴, 逆时针为正)
+
+    this.reset(this.originX, this.originY, true);
+  }
+
+  // 重置
+  reset = (x, y, init) => {
+    if (
+      init ||
+      Math.abs(x) > (this.width / 2 - this.particleSize * this.segmentLen) ||
+      Math.abs(y) > (this.height / 2 - this.particleSize * this.segmentLen)
+    ){
+      this.turningX = 0;
+      this.turningY = 0;
+      this.currentSegmentLen = 0;
+      this.angle = (Math.random() < 0.5 ? 1 : -1) * Math.PI / 3;
+      this.lightInputMultiplier = this.baseLightInputMultiplier + this.addedLightInputMultiplier * Math.random();
+
+      // 颜色
+      this.color = this.color.replace('hue', this.cumulativeTime * this.hueChange);
+
+    } else if (this.currentSegmentLen === this.segmentLen){
+      this.turningX = x;
+      this.turningY = y;
+      this.angle += (Math.random() < 0.5 ? 1 : -1) * Math.PI / 3;
+      this.currentSegmentLen = 0;
+    } else {
+      this.currentSegmentLen ++;
+    }
+    this.cumulativeTime ++;
   }
 
   // 移动
   step = () => {
-    this.drawParticle();
-    this.currentSegmentLen ++;
+    const x = this.turningX + Math.cos(this.angle) * this.currentSegmentLen * this.particleSize;
+    const y = this.turningY + Math.sin(this.angle) * this.currentSegmentLen * this.particleSize;
+    this.drawParticle(x, y);
+    this.reset(x, y);
   }
 
   // 绘制粒子
-  drawParticle = () => {
+  drawParticle = (x, y) => {
     this.ctx.save();
     this.ctx.beginPath();
-    this.ctx.fillStyle = 'red';
-    const y = Math.sin(this.angle) * this.currentSegmentLen * this.particleSize;
-    const x = Math.cos(this.angle) * this.currentSegmentLen * this.particleSize;
-    this.ctx.fillRect(
-      this.turningX + x,
-      this.turningY + y, 
-      this.particleSize, 
-      this.particleSize,
+    // this.ctx.shadowBlur = 10;
+    this.ctx.fillStyle = this.ctx.shadowColor = this.color.replace(
+      'light', 
+      this.baseLight + this.addedLight * Math.sin(this.cumulativeTime * this.lightInputMultiplier)
     );
+    this.ctx.fillRect(x, y, this.particleSize, this.particleSize);
     this.ctx.beginPath();
     this.ctx.restore();
   }
@@ -51,6 +99,10 @@ export default class {
   } = {}){
     this.container = container;
     this.lines = [];
+    this.width = 0;
+    this.height = 0;
+    this.canvas = null;
+    this.ctx = null;
 
     this.createCanvas();
     this.loop();
@@ -73,6 +125,8 @@ export default class {
   loop = () => {
     !this.lines[0] && this.lines.push(new Line({
       ctx: this.ctx,
+      width: this.width,
+      height: this.height,
     }));
     this.lines[0].step();
     requestAnimationFrame(this.loop);
