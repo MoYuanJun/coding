@@ -2,14 +2,16 @@
 class Line {
   constructor({
     ctx = null,         // canvas 2d 上下文
+    width = 0,          // 画布宽
+    height = 0,         // 画布高
+  
     originX = 0,        // 源头坐标 x
     originY = 0,        // 源头坐标 y
 
-    width = 0,          // 画布宽
-    height = 0,         // 画布高
     sparkChance = 0.2,  // 火花出现概率
     sparkDist = 10,     // 火花距离
     sparkSize = 2,      // 火花大小 
+  
     segmentLen = 20,    // 线段长度(粒子数)
     particleSize = 2,   // 粒子大小
   } = {}){
@@ -24,11 +26,11 @@ class Line {
     this.sparkChance = sparkChance;
     this.particleSize = particleSize;
 
-    this.currentSegmentLen = 0;                // 当前线段长度(粒子数)
+    this.color = '';                           // 线条颜色
+    this.angle = 0;                            // 当前线条行走方向(角度, 相对 x 轴, 逆时针为正)
     this.turningX = 0;                         // 上一个转折点坐标 x
     this.turningY = 0;                         // 上一个转折点坐标 y
-    this.angle = 0;                            // 当前线条行走方向(角度, 相对 x 轴, 逆时针为正)
-    this.color = '';                           // 线条颜色
+    this.currentSegmentLen = 0;                // 当前线段长度(粒子数)
 
     this.reset(this.originX, this.originY, true);
   }
@@ -41,7 +43,7 @@ class Line {
     return `rgb(${r}, ${g}, ${b})`;
   }
 
-  // 重置
+  // 重置: 当前 x, y, 是否初始化
   reset = (x, y, init) => {
     if (
       init ||
@@ -53,18 +55,17 @@ class Line {
       this.currentSegmentLen = 0;
       this.color = this.getColor();
       this.angle = (Math.random() < 0.5 ? 1 : -1) * Math.PI / 3;
-
     } else if (this.currentSegmentLen === this.segmentLen) {
       this.turningX = x;
       this.turningY = y;
-      this.angle += (Math.random() < 0.5 ? 1 : -1) * Math.PI / 3;
       this.currentSegmentLen = 0;
+      this.angle += (Math.random() < 0.5 ? 1 : -1) * Math.PI / 3;
     } else {
       this.currentSegmentLen ++;
     }
   }
 
-  // 移动
+  // 移动: 绘制线条
   step = () => {
     const x = this.turningX + Math.cos(this.angle) * this.currentSegmentLen * this.particleSize;
     const y = this.turningY + Math.sin(this.angle) * this.currentSegmentLen * this.particleSize;
@@ -92,24 +93,24 @@ class Line {
       this.ctx.fillRect(rectX, rectY,this.sparkSize, this.sparkSize);
     }
   }
-
-
 };
 
 export default class {
   constructor({
     container = null,
+    ... lineOption
   } = {}){
-    this.count = 50;
-    this.lines = [];
-    this.width = 0;
-    this.ctx = null;
-    this.height = 0;
-    this.canvas = null;
-    this.container = container;
+    this.lines = [];              // 线条实例列表
+    this.count = 50;              // 总数
+    this.ctx = null;              // canvas 上下文
+    this.width = 0;               // 画布宽
+    this.height = 0;              // 画布高
+    this.canvas = null;           // canvas dom
+    this.container = container;   // 父级容器
+    this.lineOption = lineOption; // 线条参数
 
-    this.createCanvas();
-    this.loop();
+    this.createCanvas();          // 绘制画布 
+    this.loop();                  // 循环: 动画
   }
 
   // 创建画布
@@ -123,6 +124,7 @@ export default class {
     
     // 重新设置原点为画布中心
     this.ctx.translate(this.width / 2, this.height / 2);
+    // 绘制黑色背景
     this.ctx.fillStyle = 'rgba(0,0,0,1)';
     this.ctx.fillRect(
       -this.width / 2, 
@@ -134,6 +136,7 @@ export default class {
 
   // 循环
   loop = () => {
+    // 绘制半透明遮盖层: 实现粒子拖拽的效果
     this.ctx.globalCompositeOperation = 'source-over';
     this.ctx.shadowBlur = 0;
     this.ctx.fillStyle = 'rgba(0,0,0,0.04)';
@@ -143,20 +146,22 @@ export default class {
       this.width, 
       this.height
     );
-
+    
+    // 重置图形混合模式
     this.ctx.globalCompositeOperation = 'lighter';
 
-
+    // 创建线条并绘制线条
     if (this.lines.length < this.count) {
       this.lines.push(new Line({
         ctx: this.ctx,
         width: this.width,
         height: this.height,
+        ... this.lineOption,
       }));
     }
-    this.lines.forEach(v => {
-      v.step();
-    });
+    this.lines.forEach(v => v.step());
+
+    // 设置动画
     requestAnimationFrame(this.loop);
   }
 }
