@@ -7,6 +7,9 @@
 - https://www.jianshu.com/p/b1affeebd986
 - https://blog.csdn.net/qq_36565626/article/details/88225756
 
+- https://blog.csdn.net/yuewenyao/article/details/84073574
+- https://blog.csdn.net/qq_15906905/article/details/97074749?depth_1-utm_source=distribute.pc_relevant.none-task&utm_source=distribute.pc_relevant.none-task
+
 
 ## 落点问题：如何判断是否触摸到了图片、操控按钮
 
