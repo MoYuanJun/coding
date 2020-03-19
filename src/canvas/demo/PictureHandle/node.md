@@ -2,6 +2,7 @@
 
 ## 参考
 
+- https://juejin.im/post/5e6f85df6fb9a07c8b5bcdcb
 - https://juejin.im/post/5c5432ca6fb9a049b82ae58a#heading-4
 - https://juejin.im/post/5e5e5f0af265da57133b30bc#heading-19
 - https://www.jianshu.com/p/b1affeebd986
@@ -23,3 +24,73 @@
 
 ## 如何实现图片下载
  
+
+## tmp
+
+向量的点积 = x1*x2 + y1 * y2 = |a||b|cosO
+
+==> a.b > 0 方向基本相同(夹角在 0 ~ 90)
+    a.b = 0 正交、相互垂直
+    a.b < 0 方法基本相反, 夹角在 90 到 180 之间
+
+向量的叉积
+
+
+function rayCasting(p, poly) {
+    var px = p.x,
+        py = p.y,
+        flag = false
+
+    for(var i = 0, l = poly.length, j = l - 1; i < l; j = i, i++) {
+      var sx = poly[i].x,
+          sy = poly[i].y,
+          tx = poly[j].x,
+          ty = poly[j].y
+
+      // 点与多边形顶点重合
+      if((sx === px && sy === py) || (tx === px && ty === py)) {
+        return 'on'
+      }
+
+      // 判断线段两端点是否在射线两侧
+      if((sy < py && ty >= py) || (sy >= py && ty < py)) {
+        // 线段上与射线 Y 坐标相同的点的 X 坐标
+        var x = sx + (py - sy) * (tx - sx) / (ty - sy)
+
+        // 点在多边形的边上
+        if(x === px) {
+          return 'on'
+        }
+
+        // 射线穿过多边形的边界
+        if(x > px) {
+          flag = !flag
+        }
+      }
+    }
+
+    // 射线穿过多边形边界的次数为奇数时点在多边形内
+    return flag ? 'in' : 'out'
+  }
+
+
+  function isPointInRect(point, rect) {
+    const [touchX, touchY] = point;
+    // 长方形四个点的坐标
+    const [[x1, y1], [x2, y2], [x3, y3], [x4, y4]] = rect;
+    
+    // 四个向量
+    const v1 = [x1 - touchX, y1 - touchY];
+    const v2 = [x2 - touchX, y2 - touchY];
+    const v3 = [x3 - touchX, y3 - touchY];
+    const v4 = [x4 - touchX, y4 - touchY];
+    if(
+        (v1[0] * v2[1] - v2[0] * v1[1]) > 0 
+        && (v2[0] * v4[1] -  v4[0] * v2[1]) > 0
+        && (v4[0] * v3[1] - v3[0] * v4[1]) > 0
+        && (v3[0] * v1[1] -  v1[0] * v3[1]) > 0
+    ){
+        return true;
+    }
+    return false;
+}
