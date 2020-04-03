@@ -23,8 +23,7 @@ export default () => {
       ref={state.containerRef}
       style={{ height: '100vh', width: '100vw'}}
     >
-      
+
     </div>
   );
 };
-export const path = ['canvas', '粒子', '粒子1'];

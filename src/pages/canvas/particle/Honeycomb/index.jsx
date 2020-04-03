@@ -28,5 +28,3 @@ export default () => {
     </div>
   );
 };
-
-export const path = ['canvas', '粒子', '粒子2'];

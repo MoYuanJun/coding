@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook",
-    "start": "npm run storybook",
-    "build": "npm run build-storybook",
+    "start": "cross-env CONFIG_PATH=./src/config react-script start",
+    "build": "cross-env CONFIG_PATH=./src/config react-script build",
     "commit": "git-cz",
-    "release": "standard-version"
+    "release": "standard-version --release-as",
+    "release:100": "npm run release -- major",
+    "release:010": "npm run release -- minor",
+    "release:001": "npm run release -- patch"
   },
   "repository": {
     "type": "git",
@@ -24,22 +24,15 @@
   },
   "homepage": "https://github.com/qianyin925/canvas#readme",
   "dependencies": {
-    "lodash": "^4.17.15"
+    "qy-create-react": "^1.1.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-angular": "^8.3.4",
-    "@storybook/addon-actions": "^5.3.12",
-    "@storybook/addon-links": "^5.3.12",
-    "@storybook/addons": "^5.3.12",
-    "@storybook/react": "^5.3.12",
-    "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
+    "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.3",
-    "node-sass": "^4.13.1",
-    "sass-loader": "^8.0.2",
     "standard-version": "^7.1.0"
   },
   "config": {
