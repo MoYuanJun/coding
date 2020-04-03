@@ -4,9 +4,9 @@ const done = () => {
   const text = 'zabbcdef';
   const re = /ab/;
   const result = re.exec(text);
-  
-  console.log(result.index) // 1
-  console.log(result.indices) // [ [1, 3] ]
+
+  console.log(result.index); // 1
+  console.log(result.indices); // [ [1, 3] ]
 };
 
 export default () => (

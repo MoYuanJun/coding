@@ -1,5 +1,7 @@
-import React from 'react';
-import { useEffect, useRef }  from 'react';
+import React, {
+  useRef,
+  useEffect,
+} from 'react';
 import Bar from './bar';
 
 const data = [
@@ -20,13 +22,14 @@ const useStateHook = () => {
   }, []);
 
   return { containerRef };
-}
+};
 
-export default (props) => {
+export default props => {
   const state = useStateHook(props);
   return (
-    <div ref={state.containerRef} style={{ width: 600, height: 500}}></div>
+    <div
+      ref={state.containerRef}
+      style={{ width: 600, height: 500 }}
+    />
   );
-}
-
-export const path = ['Canvas', '图表', '柱状图'];
+};

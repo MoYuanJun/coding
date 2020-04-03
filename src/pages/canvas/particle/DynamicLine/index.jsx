@@ -13,7 +13,7 @@ const useStateHook = () => {
   }, []);
 
   return { containerRef };
-}
+};
 
 export default () => {
   const state = useStateHook();
@@ -21,9 +21,7 @@ export default () => {
   return (
     <div
       ref={state.containerRef}
-      style={{ height: '100vh', width: '100vw'}}
-    >
-
-    </div>
+      style={{ height: '100vh', width: '100vw' }}
+    />
   );
 };

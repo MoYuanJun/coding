@@ -1,5 +1,12 @@
 export default class Line {
-  constructor({ padding = 50, data = [], segsY = 5, divisionLength = 5, barWidth = 40, frameNum = 50  }){
+  constructor ({
+    data = [],
+    segsY = 5,
+    padding = 50,
+    barWidth = 40,
+    frameNum = 50,
+    divisionLength = 5,
+  }) {
     this.width = 0;
     this.height = 0;
     this.ctx = null;
@@ -19,7 +26,7 @@ export default class Line {
   }
 
   // 初始化
-  init = (container) => {
+  init = container => {
     const { width, height } = window.getComputedStyle(container);
     this.width = parseFloat(width);
     this.height = parseFloat(height);
@@ -31,7 +38,6 @@ export default class Line {
     container.appendChild(this.canvas);
   }
 
-
   // 绘制坐标轴
   drawAxis = () => {
     // 坐标轴线
@@ -42,14 +48,18 @@ export default class Line {
     this.ctx.strokeStyle = 'red';
     this.ctx.stroke();
 
-    const stepLengthX = Math.floor((this.width - 2 * this.padding) / this.data.length);
-    const stepLengthY = Math.floor((this.height - 2 * this.padding) / this.segsY);
-    
+    const stepLengthX = Math.floor(
+      (this.width - (2 * this.padding)) / this.data.length
+    );
+    const stepLengthY = Math.floor(
+      (this.height - (2 * this.padding)) / this.segsY
+    );
+
     // x - 分割点
-    for(let i = 0; i < this.data.length; i++){
+    for (let i = 0; i < this.data.length; i += 1) {
       const y = this.height - this.padding;
-      const x = this.padding + stepLengthX * (i + 1);
-      
+      const x = this.padding + (stepLengthX * (i + 1));
+
       // 分割线
       this.ctx.beginPath();
       this.ctx.moveTo(x, y);
@@ -57,13 +67,17 @@ export default class Line {
       this.ctx.stroke();
 
       this.ctx.textAlign = 'center';
-      this.ctx.fillText(this.data[i].name, x - stepLengthX / 2, y + 4 * this.divisionLength);
+      this.ctx.fillText(
+        this.data[i].name,
+        x - (stepLengthX / 2),
+        y + (4 * this.divisionLength)
+      );
     }
 
     // y - 分割点
-    for(let i = 0; i < this.segsY; i++){
+    for (let i = 0; i < this.segsY; i += 1) {
       const x = this.padding;
-      const y = this.height - this.padding - stepLengthY * (i + 1);
+      const y = this.height - this.padding - (stepLengthY * (i + 1));
 
       // 分割点
       this.ctx.beginPath();
@@ -71,13 +85,13 @@ export default class Line {
       this.ctx.lineTo(x - this.divisionLength, y);
       this.ctx.stroke();
 
-      const max = Math.max(...this.data.map(v => v.value));
+      const max = Math.max(... this.data.map(v => v.value));
       const value = max / this.segsY * (i + 1);
-      const yHeight = (this.height - 2 * this.padding) / max * value;
-      
+      const yHeight = (this.height - (2 * this.padding)) / max * value;
+
       this.ctx.fillText(
-        Math.floor(value), 
-        Math.floor(x - 4 * this.divisionLength), 
+        Math.floor(value),
+        Math.floor(x - (4 * this.divisionLength)),
         Math.floor(this.height - this.padding - yHeight + 4)
       );
     }
@@ -92,22 +106,27 @@ export default class Line {
   getPoints = () => {
     const subsection = [];
     const points = [];
-    for(let i = 0; i < this.data.length; i++){
-      const x = Math.floor((this.width - 2 * this.padding) / this.data.length * (i + 0.5)) + this.padding;
-      const yHeight = Math.floor((this.height - 2 * this.padding) / Math.max(...this.data.map(v => v.value)) * this.data[i].value);
+    for (let i = 0; i < this.data.length; i += 1) {
+      const x = Math.floor(
+        (this.width - (2 * this.padding)) / this.data.length * (i + 0.5)
+      ) + this.padding;
+      const yHeight = Math.floor(
+        (this.height - (2 * this.padding)) /
+        Math.max(... this.data.map(v => v.value)) *
+        this.data[i].value
+      );
       const y = this.height - yHeight - this.padding;
-      subsection.push([x, y])
+      subsection.push([x, y]);
     }
 
-    for(let i = 0; i < subsection.length - 1; i++ ){
-      const x1 = subsection[i][0];
-      const y1 = subsection[i][1];
-      const x2 = subsection[i + 1][0];
-      const y2 = subsection[i + 1][1];
+    for (let i = 0; i < subsection.length - 1; i += 1) {
+      const [x1, y1] = subsection[i];
+      const [x2, y2] = subsection[i + 1];
+
       const tan = (x2 - x1) / (y2 - y1);
       const stepY = (y2 - y1) / this.frameNum;
-      for(let i = 0; i < this.frameNum; i++){
-        const y = y1 + stepY * i;
+      for (let i = 0; i < this.frameNum; i += 1) {
+        const y = y1 + (stepY * i);
         const x = x2 - (tan * (y2 - y));
         points.push([x, y]);
       }
@@ -117,14 +136,14 @@ export default class Line {
   }
 
   // 绘制线段
-  drawLine = (points) => {
+  drawLine = points => {
     this.ctx.beginPath();
     const recursion = () => {
       const [x, y] = points.shift();
       this.ctx.lineTo(x, y);
       this.ctx.stroke();
       points.length !== 0 && requestAnimationFrame(recursion);
-    }
+    };
     requestAnimationFrame(recursion);
-  } 
+  }
 }

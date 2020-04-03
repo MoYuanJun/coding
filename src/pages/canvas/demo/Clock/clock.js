@@ -1,6 +1,6 @@
 // 参考: https://codepen.io/exd/pen/dwreEa
 export default class {
-  constructor({
+  constructor ({
     width = 400,         // 画布宽度
     height = 400,        // 画布高度
     radius = 190,        // 半径
@@ -12,7 +12,7 @@ export default class {
     borderWidth = 3,     // 边框宽度
     uedFontSize = 30,    // ued 字体大小
     originRadius = 5,    // 原点半径
-  }){
+  }) {
     this.ctx = null;
     this.width = width;
     this.height = height;
@@ -88,7 +88,7 @@ export default class {
 
     // 3. 绘制刻度和数值: 绘制 60 个刻度, 每 5 个绘制一个大刻度
     ctx.translate(this.width / 2, this.height / 2);    // 设置原点的位置
-    for (let i = 0; i < 60; i++){
+    for (let i = 0; i < 60; i = i + 1) {
       // 绘制刻度
       ctx.beginPath();                              // 开始绘制路径
       ctx.moveTo(0, this.radius);                   // 移动到指定位置
@@ -102,7 +102,8 @@ export default class {
 
       // 绘制数字
       if (i % 5 === 0) {
-        ctx.font=`${this.tickFontSize}px arial`;     // 字体设置: font 属性使用的语法与 CSS font 属性
+        // 字体设置: font 属性使用的语法与 CSS font 属性
+        ctx.font = `${this.tickFontSize}px arial`;
         ctx.fillStyle = '#000';    // 设置填充样式
         ctx.textAlign = 'center';  // 设置文字对齐方式, 定义文字坐标点在文字的位置
         ctx.fillText(              // 绘制填充文字: (文字, 位置 x, 位置 y)
@@ -136,7 +137,7 @@ export default class {
     canvas.width = this.width;
 
     ctx.translate(this.width / 2, this.height / 2);  // 设置原点位置
-    ctx.rotate(- Math.PI / 2);                       // 先将画布逆时针旋转 Math.PI / 2 (90度)
+    ctx.rotate(- Math.PI / 2); // 先将画布逆时针旋转 Math.PI / 2 (90度)
 
     // 根据时间换算转动角度(为了使得 x 轴指向正上方)：一圈 = 2 * Math.PI = 60 秒 = 60 分 = 12 小时
     const time = new Date();
@@ -151,7 +152,9 @@ export default class {
     ctx.moveTo(- this.radius / 5, - this.originRadius / 2); // 移动绘制点
     ctx.lineTo(this.radius / 2, 0);                         // 绘制直线(路径)到指定位置
     ctx.lineTo(- this.radius / 5, this.originRadius / 2);   // 绘制直线(路径)到指定位置
-    ctx.arcTo(                                              // 绘制圆弧: (第一端点 x 位置, 第一端点 x 位置,  第一端点 x 位置,  第一端点 x 位置, 圆弧半径),  当前绘制点、第一端点、第二端点形成夹角, 圆弧从当前端点开始绘制、到第二端点结束, 并于两条直线相切
+    // 绘制圆弧: (第一端点 x 位置, 第一端点 x 位置,  第一端点 x 位置,  第一端点 x 位置, 圆弧半径),
+    // 当前绘制点、第一端点、第二端点形成夹角, 圆弧从当前端点开始绘制、到第二端点结束, 并于两条直线相切
+    ctx.arcTo(
       0, 0,
       - this.radius / 5, - this.originRadius / 2,
       this.originRadius / 2
@@ -162,21 +165,29 @@ export default class {
     ctx.restore();                                          // 回退到上一次保存的状态
 
     // 绘制分针
-    ctx.save();                                                                 // 保存当前路径
-    ctx.rotate(minAngle);                                                       // 旋转画布
-    ctx.beginPath();                                                            // 开始路径绘制
-    ctx.moveTo(- this.radius / 5, - this.originRadius / 2);                     // 移动绘制点
-    ctx.lineTo(this.radius - this.tickFontHeight - (this.tickFontSize / 2), 0); // 绘制直线(路径)到指定位置
-    ctx.lineTo(- this.radius / 5, this.originRadius / 2);                       // 绘制直线(路径)到指定位置
-    ctx.arcTo(                                                                  // 绘制圆弧: 第一端点 x 位置, 第一端点 x 位置,  第一端点 x 位置,  第一端点 x 位置, 圆弧半径),  当前绘制点、第一端点、第二端点形成夹角, 圆弧从当前端点开始绘制、到第二端点结束, 并于两条直线相切
+    // 保存当前路径
+    ctx.save();
+    // 旋转画布
+    ctx.rotate(minAngle);
+    // 开始路径绘制
+    ctx.beginPath();
+    // 移动绘制点
+    ctx.moveTo(- this.radius / 5, - this.originRadius / 2);
+    // 绘制直线(路径)到指定位置
+    ctx.lineTo(this.radius - this.tickFontHeight - (this.tickFontSize / 2), 0);
+    // 绘制直线(路径)到指定位置
+    ctx.lineTo(- this.radius / 5, this.originRadius / 2);
+    // 绘制圆弧: 第一端点 x 位置, 第一端点 x 位置,  第一端点 x 位置,  第一端点 x 位置, 圆弧半径),
+    // 当前绘制点、第一端点、第二端点形成夹角, 圆弧从当前端点开始绘制、到第二端点结束, 并于两条直线相切
+    ctx.arcTo(
       0, 0,
       - this.radius / 5, - this.originRadius / 2,
       this.originRadius / 2
     );
-    ctx.strokeStyle = '#000';                                                  // 设置描边样式
-    ctx.stroke();                                                              //描边
-    ctx.closePath();                                                           // 关闭路径绘制
-    ctx.restore();                                                             // 回退上一个状态
+    ctx.strokeStyle = '#000';  // 设置描边样式
+    ctx.stroke();              // 描边
+    ctx.closePath();           // 关闭路径绘制
+    ctx.restore();             // 回退上一个状态
 
     // 绘制秒钟
     ctx.save();                            // 存储当前状态
@@ -190,7 +201,7 @@ export default class {
 
     ctx.beginPath();                                 // 开始绘制路径
     ctx.arc(                                         // 绘制圆(曲线)
-      this.radius - this.tickFontHeight - this.tickFontSize / 2,
+      this.radius - this.tickFontHeight - (this.tickFontSize / 2),
       0, this.originRadius, 0, 2 * Math.PI
     );
     ctx.fillStyle = '#ffff00';                       // 设置填充样式

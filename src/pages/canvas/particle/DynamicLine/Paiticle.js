@@ -1,13 +1,13 @@
 // 参考: https://codepen.io/JulianLaval/pen/KpLXOO
 export default class Paiticle {
-  constructor({
+  constructor ({
     container,              // 父级容器
     density = 5e3,          // 粒子密度: width * height / density = 粒子初始个数
     velocity = 0.66,        // 粒子速度
     globalAlpha = 0.8,      // 全局透明度
     maxLineLength = 120,    // 粒子间最长连线
     particleColor = '#888', // 粒子颜色
-  } = {}){
+  } = {}) {
     this.ctx = null;                       // canvas 2d 上下文
     this.width = 0;                        // 画布宽
     this.height = 0;                       // 画布高
@@ -36,7 +36,7 @@ export default class Paiticle {
   // 渲染: canvas
   render = () => {
     const { width, height } = getComputedStyle(this.container);
-    this.width = parseFloat(width, 10)
+    this.width = parseFloat(width, 10);
     this.height = parseFloat(height, 10);
     this.canvas.width = this.width;
     this.canvas.height = this.height;
@@ -46,13 +46,16 @@ export default class Paiticle {
   // 绘制
   draw = () => {
     // 1. 更新 spots 速度
-    this.spots.forEach(v => {
-      v.velocity.x = ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * v.velocity.x;
-      v.velocity.y = ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * v.velocity.y;
-      v.x += v.velocity.x;
-      v.y += v.velocity.y;
+    this.spots = this.spots.map(v => {
+      const x = ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * v.velocity.x;
+      const y = ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * v.velocity.y;
+      return {
+        velocity: { x, y },
+        x: v.x + x,
+        y: v.y + y,
+      };
     });
-    
+
     // 2. 清除画布
     this.ctx.clearRect(0, 0, this.width, this.height);
 
@@ -74,8 +77,8 @@ export default class Paiticle {
 
   // 创建 spots
   createSpots = () => {
-    let spots = [];
-    for (let i = 0; i < this.width * this.height / this.density; i ++){
+    const spots = [];
+    for (let i = 0; i < this.width * this.height / this.density; i += 1) {
       spots.push({
         x: Math.random() * this.width,
         y: Math.random() * this.height,
@@ -114,11 +117,11 @@ export default class Paiticle {
     this.ctx.save();
     this.ctx.strokeStyle = this.particleColor;
     this.ctx.lineWidth = .7;
-    for (let i = 0; i < spots.length; i ++){
-      for (let j = i + 1; j < spots.length; j ++){
+    for (let i = 0; i < spots.length; i += 1) {
+      for (let j = i + 1; j < spots.length; j += 1) {
         // 根据直角三角形定理计算两个点之间的距离
         const lineLength = Math.sqrt(
-          Math.pow(spots[i].x - spots[j].x, 2) + 
+          Math.pow(spots[i].x - spots[j].x, 2) +
           Math.pow(spots[i].y - spots[j].y, 2)
         );
         lineLength < this.maxLineLength && (

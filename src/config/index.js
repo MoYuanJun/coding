@@ -15,7 +15,7 @@ export default {
           exact: true,
           component: pages.Home,
         },
-      ]
+      ],
     },
     {
       url: '/tmp',
@@ -27,7 +27,7 @@ export default {
           path: '/tmp',
           component: pages.Tmp,
         },
-      ]
+      ],
     },
     {
       key: 'canvas',
@@ -48,7 +48,7 @@ export default {
                   component: pages.Clock,
                   path: '/canvas/demo/clock',
                 },
-              ]
+              ],
             },
             {
               title: '图片处理',
@@ -59,7 +59,7 @@ export default {
                   component: pages.PictureHandle,
                   path: '/canvas/demo/picture-handle',
                 },
-              ]
+              ],
             },
           ],
         },
@@ -77,7 +77,7 @@ export default {
                   component: pages.Line,
                   path: '/canvas/echart/line',
                 },
-              ]
+              ],
             },
             {
               key: 'bar',
@@ -88,7 +88,7 @@ export default {
                   component: pages.Bar,
                   path: '/canvas/echart/bar',
                 },
-              ]
+              ],
             },
             {
               key: 'pie',
@@ -99,7 +99,7 @@ export default {
                   component: pages.Pie,
                   path: '/canvas/echart/pie',
                 },
-              ]
+              ],
             },
           ],
         },
@@ -117,7 +117,7 @@ export default {
                   component: pages.DynamicLine,
                   path: '/canvas/particle/dynamic-line',
                 },
-              ]
+              ],
             },
             {
               title: '多彩蜂窝',
@@ -128,8 +128,8 @@ export default {
                   component: pages.Honeycomb,
                   path: '/canvas/particle/honeycomb',
                 },
-              ]
-            }
+              ],
+            },
           ],
         },
       ],

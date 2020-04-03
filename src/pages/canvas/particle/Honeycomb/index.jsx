@@ -15,14 +15,13 @@ const useStateHook = () => {
   }, []);
 
   return { containerRef };
-}
+};
 
 export default () => {
-
   const state = useStateHook();
 
   return (
-    <div 
+    <div
       ref={state.containerRef}
       style={{ width: '100vw', height: '100vh' }}>
     </div>
