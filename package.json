@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cross-env CONFIG_PATH=./src/config react-script start",
-    "build": "cross-env CONFIG_PATH=./src/config react-script build",
+    "start": "react-script start",
+    "build": "react-script build",
     "commit": "git-cz",
     "release": "standard-version --release-as",
     "release:100": "npm run release -- major",
@@ -23,9 +23,6 @@
     "url": "https://github.com/qianyin925/canvas/issues"
   },
   "homepage": "https://github.com/qianyin925/canvas#readme",
-  "dependencies": {
-    "qy-create-react": "^1.1.2"
-  },
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-angular": "^8.3.4",
@@ -33,6 +30,7 @@
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.3",
+    "qy-create-react": "^1.1.7",
     "standard-version": "^7.1.0"
   },
   "config": {
