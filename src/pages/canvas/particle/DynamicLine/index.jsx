@@ -2,7 +2,6 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-
 import Paiticle from './Paiticle';
 
 const useStateHook = () => {
@@ -21,7 +20,7 @@ export default () => {
   return (
     <div
       ref={state.containerRef}
-      style={{ height: '100vh', width: '100vw' }}
+      style={{ height: '100%', width: '100%' }}
     />
   );
 };

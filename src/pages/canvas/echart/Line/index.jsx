@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
 import Line from './line';
+import scss from './index.module.scss';
+import React, { useRef, useEffect } from 'react';
 
 const data = [
   { name: '周一', value: 300 },
@@ -20,6 +21,11 @@ export default () => {
   }, []);
 
   return (
-    <div ref={containerRef} style={{ width: 600, height: 500 }}></div>
+    <div className={scss.layout}>
+      <div
+        ref={containerRef}
+        style={{ width: 600, height: 500 }}
+      />
+    </div>
   );
 };

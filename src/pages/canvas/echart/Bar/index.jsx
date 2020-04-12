@@ -3,6 +3,7 @@ import React, {
   useEffect,
 } from 'react';
 import Bar from './bar';
+import scss from './index.module.scss';
 
 const data = [
   { name: '周一', value: 300 },
@@ -27,9 +28,11 @@ const useStateHook = () => {
 export default props => {
   const state = useStateHook(props);
   return (
-    <div
-      ref={state.containerRef}
-      style={{ width: 600, height: 500 }}
-    />
+    <div className={scss.layout}>
+      <div
+        ref={state.containerRef}
+        style={{ width: 600, height: 500 }}
+      />
+    </div>
   );
 };

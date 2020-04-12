@@ -23,7 +23,7 @@ export default () => {
   return (
     <div
       ref={state.containerRef}
-      style={{ width: '100vw', height: '100vh' }}>
-    </div>
+      style={{ width: '100%', height: '100%' }}
+    />
   );
 };

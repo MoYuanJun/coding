@@ -1,5 +1,6 @@
-import React, { useRef, useEffect } from 'react';
 import Pie from './pie';
+import scss from './index.module.scss';
+import React, { useRef, useEffect } from 'react';
 
 
 export default () => {
@@ -10,6 +11,11 @@ export default () => {
     pie.init();
   }, []);
   return (
-    <div ref={container} style={{ height: 600, width: 600 }}></div>
+    <div className={scss.layout}>
+      <div
+        ref={container}
+        style={{ height: 600, width: 600 }}
+      />
+    </div>
   );
 };

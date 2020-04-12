@@ -3,6 +3,7 @@ import React, {
   useEffect,
 } from 'react';
 import Clock from './clock';
+import scss from './index.module.scss';
 
 const useStateHook = () => {
   const containerRef = useRef(null);
@@ -18,6 +19,8 @@ export default () => {
   const state = useStateHook();
 
   return (
-    <div ref={state.containerRef}/>
+    <div className={scss.layout}>
+      <div ref={state.containerRef}/>
+    </div>
   );
 };
