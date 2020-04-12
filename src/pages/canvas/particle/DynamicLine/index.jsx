@@ -3,6 +3,7 @@ import React, {
   useEffect,
 } from 'react';
 import Paiticle from './Paiticle';
+import scss from './index.module.scss';
 
 const useStateHook = () => {
   const containerRef = useRef(null);
@@ -19,8 +20,8 @@ export default () => {
 
   return (
     <div
+      className={scss.layout}
       ref={state.containerRef}
-      style={{ height: '100%', width: '100%' }}
     />
   );
 };

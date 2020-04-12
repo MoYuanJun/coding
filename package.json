@@ -30,7 +30,7 @@
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.3",
-    "qy-create-react": "^1.1.7",
+    "qy-create-react": "^1.1.8",
     "standard-version": "^7.1.0"
   },
   "config": {

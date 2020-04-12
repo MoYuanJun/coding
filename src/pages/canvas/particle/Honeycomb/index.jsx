@@ -2,8 +2,8 @@ import React, {
   useRef,
   useEffect,
 } from 'react';
-
 import Paricle from './Paricle';
+import scss from './index.module.scss';
 
 const useStateHook = () => {
   const containerRef = useRef(null);
@@ -22,8 +22,8 @@ export default () => {
 
   return (
     <div
+      className={scss.layout}
       ref={state.containerRef}
-      style={{ width: '100%', height: '100%' }}
     />
   );
 };
