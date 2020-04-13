@@ -51,6 +51,17 @@ export default {
               ],
             },
             {
+              title: '放大镜',
+              key: 'magnifier',
+              url: '/canvas/demo/magnifier',
+              router: [
+                {
+                  component: pages.Magnifier,
+                  path: '/canvas/demo/magnifier',
+                },
+              ],
+            },
+            {
               title: '图片处理',
               key: 'picture-handle',
               url: '/canvas/demo/picture-handle',
