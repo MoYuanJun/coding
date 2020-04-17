@@ -1,12 +1,8 @@
 import React from 'react';
 
 const done = () => {
-  const text = 'zabbcdef';
-  const re = /ab/;
-  const result = re.exec(text);
-
-  console.log(result.index); // 1
-  console.log(result.indices); // [ [1, 3] ]
+  console.log(Number.MAX_SAFE_INTEGER === Math.pow(2, 53) - 1);
+  console.log(Number.MIN_SAFE_INTEGER === -Math.pow(2, 53) + 1);
 };
 
 export default () => (
@@ -14,5 +10,3 @@ export default () => (
     {done()}
   </div>
 );
-
-export const path = ['es6', '小操场'];
