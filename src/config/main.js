@@ -2,7 +2,7 @@ import * as pages from '../pages';
 
 export default {
   logo: { img: void 0, title: '练习室' },
-  iconFont: '//at.alicdn.com/t/font_1732251_st9gwlsozhd.js',
+  iconFont: '//at.alicdn.com/t/font_1732251_1lcpvsfc78lj.js',
   menu: [
     {
       url: '/',
@@ -140,6 +140,25 @@ export default {
                   path: '/canvas/particle/honeycomb',
                 },
               ],
+            },
+          ],
+        },
+      ],
+    },
+    {
+      key: 'three',
+      title: 'Three',
+      icon: 'iconthreed-',
+      children: [
+        {
+          title: '练习',
+          icon: 'iconlianxi',
+          key: 'threePractice',
+          url: '/three/practice',
+          router: [
+            {
+              path: '/three/practice',
+              component: pages.ThreePractice,
             },
           ],
         },
