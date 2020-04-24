@@ -1,4 +1,4 @@
-export default null;
+import '../assets/style';
 
 // 首页
 export { default as Home } from './Home';
@@ -20,3 +20,7 @@ export { default as DynamicLine } from './canvas/particle/DynamicLine';
 
 // three
 export { default as ThreePractice } from './three/Practice';
+
+// css
+export { default as Shape } from './css/Shape';
+export { default as CssPractice } from './css/Practice';

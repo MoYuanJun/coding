@@ -1,0 +1,55 @@
+%text {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inside-radius-1 {
+  @extend %text;
+  height: 100px;
+  overflow: hidden;
+  position: relative;
+  background: #69c0ff;
+
+  &::after {
+    content: '';
+    width: 100px;
+    height: 100px;
+
+    top: -50px;
+    left: -50px;
+    position: absolute;
+    background: #fff;
+    border-radius: 50%;
+  }
+}
+
+.inside-radius-2 {
+  @extend %text;
+
+  height: 100px;
+  position: relative;
+  background: #69c0ff;
+
+  &::after {
+    content: '';
+    width: 50px;
+    height: 50px;
+
+    top: 0;
+    left: 0;
+    position: absolute;
+
+    background: #fff;
+    border-radius: 50px 0 0 0;
+    transform: rotate(180deg);
+  }
+}
+
+.inside-radius-3 {
+  @extend %text;
+  height: 100px;
+  // radial-gradient 参数说明: 渐变大小 at 渐变的位置, 颜色 位置 ...
+  background-image: radial-gradient(50px at left top, #fff 50px, #69c0ff 50px);
+}

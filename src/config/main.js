@@ -2,7 +2,7 @@ import * as pages from '../pages';
 
 export default {
   logo: { img: void 0, title: '练习室' },
-  iconFont: '//at.alicdn.com/t/font_1732251_1lcpvsfc78lj.js',
+  iconFont: '//at.alicdn.com/t/font_1732251_er4b1hvtn4.js',
   menu: [
     {
       url: '/',
@@ -26,6 +26,37 @@ export default {
         {
           path: '/tmp',
           component: pages.Tmp,
+        },
+      ],
+    },
+    {
+      key: 'css',
+      title: 'CSS',
+      icon: 'iconCSS-',
+      children: [
+        {
+          title: '练习',
+          icon: 'iconlianxi',
+          key: 'cssPractice',
+          url: '/css/practice',
+          router: [
+            {
+              path: '/css/practice',
+              component: pages.CssPractice,
+            },
+          ],
+        },
+        {
+          title: '形状',
+          key: 'cssShape',
+          icon: 'iconxingzhuang',
+          url: '/css/shape',
+          router: [
+            {
+              path: '/css/shape',
+              component: pages.Shape,
+            },
+          ],
         },
       ],
     },
