@@ -13,3 +13,17 @@
 - https://codepen.io/anniebombanie/pen/NWGwzzJ
 
 - https://codepen.io/ricardoolivaalonso/pen/oNjdBme
+
+- https://codepen.io/lynnandtonic/pen/NWGLMMO
+
+- https://codepen.io/nitnelav/pen/yLYRgEp
+
+- https://codepen.io/chancesq/pen/mdejYeQ
+
+- https://codepen.io/chrisota/pen/XWmPZwV
+
+- https://codepen.io/chrisota/pen/XWmPZwV
+
+- https://codepen.io/mo-ro/pen/abvjqoy
+
+- https://codepen.io/joyanna/pen/NWGYLNW
