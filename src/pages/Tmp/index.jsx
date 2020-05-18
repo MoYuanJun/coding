@@ -1,8 +1,12 @@
 import React from 'react';
 
 const done = () => {
-  console.log(Number.MAX_SAFE_INTEGER === Math.pow(2, 53) - 1);
-  console.log(Number.MIN_SAFE_INTEGER === -Math.pow(2, 53) + 1);
+  const a = 2172141653n;
+  const b = 15346349309n;
+
+  console.log('-------------->>>', a * b);
+  console.log('-------------->>>', Number(a) * Number(b));
+  console.log(a * b === Number(a) * Number(b));
 };
 
 export default () => (
