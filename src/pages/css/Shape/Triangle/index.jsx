@@ -25,7 +25,7 @@ const getDefaultWidth = type => (
 const useStateHook = () => {
   const [setting, setSetting] = useState({
     width: 0,
-    heigh: 0,
+    height: 0,
     top: {
       width: getDefaultWidth('top'),
       color: getDefaultColor('top'),
@@ -67,7 +67,7 @@ const useStateHook = () => {
 
   const style = useMemo(() => ({
     width: setting.width,
-    heigh: setting.heigh,
+    height: setting.height,
     borderColor: `
       ${setting.top.color}
       ${setting.right.color}
@@ -101,7 +101,7 @@ export default () => {
         className={scss.body}
       />
       <div className={scss.controller}>
-        <Form.Item label="&nbsp;&nbsp;&nbsp;&nbsp;容器宽度">
+        <Form.Item label="&emsp;容器宽度">
           <Slider
             min={0}
             max={200}
@@ -114,7 +114,7 @@ export default () => {
             min={0}
             max={200}
             defaultValue={0}
-            onChange={state.onChangeContainer.bind(null, 'width')}
+            onChange={state.onChangeContainer.bind(null, 'height')}
           />
         </Form.Item>
         {SETTING.map(v => (
