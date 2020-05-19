@@ -1,3 +1,3 @@
 # CANVAS TODO
 
-- canvas 实现放大镜
+- 刮刮乐 https://codepen.io/kairyou/pen/wcIlt

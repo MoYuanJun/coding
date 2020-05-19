@@ -27,3 +27,9 @@
 - https://codepen.io/mo-ro/pen/abvjqoy
 
 - https://codepen.io/joyanna/pen/NWGYLNW
+
+- https://codepen.io/chancesq/details/LYpJoqB
+
+- https://codepen.io/cvaneenige/pen/KKdrWPX
+
+- https://codepen.io/behzad/pen/xxwQZbB
