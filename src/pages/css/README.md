@@ -33,3 +33,7 @@
 - https://codepen.io/cvaneenige/pen/KKdrWPX
 
 - https://codepen.io/behzad/pen/xxwQZbB
+
+- https://codepen.io/garrowp/pen/rNOQQjm
+
+- https://codepen.io/chrisota/pen/LYpXYJq
