@@ -8,6 +8,7 @@ export { default as Tmp } from './Tmp';
 
 // canvas
 export { default as Clock } from './canvas/demo/Clock';
+export { default as Scratch } from './canvas/demo/Scratch';
 export { default as Magnifier } from './canvas/demo/Magnifier';
 export { default as PictureHandle } from './canvas/demo/PictureHandle';
 

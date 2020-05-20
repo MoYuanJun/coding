@@ -93,6 +93,17 @@ export default {
               ],
             },
             {
+              title: '刮刮卡',
+              key: 'scratch',
+              url: '/canvas/demo/scratch',
+              router: [
+                {
+                  component: pages.Scratch,
+                  path: '/canvas/demo/scratch',
+                },
+              ],
+            },
+            {
               title: '图片处理',
               key: 'picture-handle',
               url: '/canvas/demo/picture-handle',
