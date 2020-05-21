@@ -162,13 +162,24 @@ export default {
           title: '粒子',
           children: [
             {
+              title: '源码阅读',
+              key: 'readCode',
+              url: '/canvas/particle/readCode',
+              router: [
+                {
+                  component: pages.ReadCode,
+                  path: '/canvas/particle/readCode',
+                },
+              ],
+            },
+            {
               title: '动态线条',
-              key: 'dynamic-line',
-              url: '/canvas/particle/dynamic-line',
+              key: 'dynamicLine',
+              url: '/canvas/particle/dynamicLine',
               router: [
                 {
                   component: pages.DynamicLine,
-                  path: '/canvas/particle/dynamic-line',
+                  path: '/canvas/particle/dynamicLine',
                 },
               ],
             },
@@ -180,6 +191,17 @@ export default {
                 {
                   component: pages.Honeycomb,
                   path: '/canvas/particle/honeycomb',
+                },
+              ],
+            },
+            {
+              title: '气泡跟随',
+              key: 'followBubbles',
+              url: '/canvas/particle/followBubbles',
+              router: [
+                {
+                  component: pages.FollowBubbles,
+                  path: '/canvas/particle/followBubbles',
                 },
               ],
             },

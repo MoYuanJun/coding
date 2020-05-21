@@ -16,8 +16,10 @@ export { default as Bar } from './canvas/echart/Bar';
 export { default as Pie } from './canvas/echart/Pie';
 export { default as Line } from './canvas/echart/Line';
 
+export { default as ReadCode } from './canvas/particle/ReadCode';
 export { default as Honeycomb } from './canvas/particle/Honeycomb';
 export { default as DynamicLine } from './canvas/particle/DynamicLine';
+export { default as FollowBubbles } from './canvas/particle/FollowBubbles';
 
 // three
 export { default as ThreePractice } from './three/Practice';
