@@ -1,8 +1,9 @@
 # CANVAS TODO
 
 - 画板  http://www.jq22.com/search?seo=canvas+%E7%94%BB%E6%9D%BF
-- 粒子背景 https://codepen.io/cojdev/pen/Vxbder
+
 - 粒子背景 https://codepen.io/rachsmith/pen/XKyvWV
+- 抗拒粒子 https://arkounay.github.io/2D-Canvas-Image-Particles/
 
 - 点击撒花: https://codepen.io/nodws/pen/qZLBrd
 
