@@ -18,6 +18,18 @@ export default {
       ],
     },
     {
+      title: '源码阅读',
+      key: 'readCode',
+      icon: 'iconlianxi',
+      url: '/canvas/particle/readCode',
+      router: [
+        {
+          component: pages.ReadCode,
+          path: '/canvas/particle/readCode',
+        },
+      ],
+    },
+    {
       url: '/tmp',
       key: 'tmp',
       title: '临时练习',
@@ -161,17 +173,6 @@ export default {
           icon: 'iconlizi',
           title: '粒子',
           children: [
-            {
-              title: '源码阅读',
-              key: 'readCode',
-              url: '/canvas/particle/readCode',
-              router: [
-                {
-                  component: pages.ReadCode,
-                  path: '/canvas/particle/readCode',
-                },
-              ],
-            },
             {
               title: '动态线条',
               key: 'dynamicLine',
