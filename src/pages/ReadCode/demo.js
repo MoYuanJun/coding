@@ -12,7 +12,7 @@ export default () => {
   const radius = 6400;
   const drag = 0.92;
   const density = 1;
-  const offset = 5;
+  const offset = 1;
   const timeout = 30;
   let pixels;
   const particles = [];
@@ -36,18 +36,18 @@ export default () => {
 
   // 粒子 x, y
   const Particle = function (x, y) {
-    this.hx = ~~(x - (offset * Math.random()));
-    this.hy = ~~(y - (offset * Math.random()));
-    this.cx = ~~(cw * Math.random());
-    this.cy = ~~(ch * Math.random());
-    this.vx = (Math.random() * 10) - 5;
-    this.vy = (Math.random() * 10) - 5;
+    this.hx = ~~(x - (offset * Math.random()));   // 粒子最终位置 x: 根据初始化传入值随机偏移
+    this.hy = ~~(y - (offset * Math.random()));   // 粒子最终位置 y: 根据初始化传入值随机偏移
+    this.cx = ~~(cw * Math.random());            // 粒子当前位置 x: 初始化时粒子随机分布
+    this.cy = ~~(ch * Math.random());            // 粒子当前位置 y: 初始化时粒子随机分布
+    this.vx = (Math.random() * 10) - 5;          // 获取 -5 ~ 5 之间随机数
+    this.vy = (Math.random() * 10) - 5;          // 获取 -5 ~ 5 之间随机数
   };
 
   Particle.prototype.update = function () {
-    const dx = this.cx - mx;
-    const dy = this.cy - my;
-    const ds = (dx * dx) + (dy * dy);
+    const dx = this.cx - mx;             // 粒子位置和鼠标位置 x 方向上的距离
+    const dy = this.cy - my;             // 粒子位置和鼠标位置 x 方向上的距离
+    const ds = (dx * dx) + (dy * dy);    // 粒子和鼠标之间的距离平方
     const aradius = Math.min(radius / ds, radius);
     const theta = Math.atan2(dy, dx);
 
@@ -69,22 +69,24 @@ export default () => {
 
   const draw = function () {
     const a = ctx.createImageData(cw, ch);
-    const b = a.data;
 
+    // 更新每个粒子
     for (let i = 0; i < particles.length; i += 1) {
       particles[i].update();
     }
 
+    // 将粒子绘制到图片信息上
     for (let j = 0; j < particles.length; j += 1) {
       const p = particles[j];
       const n = (~~p.cx + (~~p.cy * cw)) * 4;
 
-      b[n] = 220;
-      b[n + 1] = 220;
-      b[n + 2] = 220;
-      b[n + 3] = 255;
+      a.data[n] = 220;
+      a.data[n + 1] = 220;
+      a.data[n + 2] = 220;
+      a.data[n + 3] = 255;
     }
 
+    // 将图片绘制到画布上
     ctx.putImageData(a, 0, 0);
 
     setTimeout(() => {
@@ -94,7 +96,7 @@ export default () => {
 
   const init = function () {
     pixels = ctx.getImageData(0, 0, cw, ch).data;
-
+    // 1. 获取画布上图片数据, 将像素转为粒子
     for (let i = 0; i < ch; i = i + density) {
       for (let j = 0; j < cw; j = j + density) {
         const index = (j + (i * cw)) * 4;

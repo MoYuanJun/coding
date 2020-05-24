@@ -10,5 +10,7 @@
 - 图片粒子化 https://www.html5tricks.com/html5-canvas-image-flow-time.html
 - 按钮粒子化 http://www.jq22.com/yanshi19011
 - 图片破碎 https://codepen.io/zadvorsky/pen/dILAG
+- https://codepen.io/jackrugile/pen/BlDjk
+- https://codepen.io/noeldelgado/pen/NPGmRO
 
 - 文字粒子化[进行中]  https://codepen.io/vedadeepta/pen/MpgovO
