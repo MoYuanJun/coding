@@ -1,117 +1,199 @@
 export default () => {
   const canvas = document.getElementById('textparticle');
   const ctx = canvas.getContext('2d');
-  const { width, height } = getComputedStyle(canvas.parentNode);
-  canvas.width = Number.parseFloat(width);
-  canvas.height = Number.parseFloat(height);
+  const text = canvas.getAttribute('text');
+  const fontSize = canvas.getAttribute('size');
+  canvas.width = canvas.getBoundingClientRect().width;
+  canvas.height = canvas.getBoundingClientRect().height;
 
-  const cw = canvas.width;
-  const ch = canvas.height;
+  let pixels = [];
 
-  const keyword = 'Would love to hear back !!';
-  const radius = 6400;
-  const drag = 0.92;
-  const density = 1;
-  const offset = 1;
-  const timeout = 30;
-  let pixels;
-  const particles = [];
+  const animation = {
+    radius: 3,
+    move: 0.25,
+    pull: 0.15,
+    dampen: 0.95,
+    density: 3,
+  };
 
-  let mx = 0;
-  let my = 0;
-
-  ctx.font = '90px \'Jockey One\'';
-
-  ctx.fillText(
-    keyword,
-    (cw / 2) - (Math.round(ctx.measureText(keyword).width / 2)),
-    ~~(ch / 2)
+  /*
+    * Distance function from mouse position
+    */
+  const distanceFromMouse = (x, y, mX, mY) => Math.sqrt(
+    Math.pow(Math.pow(x - mX, 2) + y - mY, 2)
   );
 
-  canvas.addEventListener('mousemove', e => {
-    const { left, top } = canvas.getBoundingClientRect();
-    mx = e.clientX - left;
-    my = e.clientY - top;
-  });
+  /*
+  * Mouse position event
+  * @Params: {canvas} -> html canvas element
+  * result: mouse.x and mouse.y
+  */
+  class Mouse {
+    constructor (canvas) {
+      this.x = 0;
+      this.y = 0;
+      this.canvas = canvas;
 
-  // 粒子 x, y
-  const Particle = function (x, y) {
-    this.hx = ~~(x - (offset * Math.random()));   // 粒子最终位置 x: 根据初始化传入值随机偏移
-    this.hy = ~~(y - (offset * Math.random()));   // 粒子最终位置 y: 根据初始化传入值随机偏移
-    this.cx = ~~(cw * Math.random());            // 粒子当前位置 x: 初始化时粒子随机分布
-    this.cy = ~~(ch * Math.random());            // 粒子当前位置 y: 初始化时粒子随机分布
-    this.vx = (Math.random() * 10) - 5;          // 获取 -5 ~ 5 之间随机数
-    this.vy = (Math.random() * 10) - 5;          // 获取 -5 ~ 5 之间随机数
-  };
+      this.canvas.addEventListener('mousemove', e => {
+        this.x = e.offsetX;
+        this.y = e.offsetY;
+      });
 
-  Particle.prototype.update = function () {
-    const dx = this.cx - mx;             // 粒子位置和鼠标位置 x 方向上的距离
-    const dy = this.cy - my;             // 粒子位置和鼠标位置 x 方向上的距离
-    const ds = (dx * dx) + (dy * dy);    // 粒子和鼠标之间的距离平方
-    const aradius = Math.min(radius / ds, radius);
-    const theta = Math.atan2(dy, dx);
+      this.canvas.addEventListener('mouseleave', () => {
+        this.x = -100;
+        this.y = -100;
+      });
+    }
+  }
 
-    const hdx = this.hx - this.cx;
-    const hdy = this.hy - this.cy;
-    const hds = Math.sqrt((hdx * hdx) + (hdy * hdy));
-    const hf = (hds * 0.01);
-    const htheta = Math.atan2(hdy, hdx);
-
-    this.vx += (aradius * Math.cos(theta)) + (hf * Math.cos(htheta));
-    this.vy += (aradius * Math.sin(theta)) + (hf * Math.sin(htheta));
-
-    this.vx *= drag;
-    this.vy *= drag;
-
-    this.cx += this.vx;
-    this.cy += this.vy;
-  };
-
-  const draw = function () {
-    const a = ctx.createImageData(cw, ch);
-
-    // 更新每个粒子
-    for (let i = 0; i < particles.length; i += 1) {
-      particles[i].update();
+  /*
+  * Canvas Draw Object
+  *
+  * @Params: {ctx} -> canvas context
+  *
+  * Prototypes:
+  * - setText			-> setup text property
+  * - fillText		-> drawing text on canvas with fill property
+  * - strokeText	-> drawing text on canvas with stroke color property
+  * - fillCircle	-> drawing circle on canvas with fill color property
+  * - clear				-> to clean the canvas
+  */
+  class Draw {
+    constructor (ctx) {
+      this.ctx = ctx;
+      this.canvas = canvas;
     }
 
-    // 将粒子绘制到图片信息上
-    for (let j = 0; j < particles.length; j += 1) {
-      const p = particles[j];
-      const n = (~~p.cx + (~~p.cy * cw)) * 4;
-
-      a.data[n] = 220;
-      a.data[n + 1] = 220;
-      a.data[n + 2] = 220;
-      a.data[n + 3] = 255;
+    setText = proporty => {
+      for (const option in proporty) {
+        this.ctx[option] = proporty[option];
+      }
     }
 
-    // 将图片绘制到画布上
-    ctx.putImageData(a, 0, 0);
+    fillText = (text, x, y) => {
+      this.ctx.fillText(text, x, y);
+    }
 
-    setTimeout(() => {
-      requestAnimationFrame(draw);
-    }, timeout);
+    strokeText = (text, x, y) => {
+      this.ctx.strokeText(text, x, y);
+    }
+
+    fillCircle = (x, y, radius, color) => {
+      this.ctx.beginPath();
+      this.ctx.arc(x, y, radius, 0, Math.PI * 2);
+      if (color) this.ctx.fillStyle = color;
+      this.ctx.fill();
+    }
+
+    clear = () => {
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    }
+  }
+
+  const mouse = new Mouse(canvas);
+  const draw = new Draw(ctx);
+
+  const init = () => {
+    draw.setText({
+      font: `${fontSize}px monospace`,
+      fillStyle: '#ff9840',
+      textAlign: 'center',
+      textBaseline: 'middle',
+    });
+    draw.fillText(text, (canvas.width - fontSize) / 2, canvas.height / 2);
+    pixels = scene(ctx, animation.density);
+    for (const particle of pixels) {
+      particle.lx = particle.x;
+      particle.ly = particle.y;
+      particle.dx = (Math.random() * 25) - 10;
+      particle.dy = (Math.random() * 25) - 10;
+    }
   };
 
-  const init = function () {
-    pixels = ctx.getImageData(0, 0, cw, ch).data;
-    // 1. 获取画布上图片数据, 将像素转为粒子
-    for (let i = 0; i < ch; i = i + density) {
-      for (let j = 0; j < cw; j = j + density) {
-        const index = (j + (i * cw)) * 4;
-        if (pixels[index + 3] > 128) {
-          if (index >= particles.length) {
-            particles.push(new Particle(j, i));
-          } else {
-            particles[index].hx = j;
-            particles[index].hy = i;
+  /*
+  * Get pixels positions
+  * @Params: {ctx} 		 -> canvas context     canvas 上下文
+  * @Params: {density} -> animation.density  动画密度
+  */
+  const scene = (ctx, density) => {
+    const pixelData = [];
+    const data = ctx.getImageData(0, 0, ctx.canvas.width, ctx.canvas.height);
+    const rows = ctx.canvas.width / density;
+    const cols = ctx.canvas.height / density;
+
+    for (let row = 0; row < rows; row += 1) {
+      for (let col = 0; col < cols; col += 1) {
+        const pixelX = (col * density) + (density / 2);
+        const pixelY = (row * density) + (density / 2);
+
+        for (let rp = 0; rp < density; rp += 1) {
+          for (let rc = 0; rc < density; rc += 1) {
+            const pixel = (
+              (((row * density) + rp) * canvas.width) + ((col * density) + rc)
+            ) * 4;
+
+            const colors = {
+              r: data.data[pixel],
+              g: data.data[pixel + 1],
+              b: data.data[pixel + 2],
+              a: data.data[pixel + 3],
+            };
+
+            if (colors.a) {
+              pixelData.push({
+                x: pixelX,
+                y: pixelY,
+                color: colors,
+              });
+              rp = density;
+              rc = density;
+            }
           }
         }
       }
     }
+    return pixelData;
+  };
+
+  /*
+  * Animation Frames
+  */
+  const frame = () => {
+    draw.clear();
+    requestAnimationFrame(frame);
+
+    for (const particle of pixels) {
+      const color = `rgba(${
+        particle.color.r
+      },${
+        particle.color.g
+      },${
+        particle.color.b
+      },${
+        particle.color.a
+      })`;
+
+      const distance = distanceFromMouse(
+        particle.x,
+        particle.y,
+        mouse.x,
+        mouse.y
+      );
+      const shift = 1 / distance * 6;
+
+      for (const ax of ['x', 'y']) {
+        particle[ax] += particle[`d${ax}`];
+        particle[`d${ax}`] += (Math.random() - 0.5) * animation.move;
+        particle[`d${ax}`] -= Math.sign(particle[ax] -
+          particle[`l${ax}`]) * animation.pull;
+        particle[`d${ax}`] *= animation.dampen;
+        particle[`d${ax}`] -= Math.sign(mouse[ax] - particle[ax]) * shift;
+      }
+
+      draw.fillCircle(particle.x, particle.y, animation.radius, color);
+    }
   };
 
   init();
-  draw();
+  // frame();
 };

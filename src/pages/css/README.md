@@ -41,3 +41,9 @@
 - https://codepen.io/chancesq/pen/NWGEzWB
 
 - https://codepen.io/aitchiss/pen/pojGdzX
+
+- https://codepen.io/wallas/pen/lFABr
+
+- https://codepen.io/palimadra/pen/xerus
+
+- https://codepen.io/HugoGiraudel/pen/nLljB

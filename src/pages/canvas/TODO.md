@@ -12,5 +12,6 @@
 - 图片破碎 https://codepen.io/zadvorsky/pen/dILAG
 - https://codepen.io/jackrugile/pen/BlDjk
 - https://codepen.io/noeldelgado/pen/NPGmRO
+- https://codepen.io/tsuhre/details/YejjoG
 
 - 文字粒子化[进行中]  https://codepen.io/vedadeepta/pen/MpgovO

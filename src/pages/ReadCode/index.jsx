@@ -10,7 +10,8 @@ export default () => {
 
   return (
     <div className={scss['read-code']}>
-      <canvas id = "textparticle"></canvas>
+      <canvas text="🤪" size={128} id="textparticle">
+      </canvas>
     </div>
   );
 };
