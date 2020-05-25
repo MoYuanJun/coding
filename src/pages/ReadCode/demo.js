@@ -101,6 +101,7 @@ export default () => {
       textBaseline: 'middle',
     });
     draw.fillText(text, (canvas.width - fontSize) / 2, canvas.height / 2);
+    // 获取图片像素
     pixels = scene(ctx, animation.density);
     for (const particle of pixels) {
       particle.lx = particle.x;
@@ -163,6 +164,26 @@ export default () => {
     requestAnimationFrame(frame);
 
     for (const particle of pixels) {
+      const distance = distanceFromMouse(
+        particle.x,
+        particle.y,
+        mouse.x,
+        mouse.y
+      );
+
+      const shift = 1 / distance * 6;
+
+      for (const ax of ['x', 'y']) {
+        particle[ax] += particle[`d${ax}`];
+
+        // particle[`d${ax}`] += (Math.random() - 0.5) * 0;
+        particle[`d${ax}`] -=
+          Math.sign(particle[ax] - particle[`l${ax}`]) * animation.pull;
+
+        particle[`d${ax}`] *= animation.dampen;
+        particle[`d${ax}`] -= Math.sign(mouse[ax] - particle[ax]) * shift;
+      }
+
       const color = `rgba(${
         particle.color.r
       },${
@@ -173,27 +194,10 @@ export default () => {
         particle.color.a
       })`;
 
-      const distance = distanceFromMouse(
-        particle.x,
-        particle.y,
-        mouse.x,
-        mouse.y
-      );
-      const shift = 1 / distance * 6;
-
-      for (const ax of ['x', 'y']) {
-        particle[ax] += particle[`d${ax}`];
-        particle[`d${ax}`] += (Math.random() - 0.5) * animation.move;
-        particle[`d${ax}`] -= Math.sign(particle[ax] -
-          particle[`l${ax}`]) * animation.pull;
-        particle[`d${ax}`] *= animation.dampen;
-        particle[`d${ax}`] -= Math.sign(mouse[ax] - particle[ax]) * shift;
-      }
-
       draw.fillCircle(particle.x, particle.y, animation.radius, color);
     }
   };
 
   init();
-  // frame();
+  frame();
 };
