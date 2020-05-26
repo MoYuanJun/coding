@@ -206,6 +206,17 @@ export default {
                 },
               ],
             },
+            {
+              title: '文字消散',
+              key: 'textDissipation',
+              url: '/canvas/particle/textDissipation',
+              router: [
+                {
+                  component: pages.TextDissipation,
+                  path: '/canvas/particle/textDissipation',
+                },
+              ],
+            },
           ],
         },
       ],

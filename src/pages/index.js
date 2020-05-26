@@ -22,6 +22,7 @@ export { default as Line } from './canvas/echart/Line';
 export { default as Honeycomb } from './canvas/particle/Honeycomb';
 export { default as DynamicLine } from './canvas/particle/DynamicLine';
 export { default as FollowBubbles } from './canvas/particle/FollowBubbles';
+export { default as TextDissipation } from './canvas/particle/TextDissipation';
 
 // three
 export { default as ThreePractice } from './three/Practice';
