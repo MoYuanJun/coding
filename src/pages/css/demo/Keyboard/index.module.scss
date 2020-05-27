@@ -1,0 +1,154 @@
+@mixin customize($color) {
+  color: lighten($color, 20%);
+  background: $color;
+  &:hover {
+    box-shadow:
+      inset -6px -6px 16px lighten($color, 20%),
+      inset 6px 6px 16px darken($color: $color, $amount: 20%);
+  }
+}
+
+.body {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+
+  padding: 50px;
+  background: #d8dee8;
+}
+
+.keyboard {
+  padding: 10px;
+  border-radius: 14px;
+  background: #d8dee8;
+  box-shadow:
+    -6px -6px 16px #f3f5f8,
+    6px 6px 16px #c2ccdb;
+}
+
+.key-row {
+  display: flex;
+  justify-content: space-between;
+
+  .key {
+    // 为了实现按键的高度等于父级的宽度的百分比,
+    // 可借用 margin 和padding 的百分比是基于父元素的宽度的特效来实现
+    width: 5%;
+    margin: 10px;
+    padding-top: 5%;
+
+    position: relative;
+    border-radius: 14px;
+
+    cursor: pointer;
+    background: #d8dee8;
+    box-shadow:
+      -6px -6px 16px #f3f5f8,
+      6px 6px 16px #c2ccdb;
+
+    &:hover {
+      color: #fff;
+      box-shadow:
+        inset -6px -6px 16px#f6f8fa,
+        inset 6px 6px 16px #c2ccdb;
+      text-shadow:
+        0 0 10px #f7f9fa,
+        0 0 15px #f7f9fa,
+        0 0 20px #f7f9fa;
+    }
+  }
+
+  .key-body {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .key-title {
+    font-size: 18px;
+
+    &:only-child {
+      font-size: 20px;
+    }
+  }
+}
+
+
+// 特殊键处理
+.key.back,
+.key.tab,
+.key.pipe,
+.key.cap,
+.key.enter,
+.key.shift,
+.key.space{
+  flex: 1;
+}
+
+.key.ctrl.left,
+.key.win,
+.key.alt {
+  width: 8%;
+}
+
+.key.esc {
+  @include customize(#ed4c67);
+}
+
+.key.back {
+  @include customize(#d63031);
+}
+
+.key.tab {
+  @include customize(#12cbc4);
+}
+
+.key.cap {
+  @include customize(#ee5a24);
+
+  position: relative;
+  &::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba($color: #fff, $alpha: 0.5);
+
+    top: 10px;
+    right: 10px;
+    position: absolute;
+  }
+}
+
+.key.enter {
+  @include customize(#fdcb6e);
+}
+
+.key.shift {
+  @include customize(#1e90ff);
+}
+
+.key.ctrl {
+  @include customize(#be2edd);
+}
+
+.key.win {
+  @include customize(#f7b731);
+}
+
+.key.alt {
+  @include customize(#5352ed);
+}
+
+.key.fn {
+  @include customize(#26de81);
+}
