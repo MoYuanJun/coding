@@ -1,11 +1,7 @@
 import React from 'react';
 
-const done = () => {
-
-};
-
 export default () => (
   <div>
-    {done()}
+    111111111111
   </div>
 );

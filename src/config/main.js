@@ -70,6 +70,24 @@ export default {
             },
           ],
         },
+        {
+          title: 'DEMO',
+          key: 'css-demo',
+          icon: 'icondemo',
+          children: [
+            {
+              title: '键盘',
+              key: 'css-demo-keyboard',
+              url: '/css/demo/keyboard',
+              router: [
+                {
+                  component: pages.Keyboard,
+                  path: '/css/demo/keyboard',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {

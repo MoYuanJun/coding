@@ -1,7 +1,5 @@
 # TODO
 
-- https://codepen.io/ricardoolivaalonso/pen/oNjdBme
-
 - https://codepen.io/MananTank/pen/LYVoqyy
 
 - https://codepen.io/dev_loop/pen/pojJRKq
@@ -47,3 +45,5 @@
 - https://codepen.io/palimadra/pen/xerus
 
 - https://codepen.io/HugoGiraudel/pen/nLljB
+
+- https://codepen.io/odpinerosh/pen/KKdYvXV
