@@ -16,6 +16,10 @@
 
 - https://codepen.io/nitnelav/pen/yLYRgEp
 
+- https://codepen.io/jkantner/details/PoPvoGK
+
+- https://codepen.io/chrisota/details/XWmQEGX
+
 - https://codepen.io/chancesq/pen/mdejYeQ
 
 - https://codepen.io/chrisota/pen/XWmPZwV
@@ -47,3 +51,5 @@
 - https://codepen.io/HugoGiraudel/pen/nLljB
 
 - https://codepen.io/odpinerosh/pen/KKdYvXV
+
+- https://codepen.io/peregrimm/pen/WNQmNKV

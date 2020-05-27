@@ -14,4 +14,4 @@
 - https://codepen.io/noeldelgado/pen/NPGmRO
 - https://codepen.io/tsuhre/details/YejjoG
 
-- 文字粒子化[进行中]  https://codepen.io/vedadeepta/pen/MpgovO
+- AirPods Pro 动画: https://codepen.io/j-v-w/pen/ZEbGzyv
