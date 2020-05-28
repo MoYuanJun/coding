@@ -5,7 +5,7 @@ import classNames from 'classnames';
 import scss from './index.module.scss';
 
 const useStateHook = () => {
-  const [keyDowns, setKeyDowns] = React.useState([]);
+  const [keyDown, setKeyDown] = React.useState(null);
 
   // 按下键盘
   const onKeyDown = React.useCallback(e => {
@@ -14,13 +14,13 @@ const useStateHook = () => {
     if (!key) {
       return false;
     }
-    setKeyDowns([... new Set([... keyDowns, key.keyCode])]);
-  }, [keyDowns]);
+    setKeyDown(key.keyCode);
+  }, [keyDown]);
 
   // css 过度完成触发
   const onTransitionEnd = ({ keyCode }) => {
-    keyDowns.includes(keyCode) &&
-    setKeyDowns(keyDowns.filter(v => v !== keyCode));
+    keyDown === keyCode &&
+    setKeyDown(null);
   };
 
   React.useEffect(() => {
@@ -28,7 +28,7 @@ const useStateHook = () => {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [onKeyDown]);
 
-  return { onTransitionEnd, keyDowns };
+  return { onTransitionEnd, keyDown };
 };
 
 export default () => {
@@ -45,7 +45,7 @@ export default () => {
                 className={classNames(
                   scss.key,
                   scss[key.name],
-                  { [scss.pressed]: state.keyDowns.includes(key.keyCode) }
+                  { [scss.pressed]: state.keyDown === key.keyCode }
                 )}>
                 <div className={scss['key-body']}>
                   <div className={scss['key-title']}>
