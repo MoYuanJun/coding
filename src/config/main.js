@@ -86,6 +86,17 @@ export default {
                 },
               ],
             },
+            {
+              title: '选项卡栏交互',
+              key: 'css-demo-tabBarInteraction',
+              url: '/css/demo/TabBarInteraction',
+              router: [
+                {
+                  component: pages.TabBarInteraction,
+                  path: '/css/demo/tabBarInteraction',
+                },
+              ],
+            },
           ],
         },
       ],

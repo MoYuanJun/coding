@@ -1,7 +1,5 @@
 # TODO
 
-- https://codepen.io/dev_loop/pen/pojJRKq
-
 - https://codepen.io/chrisota/pen/eYpyqYG
 
 - https://codepen.io/anniebombanie/pen/NWGwzzJ
