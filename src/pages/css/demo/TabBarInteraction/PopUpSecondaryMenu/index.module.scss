@@ -1,0 +1,114 @@
+:root {
+  --bg: rgb(204, 220, 255);
+  --menu-size: 90px;
+  --sub-menu-size: 75px;
+  --sub-menu-bg: #75a0ff;
+}
+
+.body {
+  height: 100%;
+  padding: 20px;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+
+  background: var(--bg);
+}
+
+
+.menu {
+  display: flex;
+
+  &-item {
+    cursor: pointer;
+    width: var(--menu-size);
+    height: var(--menu-size);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 24px;
+    color: var(--bg);
+    background: #fff;
+
+    &:first-child {
+      border-radius: 14px 14px 0 14px;
+    }
+
+    &:last-child {
+      border-radius: 14px 14px 14px 0;
+    }
+
+    &:nth-child(2) {
+      align-items: flex-end;
+    }
+  }
+}
+
+.sub-menu {
+  --sub-menu-num: 1;
+  --sub-menu-rotate: -45deg;
+  --sub-menu-translateY: 0px;
+
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  overflow: hidden;
+  transition: height 0.5s;
+  width: var(--sub-menu-size);
+  background: var(--sub-menu-bg);
+  border-radius: calc(var(--sub-menu-size) / 2);
+  height: calc(var(--sub-menu-size) * var(--sub-menu-num));
+
+  box-shadow:
+    0 0 0
+    calc((var(--menu-size) - var(--sub-menu-size) + 2px) / 2)
+    var(--bg);
+
+  margin-bottom: calc(
+    var(--menu-size) - var(--sub-menu-size) +
+    var(--sub-menu-size) / 2
+  );
+
+  &-item {
+    padding: 15px;
+    height: var(--sub-menu-size);
+    transform: translateY(var(--sub-menu-translateY));
+
+    &-content {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &:nth-child(n + 2) &-content {
+      border-radius: 50%;
+      background: rgba($color: #fff, $alpha: 0.1);
+
+      &:hover {
+        background: rgba($color: #fff, $alpha: 0.2);
+      }
+    }
+  }
+
+  &:focus {
+    --sub-menu-num: 3;
+    --sub-menu-rotate: 0deg;
+    --sub-menu-translateY: calc(-1 * var(--sub-menu-size));
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
