@@ -32,4 +32,5 @@ export { default as Shape } from './css/Shape';
 export { default as CssPractice } from './css/Practice';
 
 export { default as Keyboard } from './css/demo/Keyboard';
+export { default as GamingConsole } from './css/demo/GamingConsole';
 export { default as TabBarInteraction } from './css/demo/TabBarInteraction';

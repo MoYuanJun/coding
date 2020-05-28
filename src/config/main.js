@@ -87,6 +87,17 @@ export default {
               ],
             },
             {
+              title: '游戏机',
+              key: 'css-demo-gamingConsole',
+              url: '/css/demo/gamingConsole',
+              router: [
+                {
+                  component: pages.GamingConsole,
+                  path: '/css/demo/gamingConsole',
+                },
+              ],
+            },
+            {
               title: '选项卡栏交互',
               key: 'css-demo-tabBarInteraction',
               url: '/css/demo/TabBarInteraction',

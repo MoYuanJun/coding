@@ -1,10 +1,10 @@
 # TODO
 
-- https://codepen.io/chrisota/pen/eYpyqYG
+- https://codepen.io/fariellany/pen/rNORZZp?editors=0110
 
 - https://codepen.io/anniebombanie/pen/NWGwzzJ
 
-- https://codepen.io/anniebombanie/pen/NWGwzzJ
+- https://codepen.io/anniebombanie/pen/pojmNzN
 
 - https://codepen.io/ricardoolivaalonso/pen/oNjdBme
 
@@ -17,8 +17,6 @@
 - https://codepen.io/chrisota/details/XWmQEGX
 
 - https://codepen.io/chancesq/pen/mdejYeQ
-
-- https://codepen.io/chrisota/pen/XWmPZwV
 
 - https://codepen.io/chrisota/pen/XWmPZwV
 
