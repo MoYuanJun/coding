@@ -1,6 +1,8 @@
 @mixin customize($color) {
   color: lighten($color, 20%);
   background: $color;
+
+  &.pressed,
   &:hover {
     box-shadow:
       inset -6px -6px 16px lighten($color, 20%),
@@ -48,6 +50,9 @@
       -6px -6px 16px #f3f5f8,
       6px 6px 16px #c2ccdb;
 
+    transition: all 0.1s;
+
+    &.pressed,
     &:hover {
       color: #fff;
       box-shadow:
@@ -94,7 +99,7 @@
   flex: 1;
 }
 
-.key.ctrl.left,
+.key.ctrl-left,
 .key.win,
 .key.alt {
   width: 8%;
@@ -137,7 +142,8 @@
   @include customize(#1e90ff);
 }
 
-.key.ctrl {
+.key.ctrl-right,
+.key.ctrl-left {
   @include customize(#be2edd);
 }
 
@@ -149,6 +155,7 @@
   @include customize(#5352ed);
 }
 
-.key.fn {
+.key.up,
+.key.down {
   @include customize(#26de81);
 }
