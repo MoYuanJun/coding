@@ -1,12 +1,135 @@
+$color: #F1BA36;
+$shadow-color: rgba(#000, 0.2);
+
 .body {
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
-  background: #F1BA36;
+  background: $color;
 
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.gaming-console {
+  padding: 8px;
+  width: 500px;
+  height: 500px;
+  position: relative;
+
+  border-radius: 20px;
+  box-shadow: 0 0 50px $shadow-color;
+  background: lighten($color: $color, $amount: 1%);
+  border: 1px solid lighten($color: $color, $amount: 10%);
+}
+
+// 屏幕
+.screen {
+  $radius: 20px;
+  $border-width: 20px;
+
+  width: 428px;
+  height: 274px;
+  position: relative;
+
+  background: #a6ab9e;
+  border-radius: $radius;
+  border: $border-width solid #2b2c2c;
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: -$border-width;
+    left: -$border-width;
+    right: -$border-width;
+    bottom: -$border-width;
+    border-radius: $radius;
+    background: linear-gradient(70deg, rgba(#fff, 0) 55%, rgba(#fff, 0.08) 55%);
+  }
+}
+
+// 螺丝: 右上、左下、右下角
+.screw {
+  $bg: #596976;
+  &-item {
+    width: 38px;
+    height: 38px;
+    position: absolute;
+
+    border-radius: 50%;
+    box-shadow:
+      inset 0 0 1px 1px #681309,
+      inset 0 0 1px 2px rgba(255, 255, 255, 0.7),
+      inset 0 -1px 0 2px rgba(0, 0, 0, 0.5);
+
+    background: conic-gradient(
+      lighten($bg, 0) 0%,
+      lighten($bg, 10) 16%,
+      lighten($bg, 20) 26%,
+      lighten($bg, 10) 42%,
+      lighten($bg, 0) 56%,
+      lighten($bg, 20) 88%,
+      lighten($bg, 10) 96%,
+      lighten($bg, 0) 100%
+    );
+
+    &::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      background: darken($color: $color, $amount: 10%);
+      left: 12px;
+      right: 12px;
+      top: 12px;
+      bottom: 12px;
+
+      box-shadow:
+        inset 0 -1px 1px 1px #C8DEE4,
+        inset 0 -2px 3px 1px #0F164F,
+        inset -2px -5px 1px 0 #BFBDB4;
+    }
+
+    &:nth-child(1) {
+      left: 8px;
+      bottom: 8px;
+    }
+
+    &:nth-child(2) {
+      right: 8px;
+      top: 8px;
+    }
+
+    &:nth-child(3) {
+      right: 8px;
+      bottom: 8px;
+    }
+  }
+}
+
+// 按钮组 - A - B
+.btns-a-b {
+  padding: 20px;
+
+  .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 2px rgba(104, 19, 9, 0.5),
+      0 0 4px 1px rgba(104, 19, 9, 0.8),
+      2px 4px 10px 4px rgba(203, 142, 18, 0.7),
+      inset 0 0 0 2px darken($color: $color, $amount: 2%),
+      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9),
+      inset 10px 60px 2px -40px rgba($color: #fff, $alpha: 0.5);
+    font-family: 'Quicksand', sans-serif;
+    color: lighten($color: $color, $amount: 10%);
+    background: radial-gradient(rgba(#fff, 1) 40%, rgba(#fff, 0) 40%);
+  }
 }
