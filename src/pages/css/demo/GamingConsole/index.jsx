@@ -16,6 +16,10 @@ export default () => (
 
       </div>
 
+      <div className={scss.audio}>
+
+      </div>
+
       <div className={scss.screw}>
         <div className={scss['screw-item']}/>
         <div className={scss['screw-item']}/>

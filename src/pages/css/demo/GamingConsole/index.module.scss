@@ -158,47 +158,57 @@ $shadow-color: rgba(#000, 0.2);
   position: absolute;
 }
 
-// 十字形
-.cross-btn {
-  $width: 38px;
-  $height: 130px;
+// 顶部按键
+.gaming-console::before {
+  $height: 6px;
 
-  width: $height;
+  content: '';
+  display: block;
+  width: 56px;
   height: $height;
 
-  left: 40px;
-  bottom: 60px;
+  right: 78px;
+  top: -$height;
   position: absolute;
 
-  &::after {
-    content: '';
-    display: block;
+  border-radius: $height $height 0 0;
+  background: #646978;
+  box-shadow:
+    inset 0 2px 1px -1px rgba($color: #646978, $alpha: 0.8),
+    inset 0 5px 2px -2px rgba($color: #fff, $alpha: 0.8),
+    inset 8px 0 2px -2px rgba($color: #fff, $alpha: 0.8),
+    inset -8px 0 2px -2px rgba($color: #fff, $alpha: 0.8);
+}
 
-    width: 100%;
-    height: $width;
+// 十字形按键
+.cross-btn {
+  $long: 130px;
+  $short: 38px;
 
-    background: $color;
-    border-radius: $width / 2;
-    box-shadow:
-      0 0 10px rgba(104, 19, 9, 0.1),
-      0 0 4px 2px rgba(104, 19, 9, 0.8),
-      inset 0 0 0 2px darken($color: $color, $amount: 10%),
-      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9);
+  position: absolute;
+  bottom: 50px;
+  left: 90px;
 
-    position: absolute;
-    top: ($height - $width) / 2;
-    left: 0;
-  }
+  height: $long;
+  width: $short;
+
+  background: $color;
+  border-radius: $short / 2;
+  box-shadow:
+    0 0 10px rgba(104, 19, 9, 0.1),
+    0 0 4px 2px rgba(104, 19, 9, 0.8),
+    inset 0 0 0 2px darken($color: $color, $amount: 10%),
+    inset 0 6px 6px -2px rgba($color: #fff, $alpha: 0.9);
 
   &::before {
     content: '';
     display: block;
 
-    height: 100%;
-    width: $width;
+    width: $long;
+    height: $short;
 
     background: $color;
-    border-radius: $width / 2;
+    border-radius: $short / 2;
     box-shadow:
       0 0 10px rgba(104, 19, 9, 0.1),
       0 0 4px 2px rgba(104, 19, 9, 0.8),
@@ -206,8 +216,96 @@ $shadow-color: rgba(#000, 0.2);
       inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9);
 
     position: absolute;
-    left: ($height - $width) / 2;
+    top: ($long - $short) / 2;
+    left: -($long - $short) / 2;
+  }
+
+  &::after {
+    $padding-y: 40px;
+    $padding-x: 4px;
+
+    content: '';
+    display: block;
+    width: $short - $padding-x;
+    height: $long - $padding-y;
+
+    position: absolute;
+    left: $padding-x / 2;
+    top: $padding-y / 2;
     z-index: 9;
-    top: 0;
+
+    background: $color;
+    box-shadow: 0 0 4px $color;
+  }
+}
+
+// 音响
+.audio {
+  width: 22px;
+  height: 88px;
+  background: radial-gradient(lighten(#646978, 20%) 0%, lighten(#646978, 10%) 100%);
+  // box-shadow:
+  //   inset 0 0 2px 2px #646978,
+  //   inset 0 0 0 4px darken($color: $color, $amount: 20%);
+
+  border-radius: 11px;
+
+  position: absolute;
+  right: 13px;
+  top: 130px;
+
+  &::after {
+    $bg: #181919;
+
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: $bg;
+
+    position: absolute;
+    top: 9px;
+    left: 9px;
+
+    $deviation-y: 6px;
+    $deviation-x: 6px;
+
+    box-shadow:
+      (0 * $deviation-x) ($deviation-y * 1) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 2) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 3) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 4) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 5) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 6) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 7) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 8) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 9) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 10) 0 0 $bg,
+      (0 * $deviation-x) ($deviation-y * 11) 0 0 $bg,
+
+      (1 * $deviation-x) ($deviation-y * (1 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (2 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (3 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (4 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (5 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (6 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (7 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (8 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (9 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (10 - 0.5)) 0 0 $bg,
+      (1 * $deviation-x) ($deviation-y * (11 - 0.5)) 0 0 $bg,
+
+      (-1 * $deviation-x) ($deviation-y * (1 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (2 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (3 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (4 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (5 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (6 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (7 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (8 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (9 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (10 - 0.5)) 0 0 $bg,
+      (-1 * $deviation-x) ($deviation-y * (11 - 0.5)) 0 0 $bg;
   }
 }
