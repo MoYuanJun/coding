@@ -1,6 +1,29 @@
 $color: #F1BA36;
 $shadow-color: rgba(#000, 0.2);
 
+// 圆形按钮
+@mixin circular-btn($size, $padding) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  box-shadow:
+    0 0 2px rgba(104, 19, 9, 0.5),
+    0 0 4px 1px rgba(104, 19, 9, 0.8),
+    2px 4px 10px 4px rgba(203, 142, 18, 0.7),
+    inset 0 0 0 2px darken($color: $color, $amount: 2%),
+    inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9),
+    inset 10px 60px 2px -40px rgba($color: #fff, $alpha: 0.5);
+  font-size: 28px;
+  font-weight: 600;
+  padding-bottom: 4px;
+  color: lighten($color: $color, $amount: 10%);
+  background: radial-gradient(rgba(#fff, 1) $padding, rgba(#fff, 0) $padding);
+}
+
 .body {
   top: 0;
   left: 0;
@@ -111,25 +134,80 @@ $shadow-color: rgba(#000, 0.2);
 
 // 按钮组 - A - B
 .btns-a-b {
-  padding: 20px;
+  width: 156px;
+
+  right: 80px;
+  bottom: 110px;
+  position: absolute;
+
+  display: flex;
+  justify-content: space-between;
 
   .btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include circular-btn(56px, 40%)
+  }
+}
 
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
+// 右上角圆形按钮
+.gaming-console::after {
+  @include circular-btn(36px, 35%);
+
+  content: '';
+  top: 66px;
+  right: 8px;
+  position: absolute;
+}
+
+// 十字形
+.cross-btn {
+  $width: 38px;
+  $height: 130px;
+
+  width: $height;
+  height: $height;
+
+  left: 40px;
+  bottom: 60px;
+  position: absolute;
+
+  &::after {
+    content: '';
+    display: block;
+
+    width: 100%;
+    height: $width;
+
+    background: $color;
+    border-radius: $width / 2;
     box-shadow:
-      0 0 2px rgba(104, 19, 9, 0.5),
-      0 0 4px 1px rgba(104, 19, 9, 0.8),
-      2px 4px 10px 4px rgba(203, 142, 18, 0.7),
-      inset 0 0 0 2px darken($color: $color, $amount: 2%),
-      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9),
-      inset 10px 60px 2px -40px rgba($color: #fff, $alpha: 0.5);
-    font-family: 'Quicksand', sans-serif;
-    color: lighten($color: $color, $amount: 10%);
-    background: radial-gradient(rgba(#fff, 1) 40%, rgba(#fff, 0) 40%);
+      0 0 10px rgba(104, 19, 9, 0.1),
+      0 0 4px 2px rgba(104, 19, 9, 0.8),
+      inset 0 0 0 2px darken($color: $color, $amount: 10%),
+      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9);
+
+    position: absolute;
+    top: ($height - $width) / 2;
+    left: 0;
+  }
+
+  &::before {
+    content: '';
+    display: block;
+
+    height: 100%;
+    width: $width;
+
+    background: $color;
+    border-radius: $width / 2;
+    box-shadow:
+      0 0 10px rgba(104, 19, 9, 0.1),
+      0 0 4px 2px rgba(104, 19, 9, 0.8),
+      inset 0 0 0 2px darken($color: $color, $amount: 10%),
+      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9);
+
+    position: absolute;
+    left: ($height - $width) / 2;
+    z-index: 9;
+    top: 0;
   }
 }

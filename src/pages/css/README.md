@@ -4,6 +4,10 @@
 
 - https://codepen.io/anniebombanie/pen/NWGwzzJ
 
+- https://codepen.io/AdePhil/pen/eYpqxrv
+
+- https://codepen.io/lucasf/pen/ExVqOdM
+
 - https://codepen.io/anniebombanie/pen/pojmNzN
 
 - https://codepen.io/ricardoolivaalonso/pen/oNjdBme

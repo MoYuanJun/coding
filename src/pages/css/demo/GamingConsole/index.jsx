@@ -9,7 +9,11 @@ export default () => (
 
       <div className={scss['btns-a-b']}>
         <div className={scss.btn}>A</div>
-        {/* <div className={scss.btn}>B</div> */}
+        <div className={scss.btn}>B</div>
+      </div>
+
+      <div className={scss['cross-btn']}>
+
       </div>
 
       <div className={scss.screw}>
