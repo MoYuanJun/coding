@@ -1,0 +1,49 @@
+.body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  --active-index: 0;
+
+  display: flex;
+  position: relative;
+  padding: 10px 20px;
+  background: #4E3CC8;
+  border-radius: 0 0 10px 10px;
+  box-shadow: 0 4px 10px #4E3CC8;
+
+  &-item {
+    height: 40px;
+    width: 108px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #fff;
+    font-size: 18px;
+
+    cursor: pointer;
+  }
+
+  &-title {
+    padding-left: 10px;
+  }
+
+
+  &::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+    background: rgba($color: #fff, $alpha: 0.1);
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+}

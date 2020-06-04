@@ -1,4 +1,5 @@
 import React from 'react';
+import SlidingBg from './SlidingBg';
 import scss from './index.module.scss';
 import PopUpSecondaryMenu from './PopUpSecondaryMenu';
 
@@ -9,10 +10,14 @@ const LIST = [
     title: '弹出式二级菜单',
     Component: PopUpSecondaryMenu,
   },
+  {
+    title: '滑动背景',
+    Component: SlidingBg,
+  },
 ];
 
 export default () => (
-  <React.Fragment>
+  <div className={scss.body}>
     {LIST.map(V => (
       <Card
         title={V.title}
@@ -21,5 +26,5 @@ export default () => (
         <V.Component/>
       </Card>
     ))}
-  </React.Fragment>
+  </div>
 );
