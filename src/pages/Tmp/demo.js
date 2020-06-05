@@ -1,5 +1,6 @@
-const m = new Map();
-m.set('name', 'qy').set('age', 18);
-m.size;  // 2
-m.clear();
-m.size; // 0
+const wm = new WeakMap();
+
+// size、forEach、clear 方法都不存在
+wm.size; // undefined
+wm.forEach; // undefined
+wm.clear; // undefined
