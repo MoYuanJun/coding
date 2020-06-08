@@ -1,18 +1,24 @@
-// const reversalString = str => str
-//   .split(' ')
-//   .map(v => ([... v].reverse().join('')))
-//   .join(' ');
 
-// const reversalString_2 = str => str
-//   .split(/\s/g)
-//   .map(v => ([... v].reverse().join('')))
-//   .join(' ');
+const matchSubStr = subStr => {
+  const reg = /(?<first>(?<firstSub>[01])\k<firstSub>*)/;
 
+  const { groups: { first, firstSub } } = reg.exec(subStr);
 
-// const reversalString_3 = str => str
-//   .match(/[\w']+/g)
-//   .map(v => ([... v].reverse().join('')))
-//   .join(' ');
+  reg.compile(`(?<second>${firstSub === '0' ? '1' : '0'}{${first.length}})`);
 
-// const data = reversalString_3('Let\'s take LeetCode context');
-// console.log(data);
+  const { groups: { second } } = reg.exec(subStr) || { groups: {} };
+
+  return second ? `${first}${second}` : null;
+};
+
+const countSubStr = str => {
+  const res = [];
+  for (let i = 0; i < str.length - 1; i += 1) {
+    const match = matchSubStr(str.slice(i));
+    match && res.push(match);
+  }
+  console.log('--->>', res);
+  return res.length;
+};
+
+countSubStr('00110011');
