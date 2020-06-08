@@ -2,6 +2,7 @@ import React from 'react';
 import SlidingBg from './SlidingBg';
 import Spotlight from './Spotlight';
 import scss from './index.module.scss';
+import FloatUpOrDown from './FloatUpOrDown';
 import PopUpSecondaryMenu from './PopUpSecondaryMenu';
 
 import { Card } from 'antd';
@@ -18,6 +19,10 @@ const LIST = [
   {
     title: '聚光灯',
     Component: Spotlight,
+  },
+  {
+    title: '上下浮动',
+    Component: FloatUpOrDown,
   },
 ];
 
