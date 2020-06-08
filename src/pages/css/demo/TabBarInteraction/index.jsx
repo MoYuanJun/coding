@@ -1,5 +1,6 @@
 import React from 'react';
 import SlidingBg from './SlidingBg';
+import Spotlight from './Spotlight';
 import scss from './index.module.scss';
 import PopUpSecondaryMenu from './PopUpSecondaryMenu';
 
@@ -13,6 +14,10 @@ const LIST = [
   {
     title: '滑动背景',
     Component: SlidingBg,
+  },
+  {
+    title: '聚光灯',
+    Component: Spotlight,
   },
 ];
 

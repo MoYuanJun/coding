@@ -1,0 +1,86 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu {
+  $animation-time: 0.5s;
+  --menu-item-width: 64px;
+  --menu-item-height: 80px;
+  --padding-x: 15px;
+
+  display: flex;
+  position: relative;
+  border-radius: 10px;
+  background: rgb(0, 0, 0);
+  padding: 0 var(--padding-x);
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    font-size: 24px;
+    width: var(--menu-item-width);
+    height: var(--menu-item-height);
+
+    transition: color 0s;
+    color: rgba($color: #fff, $alpha: 0.5);
+
+    &.active {
+      color: rgba($color: #fff, $alpha: 1);
+      transition-delay: $animation-time - 0.2s;
+    }
+  }
+
+  .spotlight {
+    width: var(--menu-item-width);
+    height: var(--menu-item-height);
+
+    top: 0;
+    position: absolute;
+    left: var(--padding-x);
+    transition: transform $animation-time;
+    transform: translateX(calc(var(--active-index) * var(--menu-item-width)));
+
+    &::before {
+      $padding-x: 5px;
+
+      content: '';
+      height: 5px;
+      display: block;
+
+      z-index: 9;
+      left: $padding-x;
+      right: $padding-x;
+      position: absolute;
+
+      border-radius: 5px;
+      background: rgba($color: #fff, $alpha: 1.0);
+    }
+
+    &::after {
+      content: '';
+      display: block;
+
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      position: absolute;
+
+      clip-path: polygon(
+        20% 0,
+        0 100%,
+        100% 100%,
+        80% 0,
+      );
+      background: linear-gradient(
+        rgba($color: #fff, $alpha: 0.3),
+        rgba($color: #fff, $alpha: 0)
+      );
+    }
+  }
+}

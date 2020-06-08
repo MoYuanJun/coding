@@ -1,6 +1,18 @@
-const wm = new WeakMap();
+// const reversalString = str => str
+//   .split(' ')
+//   .map(v => ([... v].reverse().join('')))
+//   .join(' ');
 
-// size、forEach、clear 方法都不存在
-wm.size; // undefined
-wm.forEach; // undefined
-wm.clear; // undefined
+// const reversalString_2 = str => str
+//   .split(/\s/g)
+//   .map(v => ([... v].reverse().join('')))
+//   .join(' ');
+
+
+// const reversalString_3 = str => str
+//   .match(/[\w']+/g)
+//   .map(v => ([... v].reverse().join('')))
+//   .join(' ');
+
+// const data = reversalString_3('Let\'s take LeetCode context');
+// console.log(data);
