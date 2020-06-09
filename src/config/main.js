@@ -1,8 +1,8 @@
 import * as pages from '../pages';
 
 export default {
-  logo: { img: void 0, title: '练习室' },
-  iconFont: '//at.alicdn.com/t/font_1732251_er4b1hvtn4.js',
+  logo: { img: void 0, title: 'Coding' },
+  iconFont: '//at.alicdn.com/t/font_1732251_i4cfzbz65vj.js',
   menu: [
     {
       url: '/',
@@ -71,42 +71,38 @@ export default {
           ],
         },
         {
-          title: 'DEMO',
-          key: 'css-demo',
-          icon: 'icondemo',
-          children: [
+          title: '键盘',
+          key: 'css-demo-keyboard',
+          url: '/css/demo/keyboard',
+          icon: 'iconjianpan',
+          router: [
             {
-              title: '键盘',
-              key: 'css-demo-keyboard',
-              url: '/css/demo/keyboard',
-              router: [
-                {
-                  component: pages.Keyboard,
-                  path: '/css/demo/keyboard',
-                },
-              ],
+              component: pages.Keyboard,
+              path: '/css/demo/keyboard',
             },
+          ],
+        },
+        {
+          title: '游戏机',
+          icon: 'iconyouxiji',
+          key: 'css-demo-gamingConsole',
+          url: '/css/demo/gamingConsole',
+          router: [
             {
-              title: '游戏机',
-              key: 'css-demo-gamingConsole',
-              url: '/css/demo/gamingConsole',
-              router: [
-                {
-                  component: pages.GamingConsole,
-                  path: '/css/demo/gamingConsole',
-                },
-              ],
+              component: pages.GamingConsole,
+              path: '/css/demo/gamingConsole',
             },
+          ],
+        },
+        {
+          title: '选项卡栏交互',
+          icon: 'iconxuanxiangqia',
+          key: 'css-demo-tabBarInteraction',
+          url: '/css/demo/TabBarInteraction',
+          router: [
             {
-              title: '选项卡栏交互',
-              key: 'css-demo-tabBarInteraction',
-              url: '/css/demo/TabBarInteraction',
-              router: [
-                {
-                  component: pages.TabBarInteraction,
-                  path: '/css/demo/tabBarInteraction',
-                },
-              ],
+              component: pages.TabBarInteraction,
+              path: '/css/demo/tabBarInteraction',
             },
           ],
         },
