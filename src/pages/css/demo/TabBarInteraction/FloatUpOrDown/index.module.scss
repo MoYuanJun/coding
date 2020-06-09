@@ -8,8 +8,10 @@
 }
 
 .menu {
+  $spot-size: 6px;
   $padding-x: 15px;
   $mask-height: 20px;
+  $animation-time: 0.8s;
   $menu-item-width: 80px;
   $menu-item-height: 60px;
 
@@ -33,38 +35,49 @@
     overflow: hidden;
     position: relative;
 
-    &::after {
-      content: '';
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 9;
-      position: absolute;
-
-      border-top: $mask-height solid #fff;
-      border-left: $menu-item-width solid transparent;
-
-      border-right: 0px solid transparent;
-      border-bottom: 0px solid transparent;
-    }
-
     &::before {
       content: '';
+      top: 0;
       left: 0;
       right: 0;
       bottom: 0;
       z-index: 9;
       position: absolute;
 
-      border-bottom: $mask-height solid #fff;
-      border-right: $menu-item-width solid transparent;
-
-      border-top: 0px solid transparent;
-      border-left: 0px solid transparent;
+      background-image: linear-gradient(
+        15deg,
+        #fff 25%,
+        transparent 25%,
+        transparent 75%,
+        #fff 75%
+      );
     }
 
-    &:hover &-content {
-      transform: translateY(-$menu-item-height);
+    &::after {
+      content: '';
+      width: $spot-size;
+      height: $spot-size;
+
+      right: 0;
+      z-index: 9;
+      bottom: $spot-size;
+      position: absolute;
+      left: calc(50% - #{$spot-size / 2});
+
+      border-radius: 50%;
+      transform: scale(0);
+      background: #211d69;
+      transition: transform $animation-time;
+    }
+
+    &:hover {
+      &::after {
+        transform: scale(1);
+      }
+
+      .menu-item-content {
+        transform: translateY(-$menu-item-height);
+      }
     }
   }
 
@@ -72,7 +85,7 @@
     color: rgba($color: #211d69, $alpha: 1);
     text-align: center;
     line-height: $menu-item-height;
-    transition: transform 0.8s;
+    transition: transform $animation-time;
 
     .icon {
       font-size: 24px;
