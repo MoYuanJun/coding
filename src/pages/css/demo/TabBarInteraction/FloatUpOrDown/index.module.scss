@@ -8,16 +8,16 @@
 }
 
 .menu {
-  $menu-item-width: 80px;
-  $menu-item-height: 80px;
   $padding-x: 15px;
   $mask-height: 20px;
+  $menu-item-width: 80px;
+  $menu-item-height: 60px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: 0 $padding-x;
+  padding: $padding-x;
   background: #fff;
   border-radius: 0 0 10px 10px;
 
@@ -26,12 +26,11 @@
     cursor: pointer;
     width: $menu-item-width;
     height: $menu-item-height;
-    // overflow: hidden;
+
     display: flex;
     justify-content: center;
 
-    background: red;
-
+    overflow: hidden;
     position: relative;
 
     &::after {
@@ -39,9 +38,10 @@
       top: 0;
       left: 0;
       right: 0;
+      z-index: 9;
       position: absolute;
 
-      border-top: $mask-height solid blue;
+      border-top: $mask-height solid #fff;
       border-left: $menu-item-width solid transparent;
 
       border-right: 0px solid transparent;
@@ -53,35 +53,35 @@
       left: 0;
       right: 0;
       bottom: 0;
+      z-index: 9;
       position: absolute;
 
-      border-bottom: $mask-height solid blue;
+      border-bottom: $mask-height solid #fff;
       border-right: $menu-item-width solid transparent;
 
       border-top: 0px solid transparent;
       border-left: 0px solid transparent;
     }
+
+    &:hover &-content {
+      transform: translateY(-$menu-item-height);
+    }
   }
 
   &-item-content {
-    // height: 100%;
-
-    // display: flex;
-    // flex-direction: column;
-    // align-items: center;
-    // justify-content: center;
-
-    font-size: 24px;
-    color: rgba($color: #000, $alpha: 0.4);
+    color: rgba($color: #211d69, $alpha: 1);
     text-align: center;
     line-height: $menu-item-height;
+    transition: transform 0.8s;
 
-    // .icon {
+    .icon {
+      font-size: 24px;
+      color: rgba($color: #211d69, $alpha: 0.5);
+    }
 
-    // }
-
-    // .title {
-    //   line-height: $menu-item-height;
-    // }
+    .title {
+      font-size: 20px;
+      color: rgba($color: #211d69, $alpha: 1);
+    }
   }
 }
