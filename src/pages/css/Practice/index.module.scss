@@ -1,0 +1,17 @@
+.body {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  background: #fff;
+  padding: 50px;
+}
+
+
+.mask {
+  width:300px;
+  height:300px;
+  -webkit-mask-image: url(./img/mask.png);
+  mask-image: url(./img/mask.png);
+}
