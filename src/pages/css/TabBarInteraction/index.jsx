@@ -2,6 +2,7 @@ import React from 'react';
 import SlidingBg from './SlidingBg';
 import Spotlight from './Spotlight';
 import scss from './index.module.scss';
+import ExpandPanel from './ExpandPanel';
 import FloatUpOrDown from './FloatUpOrDown';
 import PopUpSecondaryMenu from './PopUpSecondaryMenu';
 
@@ -11,6 +12,10 @@ const LIST = [
   {
     title: '弹出式二级菜单',
     Component: PopUpSecondaryMenu,
+  },
+  {
+    title: '弹出式面板',
+    Component: ExpandPanel,
   },
   {
     title: '滑动背景',
