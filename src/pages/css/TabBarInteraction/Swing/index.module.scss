@@ -38,8 +38,6 @@ $menu-pd-x: 20px;
       #{$menu-width} * var(--active-index) +
       #{$menu-pd-x}
     );
-
-    transition: all 0.5s;
   }
 }
 
