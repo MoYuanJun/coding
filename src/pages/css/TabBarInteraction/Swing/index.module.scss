@@ -1,0 +1,87 @@
+$title-size: 14px;
+$border-width: 40px;
+$border-height: 4px;
+$menu-width: 100px;
+$menu-height: 60px;
+$menu-pd-y: 40px;
+$menu-pd-x: 20px;
+
+.body {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #dee0e8;
+}
+
+.menu {
+  display: flex;
+
+  background: #fff;
+  position: relative;
+  border-radius: 14px;
+  padding: $menu-pd-x $menu-pd-y;
+
+  &::after {
+    content: '';
+    display: block;
+    width: $border-width;
+    background: #f90088;
+    height: $border-height;
+    border-radius: $border-height / 2;
+
+    top: 0;
+    position: absolute;
+    left: calc(
+      (#{$menu-width} - #{$border-height}) / 2 +
+      #{$menu-width} * var(--active-index) +
+      #{$menu-pd-x}
+    );
+
+    transition: all 0.5s;
+  }
+}
+
+.item {
+  cursor: pointer;
+  overflow: hidden;
+  width: $menu-width;
+  height: $menu-height;
+  color: rgba($color: #000, $alpha: 0.4);
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+
+  .title {
+    opacity: 0;
+    transition: all 0.5s;
+    font-size: $title-size;
+    transform: translateY($title-size);
+  }
+
+  .icon {
+    line-height: 1;
+    font-size: 30px;
+  }
+
+  &.active {
+    .title  {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .icon {
+      color: #f90088;
+    }
+  }
+
+  &:hover {
+    .title  {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}

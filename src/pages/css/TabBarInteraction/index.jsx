@@ -1,4 +1,5 @@
 import React from 'react';
+import Swing from './Swing';
 import SlidingBg from './SlidingBg';
 import Spotlight from './Spotlight';
 import scss from './index.module.scss';
@@ -28,6 +29,10 @@ const LIST = [
   {
     title: '上下浮动',
     Component: FloatUpOrDown,
+  },
+  {
+    title: '摇摆',
+    Component: Swing,
   },
 ];
 
