@@ -1,5 +1,6 @@
 import React from 'react';
 import Swing from './Swing';
+import PushPull from './PushPull';
 import SlidingBg from './SlidingBg';
 import Spotlight from './Spotlight';
 import scss from './index.module.scss';
@@ -10,6 +11,10 @@ import PopUpSecondaryMenu from './PopUpSecondaryMenu';
 import { Card } from 'antd';
 
 const LIST = [
+  {
+    title: '推拉',
+    Component: PushPull,
+  },
   {
     title: '弹出式二级菜单',
     Component: PopUpSecondaryMenu,
