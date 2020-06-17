@@ -1,5 +1,4 @@
 // https://codepen.io/lerida/details/ZEQQEOd
-
 import React from 'react';
 import classNames from 'classnames';
 import scss from './index.module.scss';
@@ -29,12 +28,28 @@ const MENU_LIST = [
   },
 ];
 
+// 延时函数
+const delayed = time => new Promise(resolve => setTimeout(resolve, time));
+
 const useStateHook = () => {
+  const [animation, setAnimation] = React.useState(false);
+  // 鼠标移动方向: 1 向右 -1 向左
+  const [direction, setDirection] = React.useState(0);
+  // 当前 active index
   const [activeIndex, setActiveIndex] = React.useState(0);
 
-  const onChange = activeIndex => setActiveIndex(activeIndex);
+  const onChange = async index => {
+    if (index === activeIndex) {
+      return false;
+    }
+    setAnimation(false);
+    await delayed(1000 * 0.1);
+    setAnimation(true);
+    setActiveIndex(index);
+    setDirection(Math.sign(index - activeIndex) * 1);
+  };
 
-  return { activeIndex, onChange };
+  return { activeIndex, onChange, animation, direction };
 };
 
 export default () => {
@@ -43,8 +58,14 @@ export default () => {
   return (
     <div className={scss.body}>
       <div
-        className={scss.menu}
-        style={{ '--active-index': state.activeIndex }}>
+        className={classNames(
+          scss.menu,
+          { [scss.animation]: state.animation }
+        )}
+        style={{
+          '--active-index': state.activeIndex,
+          '--direction': state.direction,
+        }}>
         {MENU_LIST.map((v, index) => (
           <div
             key={index}

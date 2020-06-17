@@ -38,6 +38,42 @@ $menu-pd-x: 20px;
       #{$menu-width} * var(--active-index) +
       #{$menu-pd-x}
     );
+
+    transition: all 0.5s;
+  }
+
+  &.animation::after {
+    animation: zoom 0.8s linear;
+    @keyframes zoom {
+      25% {
+        transform: translate(calc(var(--direction) * 40px), 0px) scaleX(1.5);
+      }
+
+      50% {
+        transform: translate(calc(var(--direction) * 40px), 0px) scaleX(2);
+      }
+
+      70% {
+        transform: translate(calc(var(--direction) * 40px), 0px) scaleX(1.5);
+      }
+
+      100% {
+        transform: translate(0px, 0px) scaleX(1);
+      }
+    }
+  }
+
+  &.animation {
+    animation: swing 0.4s linear;
+    @keyframes swing {
+      50% {
+        transform: rotate(calc( (var(--active-index) - 1.5) * 2deg));
+      }
+
+      100% {
+        transform: rotate(0);
+      }
+    }
   }
 }
 
