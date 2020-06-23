@@ -1,24 +1,59 @@
+// 例一
 
-const matchSubStr = subStr => {
-  const reg = /(?<first>(?<firstSub>[01])\k<firstSub>*)/;
+// const obj = new Proxy({}, {
+//   get: (target, propKey, receiver) => {
+//     console.log(`getting ${propKey}!`);
+//     return Reflect.get(target, propKey, receiver);
+//   },
+//   set: (target, propKey, value, receiver) => {
+//     console.log(`setting ${propKey}!`);
+//     return Reflect.set(target, propKey, value, receiver);
+//   },
+// });
 
-  const { groups: { first, firstSub } } = reg.exec(subStr);
+// obj.name = 'qy';
+// obj.name;   // qy
 
-  reg.compile(`(?<second>${firstSub === '0' ? '1' : '0'}{${first.length}})`);
 
-  const { groups: { second } } = reg.exec(subStr) || { groups: {} };
+// 例二
+// const obj = new Proxy({}, {
+//   get: (target, propKey) => 35,
+// });
 
-  return second ? `${first}${second}` : null;
+// obj.title; // 35
+// obj.name; // 35
+// obj.time; // 35
+
+// 例三
+// const target = {};
+// const handler = {};
+// const proxy = new Proxy(target, handler);
+
+// proxy.name = 'qy';
+// target.name;  // qy
+
+// 例四
+// const proxy = new Proxy({}, {
+//   get: (target, propKey) => 35,
+// });
+
+// const obj = Object.create(proxy);
+// obj.name;  // 35
+
+// 例五
+const handler = {
+  get: (target, propKey) => (propKey === 'prototype'
+    ? Object.prototype
+    : `Hello ${propKey}`
+  ),
+
+  apply: (target, thisBinding, args) => args[0],
 };
 
-const countSubStr = str => {
-  const res = [];
-  for (let i = 0; i < str.length - 1; i += 1) {
-    const match = matchSubStr(str.slice(i));
-    match && res.push(match);
-  }
-  console.log('--->>', res);
-  return res.length;
-};
+const fproxy = new Proxy((x, y) => x + y, handler);
 
-countSubStr('00110011');
+console.log(fproxy(1, 2)); // 1
+
+console.log(fproxy.prototype === Object.prototype); // true
+
+console.log(fproxy.foo === 'Hello foo'); // true

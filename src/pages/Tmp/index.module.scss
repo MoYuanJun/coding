@@ -5,9 +5,12 @@
   bottom: 0;
   position: absolute;
 
+  padding: 20px;
   background: #fff;
 }
 
-.path {
-
+.emphasis {
+  line-height: 1;
+  text-emphasis-style: open circle;
+  text-emphasis-position: under right;
 }
