@@ -1,6 +1,16 @@
 # TODO
 
+- https://codepen.io/ixahmedxi/pen/zYrdBKx
+
 - https://codepen.io/v_Bauer/pen/WNroMOq
+
+- https://codepen.io/Markshall/pen/PoZJRve
+
+- https://codepen.io/cat_logic/pen/yLeoRYo
+
+- https://codepen.io/jkantner/pen/qBbjEVQ
+
+- https://codepen.io/Markshall/pen/oNbwgNM
 
 - https://codepen.io/fossheim/pen/VweaNYW
 
@@ -69,3 +79,6 @@ https://codepen.io/chancesq/details/PoZGZmR
 http://www.jq22.com/code2200
 https://codepen.io/or-ikeda/details/PoPMpaa
 https://codepen.io/atulcodex/details/dyGPOVv
+https://codepen.io/chancesq/pen/YzwxgVZ
+https://codepen.io/chancesq/pen/GRovMQq
+https://codepen.io/chancesq/pen/BajZVJd
