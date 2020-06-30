@@ -29,8 +29,8 @@ export { default as ThreePractice } from './three/Practice';
 
 // css
 export { default as Shape } from './css/Shape';
-export { default as CssPractice } from './css/Practice';
-
 export { default as Keyboard } from './css/Keyboard';
+export { default as CssPractice } from './css/Practice';
 export { default as GamingConsole } from './css/GamingConsole';
 export { default as TabBarInteraction } from './css/TabBarInteraction';
+export { default as MacOSControlCenter } from './css/MacOSControlCenter';

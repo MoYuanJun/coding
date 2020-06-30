@@ -1,0 +1,22 @@
+$radius: 10px;
+
+.body {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #A3BFFA;
+}
+
+.control-center {
+  width: 500px;
+  height: 610px;
+  border-radius: $radius;
+  background: rgba($color: #fff, $alpha: 0.2);
+}

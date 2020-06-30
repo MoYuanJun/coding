@@ -1,7 +1,5 @@
 # TODO
 
-- https://codepen.io/ixahmedxi/pen/zYrdBKx
-
 - https://codepen.io/v_Bauer/pen/WNroMOq
 
 - https://codepen.io/Markshall/pen/PoZJRve

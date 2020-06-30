@@ -106,6 +106,18 @@ export default {
             },
           ],
         },
+        {
+          title: 'MacOS 控制中心',
+          icon: 'iconxuanxiangqia',
+          key: 'cssMacOSControlCenter',
+          url: '/css/macOSControlCenter',
+          router: [
+            {
+              path: '/css/macOsControlCenter',
+              component: pages.MacOSControlCenter,
+            },
+          ],
+        },
       ],
     },
     {
