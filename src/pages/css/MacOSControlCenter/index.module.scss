@@ -17,6 +17,138 @@ $radius: 10px;
 .control-center {
   width: 500px;
   height: 610px;
+  padding: 10px;
   border-radius: $radius;
   background: rgba($color: #fff, $alpha: 0.2);
+
+  gap: 14px;
+  display: grid;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    'connection connection disturb disturb'
+    'connection connection brightness airplay'
+    'display display display display'
+    'sound sound sound sound'
+    'playing playing playing playing';
+
+  > div {
+    padding: 20px;
+    border-radius: $radius;
+    background: rgba(255, 255, 255, 0.4);
+  }
+}
+
+.connection {
+  grid-area: connection;
+
+  display: grid;
+  align-items: center;
+  justify-items: start;
+  grid-template-columns: 50px 1fr;
+  grid-template-rows: repeat(3, 1fr);
+
+  .text {
+    div:nth-child(1){
+      line-height: 1;
+      font-size: 14px;
+    }
+    div:nth-child(2){
+      line-height: 1;
+      font-size: 10px;
+      padding-top: 6px;
+      color: rgba($color: #000, $alpha: 0.4);
+    }
+  }
+
+  :global {
+    .anticon {
+      color: #fff;
+      padding: 10px;
+      font-size: 20px;
+      border-radius: 50%;
+      background: #027aff;
+    }
+  }
+}
+
+.disturb {
+  grid-area: disturb;
+
+  display: flex;
+  align-items: center;
+
+  .text {
+    color: #000;
+    line-height: 1.4;
+  }
+
+  :global {
+    .anticon {
+      color: #000;
+      padding: 10px;
+      font-size: 20px;
+      margin-right: 16px;
+      border-radius: 50%;
+      background: rgba($color: #000, $alpha: 0.2);
+    }
+  }
+}
+
+.brightness {
+  grid-area: brightness;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .text {
+    color: #000;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  :global {
+    .anticon {
+      color: #000;
+      font-size: 20px;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.airplay {
+  grid-area: airplay;
+
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  .text {
+    color: #000;
+    font-size: 10px;
+    text-align: center;
+  }
+
+  :global {
+    .anticon {
+      color: #000;
+      font-size: 20px;
+      padding-bottom: 4px;
+    }
+  }
+}
+
+.display {
+  grid-area: display;
+}
+
+.sound {
+  grid-area: sound;
+}
+
+.playing {
+  grid-area: playing;
 }
