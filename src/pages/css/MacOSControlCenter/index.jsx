@@ -1,8 +1,11 @@
 // 参考: https://codepen.io/ixahmedxi/pen/zYrdBKx
 import React from 'react';
 import scss from './index.module.scss';
+import { Slider } from 'antd';
 import {
   WifiOutlined,
+  SoundOutlined,
+  AlertOutlined,
 } from '@ant-design/icons';
 
 export default () => (
@@ -42,8 +45,22 @@ export default () => (
           Airplay Display
         </div>
       </div>
-      <div className={scss.display}></div>
-      <div className={scss.sound}></div>
+      <div className={scss.display}>
+        <div>Display</div>
+        <Slider
+          defaultValue={50}
+          tooltipVisible={false}
+          marks = {{ 0: <AlertOutlined /> }}
+        />
+      </div>
+      <div className={scss.sound}>
+        <div>Sound</div>
+        <Slider
+          defaultValue={50}
+          tooltipVisible={false}
+          marks={{ 0: <SoundOutlined /> }}
+        />
+      </div>
       <div className={scss.playing}></div>
     </div>
   </div>

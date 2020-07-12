@@ -141,6 +141,65 @@ $radius: 10px;
   }
 }
 
+.display,
+.sound {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  :global {
+    .ant-slider {
+      margin: 0;
+      padding: 0;
+      height: 20px;
+
+      &-rail {
+        height: 20px;
+        border-radius: 10px;
+        background: rgba(17, 17, 17, 0.1);
+      }
+
+      &:hover .ant-slider-rail {
+        background-color: rgba(17, 17, 17, 0.1);
+      }
+
+      &-track {
+        height: 20px;
+        background: #fff;
+        border-radius: 10px 0 0 10px;
+      }
+
+      &:hover .ant-slider-track {
+        background-color: #fff;
+      }
+
+      &-handle {
+        margin: 0;
+        width: 20px;
+        height: 20px;
+        border: none;
+        box-shadow: -2px 0 10px 2px rgba(17, 17, 17, 0.2);
+        &:focus {
+          box-shadow: -2px 0 10px 2px rgba(17, 17, 17, 0.2);
+        }
+      }
+
+      &-step {
+        opacity: 0;
+      }
+
+      &-mark {
+        top: -2px;
+        left: 16px;
+
+        &-text {
+          color: rgba($color: #000, $alpha: 0.4);
+        }
+      }
+    }
+  }
+}
+
 .display {
   grid-area: display;
 }
