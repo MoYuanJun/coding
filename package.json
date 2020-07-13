@@ -31,7 +31,7 @@
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.3",
     "qy-create-react": "^1.1.12",
-    "standard-version": "^7.1.0"
+    "standard-version": "^8.0.1"
   },
   "config": {
     "commitizen": {
