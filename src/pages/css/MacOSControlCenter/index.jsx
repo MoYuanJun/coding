@@ -6,6 +6,8 @@ import {
   WifiOutlined,
   SoundOutlined,
   AlertOutlined,
+  AppleOutlined,
+  CaretRightOutlined,
 } from '@ant-design/icons';
 
 export default () => (
@@ -61,7 +63,14 @@ export default () => (
           marks={{ 0: <SoundOutlined /> }}
         />
       </div>
-      <div className={scss.playing}></div>
+      <div className={scss.playing}>
+        <AppleOutlined className={scss.apple}/>
+        <div className={scss.text}>
+          <div>SAINt JHN</div>
+          <div>Roses (Imanbek Remix)</div>
+        </div>
+        <CaretRightOutlined className={scss.switch}/>
+      </div>
     </div>
   </div>
 );
