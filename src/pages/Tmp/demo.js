@@ -1,7 +1,7 @@
-const fun = (str, mode) => {
+// https://leetcode-cn.com/problems/zheng-ze-biao-da-shi-pi-pei-lcof/
+const isMatch = (str, mode) => {
   let curr = 0;     // 当前指针位置
   const modeArr = mode.match(/([a-z.]\*)|([a-z.]+(?=[a-z.]\*|$))/g);
-
   if (!modeArr) {
     return false;
   }
@@ -17,14 +17,14 @@ const fun = (str, mode) => {
     } else {
       // 无模式匹配
       for (const v of ele) {
-        if (!v !== '.' || v !== str[curr]) {
+        if (v !== '.' && v !== str[curr]) {
           return false;
         }
         curr += 1;
       }
     }
-    return curr === str.length;
   });
+  return curr === str.length;
 };
 
-fun('ab', 'a..*.');
+console.log(isMatch('abcasaa', 'a.*'));
