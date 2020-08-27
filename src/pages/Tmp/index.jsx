@@ -5,7 +5,12 @@ import scss from './index.module.scss';
 const useStateHook = () => {
   const onChange = event => {
     const [file] = event.target.files;
-    console.log(file);
+    const reader = new FileReader();
+    reader.readAsText(file);
+
+    reader.onload = () => {
+      console.log(reader.result);
+    };
   };
 
   return { onChange };
