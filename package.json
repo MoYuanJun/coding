@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "homepage": "/coding",
+  "homepage": ".",
   "scripts": {
     "start": "react-script start",
     "build": "react-script build",
@@ -30,7 +30,7 @@
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
     "husky": "^4.2.3",
-    "qy-create-react": "^1.1.17",
+    "qy-create-react": "^1.1.18",
     "standard-version": "^7.1.0"
   },
   "config": {
