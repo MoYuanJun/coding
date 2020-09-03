@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "homepage": "https://qianyin925.github.io/coding/",
   "scripts": {
     "start": "react-script start",
     "build": "react-script build",
@@ -22,7 +23,6 @@
   "bugs": {
     "url": "https://github.com/qianyin925/canvas/issues"
   },
-  "homepage": ".",
   "devDependencies": {
     "@commitlint/cli": "^8.3.5",
     "@commitlint/config-angular": "^8.3.4",
