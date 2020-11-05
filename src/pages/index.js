@@ -24,6 +24,8 @@ export { default as DynamicLine } from './canvas/particle/DynamicLine';
 export { default as FollowBubbles } from './canvas/particle/FollowBubbles';
 export { default as TextDissipation } from './canvas/particle/TextDissipation';
 
+export { default as G6Research } from './canvas/g6/Research';
+
 // three
 export { default as ThreePractice } from './three/Practice';
 

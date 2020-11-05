@@ -267,6 +267,24 @@ export default {
             },
           ],
         },
+        {
+          key: 'g6',
+          icon: 'iconlizi',
+          title: 'G6',
+          children: [
+            {
+              title: '文档阅读',
+              key: 'g6Research',
+              url: '/canvas/g6/research',
+              router: [
+                {
+                  component: pages.G6Research,
+                  path: '/canvas/g6/research',
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
