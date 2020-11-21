@@ -46,14 +46,19 @@ const useStateHook = () => {
       width: 800,
       height: 500,
       modes: {
-        // 支持的 behavior
         default: [],
-        // cu: ['zoom-canvas'],
-        // edit: ['click-select'],
       },
     });
     graph.current.data(data);
     graph.current.render();
+
+    graph.current.on('beforelayout', evt => {
+      console.log('beforelayout', evt);
+    });
+
+    graph.current.on('afterlayout', evt => {
+      console.log('afterlayout', evt);
+    });
   }, []);
 
   return { containerRef, addBehaviors, removeBehaviors };
