@@ -1,5 +1,10 @@
 {
   "eslint.options": {
     "configFile": "./node_modules/qy-create-react/.eslintrc.js"
-  }
+  },
+  // 开启自动修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true,
+    "source.fixAll.stylelint": true
+  },
 }
