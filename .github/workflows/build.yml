@@ -15,11 +15,11 @@ jobs:
     steps:                    # 工作流步骤
       # step 1. 获取源码
       - name: Chekcout 🛎️             # 步骤名
-        uses: actions/checkout@master # 使用插件名
+        uses: actions/checkout@master # 使用插件名 => https://github.com/actions/checkout
 
       # step 2. 安装指定 node
       - name: Use Node  📦              # 步骤名
-        uses: actions/setup-node@master # 使用插件名
+        uses: actions/setup-node@master # 使用插件名 => https://github.com/actions/setup-node
         with: # 插件携带参数
           node-version: '16' # 指定 node 版本
 
@@ -30,8 +30,8 @@ jobs:
           npm run build
 
       # step 4. 项目部署
-      - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@main
+      - name: Deploy 🚀                                   # 步骤名
+        uses: JamesIves/github-pages-deploy-action@v4.2.2 # 使用插件名 => https://github.com/JamesIves/github-pages-deploy-action
         with:
           BRANCH: gh-pages # 部署分支
           FOLDER: build    # 当前打包目录
