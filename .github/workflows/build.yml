@@ -31,7 +31,7 @@ jobs:
 
       # step 4. 项目部署
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@master
+        uses: JamesIves/github-pages-deploy-action@main
         with:
           BRANCH: gh-pages # 部署分支
           FOLDER: build    # 当前打包目录
