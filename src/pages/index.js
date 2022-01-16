@@ -36,3 +36,4 @@ export { default as CssPractice } from './css/Practice';
 export { default as GamingConsole } from './css/GamingConsole';
 export { default as TabBarInteraction } from './css/TabBarInteraction';
 export { default as MacOSControlCenter } from './css/MacOSControlCenter';
+export { default as MoreText } from './css/MoreText';

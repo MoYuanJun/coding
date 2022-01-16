@@ -118,6 +118,18 @@ export default {
             },
           ],
         },
+        {
+          title: '纯 CSS 多文本处理(展开更多)',
+          icon: 'iconxuanxiangqia',
+          key: 'css',
+          url: '/css/moreText',
+          router: [
+            {
+              path: '/css/moreText',
+              component: pages.MoreText,
+            },
+          ],
+        },
       ],
     },
     {

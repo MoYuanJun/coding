@@ -1,0 +1,90 @@
+.wrapper {
+  display: flex; // 最外层包一层, 在内部未设置 height 下, 子元素也能使用百分比高度
+
+  width: 90%;
+  padding: 10px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 10px 10px 60px #bebebe;
+
+  input {
+    width: 0px;
+    opacity: 0;
+  }
+}
+
+.content {
+  overflow: hidden;
+  line-height: 1.5;   // 设置行高、最大宽度来限制最多显示行
+  max-height: 1.5 * 3em;
+
+  position: relative;
+
+  // 浮动元素, 将按钮挤到底部
+  &::before {
+    content: '';
+    float: right;
+    display: block;
+    height: calc(100% - 1.5em);
+  }
+
+  // 跟在文字后面的一个遮罩, 当文本较少时可以将展开按钮遮住
+  &::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+
+    background: #fff;
+    position: absolute;
+  }
+}
+
+// 按钮: 通过右浮动实现(文本环绕按钮效果)、和 content:after 通过清除浮动来实现按钮定位底部效果
+.btn {
+  clear: both;
+  float: right;
+  margin-left: 20px;
+  position: relative;
+
+  color: #fff;
+  padding: 0 8px;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #0050b3;
+
+  // ... 通过定位外移
+  &::before {
+    color: #333;
+    content: '...';
+
+    left: -20px;
+    position: absolute;
+  }
+
+  &::after {
+    content: '展开';
+  }
+}
+
+// 使用 checked 来记录展开、收起状态
+.wrapper input:checked {
+  & + .content {
+    max-height: unset;
+
+    // 修改按钮文本内容
+    .btn::after {
+      content: '收起';
+    }
+
+    // 移除 ...
+    .btn::before {
+      content: '';
+    }
+
+    // 移除遮罩
+    &::after {
+      display: none;
+    }
+  }
+}
