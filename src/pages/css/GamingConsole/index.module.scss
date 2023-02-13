@@ -1,4 +1,7 @@
-$color: #F1BA36;
+@use "sass:color";
+@use "sass:math";
+
+$color: #f1ba36;
 $shadow-color: rgba(#000, 0.2);
 
 // 圆形按钮
@@ -11,16 +14,16 @@ $shadow-color: rgba(#000, 0.2);
   height: $size;
   border-radius: 50%;
   box-shadow:
-    0 0 2px rgba(104, 19, 9, 0.5),
-    0 0 4px 1px rgba(104, 19, 9, 0.8),
-    2px 4px 10px 4px rgba(203, 142, 18, 0.7),
-    inset 0 0 0 2px darken($color: $color, $amount: 2%),
-    inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9),
-    inset 10px 60px 2px -40px rgba($color: #fff, $alpha: 0.5);
+    0 0 2px rgb(104 19 9 / 50%),
+    0 0 4px 1px rgb(104 19 9 / 80%),
+    2px 4px 10px 4px rgb(203 142 18 / 70%),
+    inset 0 0 0 2px color.adjust($color: $color, $lightness: -2%),
+    inset 0 3px 6px 2px rgba($color: #fff, $alpha: 90%),
+    inset 10px 60px 2px -40px rgba($color: #fff, $alpha: 50%);
   font-size: 28px;
   font-weight: 600;
   padding-bottom: 4px;
-  color: lighten($color: $color, $amount: 10%);
+  color: color.adjust($color: $color, $lightness: 10%);
   background: radial-gradient(rgba(#fff, 1) $padding, rgba(#fff, 0) $padding);
 }
 
@@ -45,8 +48,8 @@ $shadow-color: rgba(#000, 0.2);
 
   border-radius: 20px;
   box-shadow: 0 0 50px $shadow-color;
-  background: lighten($color: $color, $amount: 1%);
-  border: 1px solid lighten($color: $color, $amount: 10%);
+  background: color.adjust($color: $color, $lightness: 1%);
+  border: 1px solid color.adjust($color: $color, $lightness: 10%);
 }
 
 // 屏幕
@@ -63,7 +66,7 @@ $shadow-color: rgba(#000, 0.2);
   border: $border-width solid #2b2c2c;
 
   &::after {
-    content: '';
+    content: "";
     position: absolute;
     top: -$border-width;
     left: -$border-width;
@@ -77,6 +80,7 @@ $shadow-color: rgba(#000, 0.2);
 // 螺丝: 右上、左下、右下角
 .screw {
   $bg: #596976;
+
   &-item {
     width: 38px;
     height: 38px;
@@ -85,34 +89,35 @@ $shadow-color: rgba(#000, 0.2);
     border-radius: 50%;
     box-shadow:
       inset 0 0 1px 1px #681309,
-      inset 0 0 1px 2px rgba(255, 255, 255, 0.7),
-      inset 0 -1px 0 2px rgba(0, 0, 0, 0.5);
+      inset 0 0 1px 2px rgb(255 255 255 / 70%),
+      inset 0 -1px 0 2px rgb(0 0 0 / 50%);
 
-    background: conic-gradient(
-      lighten($bg, 0) 0%,
-      lighten($bg, 10) 16%,
-      lighten($bg, 20) 26%,
-      lighten($bg, 10) 42%,
-      lighten($bg, 0) 56%,
-      lighten($bg, 20) 88%,
-      lighten($bg, 10) 96%,
-      lighten($bg, 0) 100%
-    );
+    background:
+      conic-gradient(
+        $color 0%,
+        color.adjust($color, $lightness: 10%) 16%,
+        color.adjust($color, $lightness: 20%) 26%,
+        color.adjust($color, $lightness: 10%) 42%,
+        $color 56%,
+        color.adjust($color, $lightness: 20%) 88%,
+        color.adjust($color, $lightness: 10%) 96%,
+        $color 100%
+      );
 
     &::after {
-      content: '';
+      content: "";
       position: absolute;
       border-radius: 50%;
-      background: darken($color: $color, $amount: 10%);
+      background: color.adjust($color: $color, $lightness: -10%);
       left: 12px;
       right: 12px;
       top: 12px;
       bottom: 12px;
 
       box-shadow:
-        inset 0 -1px 1px 1px #C8DEE4,
-        inset 0 -2px 3px 1px #0F164F,
-        inset -2px -5px 1px 0 #BFBDB4;
+        inset 0 -1px 1px 1px #c8dee4,
+        inset 0 -2px 3px 1px #0f164f,
+        inset -2px -5px 1px 0 #bfbdb4;
     }
 
     &:nth-child(1) {
@@ -144,7 +149,7 @@ $shadow-color: rgba(#000, 0.2);
   justify-content: space-between;
 
   .btn {
-    @include circular-btn(56px, 40%)
+    @include circular-btn(56px, 40%);
   }
 }
 
@@ -152,7 +157,7 @@ $shadow-color: rgba(#000, 0.2);
 .gaming-console::after {
   @include circular-btn(36px, 35%);
 
-  content: '';
+  content: "";
   top: 66px;
   right: 8px;
   position: absolute;
@@ -162,7 +167,7 @@ $shadow-color: rgba(#000, 0.2);
 .gaming-console::before {
   $height: 6px;
 
-  content: '';
+  content: "";
   display: block;
   width: 56px;
   height: $height;
@@ -174,10 +179,10 @@ $shadow-color: rgba(#000, 0.2);
   border-radius: $height $height 0 0;
   background: #646978;
   box-shadow:
-    inset 0 2px 1px -1px rgba($color: #646978, $alpha: 0.8),
-    inset 0 5px 2px -2px rgba($color: #fff, $alpha: 0.8),
-    inset 8px 0 2px -2px rgba($color: #fff, $alpha: 0.8),
-    inset -8px 0 2px -2px rgba($color: #fff, $alpha: 0.8);
+    inset 0 2px 1px -1px rgba($color: #646978, $alpha: 80%),
+    inset 0 5px 2px -2px rgba($color: #fff, $alpha: 80%),
+    inset 8px 0 2px -2px rgba($color: #fff, $alpha: 80%),
+    inset -8px 0 2px -2px rgba($color: #fff, $alpha: 80%);
 }
 
 // 十字形按键
@@ -193,45 +198,45 @@ $shadow-color: rgba(#000, 0.2);
   width: $short;
 
   background: $color;
-  border-radius: $short / 2;
+  border-radius: math.div($short, 2);
   box-shadow:
-    0 0 10px rgba(104, 19, 9, 0.1),
-    0 0 4px 2px rgba(104, 19, 9, 0.8),
-    inset 0 0 0 2px darken($color: $color, $amount: 10%),
-    inset 0 6px 6px -2px rgba($color: #fff, $alpha: 0.9);
+    0 0 10px rgb(104 19 9 / 10%),
+    0 0 4px 2px rgb(104 19 9 / 80%),
+    inset 0 0 0 2px color.adjust($color: $color, $lightness: -10%),
+    inset 0 6px 6px -2px rgba($color: #fff, $alpha: 90%);
 
   &::before {
-    content: '';
+    content: "";
     display: block;
 
     width: $long;
     height: $short;
 
     background: $color;
-    border-radius: $short / 2;
+    border-radius: math.div($short, 2);
     box-shadow:
-      0 0 10px rgba(104, 19, 9, 0.1),
-      0 0 4px 2px rgba(104, 19, 9, 0.8),
-      inset 0 0 0 2px darken($color: $color, $amount: 10%),
-      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 0.9);
+      0 0 10px rgb(104 19 9 / 10%),
+      0 0 4px 2px rgb(104 19 9 / 80%),
+      inset 0 0 0 2px color.adjust($color: $color, $lightness: -10%),
+      inset 0 3px 6px 2px rgba($color: #fff, $alpha: 90%);
 
     position: absolute;
-    top: ($long - $short) / 2;
-    left: -($long - $short) / 2;
+    top: math.div($long - $short, 2);
+    left: math.div($long - $short, -2);
   }
 
   &::after {
     $padding-y: 40px;
     $padding-x: 4px;
 
-    content: '';
+    content: "";
     display: block;
     width: $short - $padding-x;
     height: $long - $padding-y;
 
     position: absolute;
-    left: $padding-x / 2;
-    top: $padding-y / 2;
+    left: math.div($padding-x, 2);
+    top: math.div($padding-y, 2);
     z-index: 9;
 
     background: $color;
@@ -243,7 +248,11 @@ $shadow-color: rgba(#000, 0.2);
 .audio {
   width: 22px;
   height: 88px;
-  background: radial-gradient(lighten(#646978, 20%) 0%, lighten(#646978, 10%) 100%);
+  background:
+    radial-gradient(
+      color.adjust($color: #646978, $lightness: 20%) 0%,
+      color.adjust($color: #646978, $lightness: 10%) 100%
+    );
 
   border-radius: 11px;
 
@@ -251,15 +260,16 @@ $shadow-color: rgba(#000, 0.2);
   right: 13px;
   top: 130px;
 
-
   box-shadow:
     inset 0 0 2px 2px #646978,
-    inset 0 0 0 2px darken($color: $color, $amount: 20%);
+    inset 0 0 0 2px color.adjust($color: $color, $lightness: -20%);
 
   &::after {
     $bg: #181919;
+    $deviation-y: 6px;
+    $deviation-x: 6px;
 
-    content: '';
+    content: "";
     display: block;
     width: 4px;
     height: 4px;
@@ -269,9 +279,6 @@ $shadow-color: rgba(#000, 0.2);
     position: absolute;
     top: 9px;
     left: 9px;
-
-    $deviation-y: 6px;
-    $deviation-x: 6px;
 
     box-shadow:
       (0 * $deviation-x) ($deviation-y * 1) 0 0 $bg,
@@ -285,7 +292,6 @@ $shadow-color: rgba(#000, 0.2);
       (0 * $deviation-x) ($deviation-y * 9) 0 0 $bg,
       (0 * $deviation-x) ($deviation-y * 10) 0 0 $bg,
       (0 * $deviation-x) ($deviation-y * 11) 0 0 $bg,
-
       (1 * $deviation-x) ($deviation-y * (1 - 0.5)) 0 0 $bg,
       (1 * $deviation-x) ($deviation-y * (2 - 0.5)) 0 0 $bg,
       (1 * $deviation-x) ($deviation-y * (3 - 0.5)) 0 0 $bg,
@@ -297,7 +303,6 @@ $shadow-color: rgba(#000, 0.2);
       (1 * $deviation-x) ($deviation-y * (9 - 0.5)) 0 0 $bg,
       (1 * $deviation-x) ($deviation-y * (10 - 0.5)) 0 0 $bg,
       (1 * $deviation-x) ($deviation-y * (11 - 0.5)) 0 0 $bg,
-
       (-1 * $deviation-x) ($deviation-y * (1 - 0.5)) 0 0 $bg,
       (-1 * $deviation-x) ($deviation-y * (2 - 0.5)) 0 0 $bg,
       (-1 * $deviation-x) ($deviation-y * (3 - 0.5)) 0 0 $bg,
@@ -323,16 +328,17 @@ $shadow-color: rgba(#000, 0.2);
   right: -7px;
   position: absolute;
 
-  background: linear-gradient(
-    lighten($color: $bg, $amount: 0),
-    lighten($color: $bg, $amount: 60%) 10%,
-    lighten($color: $bg, $amount: 0) 40%,
-    lighten($color: $bg, $amount: 30%)
-  );
-  box-shadow: inset 2px 0 4px -1px rgba(104, 19, 9, 0.8);
+  background:
+    linear-gradient(
+      $bg,
+      color.adjust($color: $bg, $lightness: 60%) 10%,
+      $bg 40%,
+      color.adjust($color: $bg, $lightness: 30%)
+    );
+  box-shadow: inset 2px 0 4px -1px rgb(104 19 9 / 80%);
 
   &::after {
-    content: '';
+    content: "";
     display: block;
 
     width: 16px;
@@ -345,7 +351,6 @@ $shadow-color: rgba(#000, 0.2);
     background: $bg;
   }
 
-
   &-rifle {
     $bg: #344359;
     width: 32px;
@@ -356,22 +361,22 @@ $shadow-color: rgba(#000, 0.2);
     bottom: 4px;
     z-index: 9;
 
-    background: linear-gradient(
-      lighten($color: $bg, $amount: 80%),
-      lighten($color: $bg, $amount: 30%) 4%,
-
-      lighten($color: $bg, $amount: 60%) 20%,
-      lighten($color: $bg, $amount: 0%),
-      lighten($color: $bg, $amount: 20%),
-    );
+    background:
+      linear-gradient(
+        color.adjust($color: $bg, $lightness: 80%),
+        color.adjust($color: $bg, $lightness: 30%) 4%,
+        color.adjust($color: $bg, $lightness: 60%) 20%,
+        $bg,
+        color.adjust($color: $bg, $lightness: 20%),
+      );
 
     border-radius: 4px 4px 16px 16px;
     box-shadow:
-      inset 0 0 4px rgba($color: #fff, $alpha: .1),
-      inset 4px -4px 3px -3px rgba($color: $color, $alpha: 0.5);
+      inset 0 0 4px rgba($color: #fff, $alpha: 10%),
+      inset 4px -4px 3px -3px rgba($color: $color, $alpha: 50%);
 
     &::after {
-      content: '';
+      content: "";
       width: 12px;
       height: 12px;
       display: block;
@@ -383,8 +388,8 @@ $shadow-color: rgba(#000, 0.2);
       border-radius: 50%;
       background: $color;
       box-shadow:
-        0 -1px 1px 1px rgba($color: #fff, $alpha: 0.6),
-        inset 0px 1px 1px 1px darken($color: $bg, $amount: 0);
+        0 -1px 1px 1px rgba($color: #fff, $alpha: 60%),
+        inset 0 1px 1px 1px $bg;
     }
   }
 
@@ -399,12 +404,12 @@ $shadow-color: rgba(#000, 0.2);
     border-radius: 4px;
     box-shadow:
       0 0 50px $shadow-color,
-      inset -4px 4px 2px -2px rgba($color: #fff, $alpha: 0.2),
-      inset 0 -4px 2px -2px rgba($color: #000, $alpha: 0.2);
-    background: lighten($color: $color, $amount: 1%);
+      inset -4px 4px 2px -2px rgba($color: #fff, $alpha: 20%),
+      inset 0 -4px 2px -2px rgba($color: #000, $alpha: 20%);
+    background: color.adjust($color: $color, $lightness: 1%);
 
     &::after {
-      content: '';
+      content: "";
       display: block;
       width: 4px;
       height: 40px;
@@ -413,14 +418,15 @@ $shadow-color: rgba(#000, 0.2);
       left: -4px;
       position: absolute;
 
-      background: linear-gradient(
-        lighten($color, 10%),
-        darken($color, 20%)
-      );
+      background:
+        linear-gradient(
+          color.adjust($color, $lightness: 10%),
+          color.adjust($color, $lightness: -20%)
+        );
 
       box-shadow:
-        2px 0 0 0 lighten($color: $color, $amount: 10%),
-        0 0 8px rgba($color: #000, $alpha: 0.5);
+        2px 0 0 0 color.adjust($color: $color, $lightness: 10%),
+        0 0 8px rgba($color: #000, $alpha: 50%);
     }
   }
 }

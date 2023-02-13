@@ -1,4 +1,35 @@
-import * as pages from './src/pages';
+import React from 'react';
+
+import Home from './src/pages/Home'; // 首页
+import Tmp from './src/pages/Tmp'; // 临时练习
+import ReadCode from './src/pages/ReadCode'; // 源码解读
+
+// canvas
+import Clock from './src/pages/canvas/demo/Clock';
+import Scratch from './src/pages/canvas/demo/Scratch';
+import Magnifier from './src/pages/canvas/demo/Magnifier';
+import PictureHandle from './src/pages/canvas/demo/PictureHandle';
+import Bar from './src/pages/canvas/echart/Bar';
+import Pie from './src/pages/canvas/echart/Pie';
+import Line from './src/pages/canvas/echart/Line';
+import Honeycomb from './src/pages/canvas/particle/Honeycomb';
+import DynamicLine from './src/pages/canvas/particle/DynamicLine';
+import FollowBubbles from './src/pages/canvas/particle/FollowBubbles';
+import TextDissipation from './src/pages/canvas/particle/TextDissipation';
+import G6Research from './src/pages/canvas/g6/Research';
+
+// three
+import ThreePractice from './src/pages/three/Practice';
+
+// css
+import Shape from './src/pages/css/Shape';
+import Keyboard from './src/pages/css/Keyboard';
+import CssPractice from './src/pages/css/Practice';
+import GamingConsole from './src/pages/css/GamingConsole';
+import TabBarInteraction from './src/pages/css/TabBarInteraction';
+import MacOSControlCenter from './src/pages/css/MacOSControlCenter';
+import MoreText from './src/pages/css/MoreText';
+import './src/assets/style';
 
 export default {
   logo: { img: void 0, title: 'Coding' },
@@ -9,11 +40,11 @@ export default {
       key: 'home',
       title: '首页',
       icon: 'HomeOutlined',
-      router: [
+      routes: [
         {
           path: '/',
           exact: true,
-          component: pages.Home,
+          element: <Home />,
         },
       ],
     },
@@ -22,9 +53,9 @@ export default {
       key: 'readCode',
       icon: 'iconlianxi',
       url: '/canvas/particle/readCode',
-      router: [
+      routes: [
         {
-          component: pages.ReadCode,
+          element: <ReadCode/>,
           path: '/canvas/particle/readCode',
         },
       ],
@@ -34,10 +65,10 @@ export default {
       key: 'tmp',
       title: '临时练习',
       icon: 'iconlianxi',
-      router: [
+      routes: [
         {
           path: '/tmp',
-          component: pages.Tmp,
+          element: <Tmp/>,
         },
       ],
     },
@@ -51,10 +82,10 @@ export default {
           icon: 'iconlianxi',
           key: 'cssPractice',
           url: '/css/practice',
-          router: [
+          routes: [
             {
               path: '/css/practice',
-              component: pages.CssPractice,
+              element: <CssPractice/>,
             },
           ],
         },
@@ -63,10 +94,10 @@ export default {
           key: 'cssShape',
           icon: 'iconxingzhuang',
           url: '/css/shape',
-          router: [
+          routes: [
             {
               path: '/css/shape',
-              component: pages.Shape,
+              element: <Shape/>,
             },
           ],
         },
@@ -75,9 +106,9 @@ export default {
           key: 'css-demo-keyboard',
           url: '/css/demo/keyboard',
           icon: 'iconjianpan',
-          router: [
+          routes: [
             {
-              component: pages.Keyboard,
+              element: <Keyboard/>,
               path: '/css/demo/keyboard',
             },
           ],
@@ -87,9 +118,9 @@ export default {
           icon: 'iconyouxiji',
           key: 'css-demo-gamingConsole',
           url: '/css/demo/gamingConsole',
-          router: [
+          routes: [
             {
-              component: pages.GamingConsole,
+              element: <GamingConsole/>,
               path: '/css/demo/gamingConsole',
             },
           ],
@@ -99,9 +130,9 @@ export default {
           icon: 'iconxuanxiangqia',
           key: 'css-demo-tabBarInteraction',
           url: '/css/demo/TabBarInteraction',
-          router: [
+          routes: [
             {
-              component: pages.TabBarInteraction,
+              element: <TabBarInteraction/>,
               path: '/css/demo/tabBarInteraction',
             },
           ],
@@ -111,10 +142,10 @@ export default {
           icon: 'iconxuanxiangqia',
           key: 'cssMacOSControlCenter',
           url: '/css/macOSControlCenter',
-          router: [
+          routes: [
             {
               path: '/css/macOsControlCenter',
-              component: pages.MacOSControlCenter,
+              element: <MacOSControlCenter/>,
             },
           ],
         },
@@ -123,10 +154,10 @@ export default {
           icon: 'iconxuanxiangqia',
           key: 'css',
           url: '/css/moreText',
-          router: [
+          routes: [
             {
               path: '/css/moreText',
-              component: pages.MoreText,
+              element: <MoreText/>,
             },
           ],
         },
@@ -146,9 +177,9 @@ export default {
               title: '时钟',
               key: 'clock',
               url: '/canvas/demo/clock',
-              router: [
+              routes: [
                 {
-                  component: pages.Clock,
+                  element: <Clock/>,
                   path: '/canvas/demo/clock',
                 },
               ],
@@ -157,9 +188,9 @@ export default {
               title: '放大镜',
               key: 'magnifier',
               url: '/canvas/demo/magnifier',
-              router: [
+              routes: [
                 {
-                  component: pages.Magnifier,
+                  element: <Magnifier/>,
                   path: '/canvas/demo/magnifier',
                 },
               ],
@@ -168,9 +199,9 @@ export default {
               title: '刮刮卡',
               key: 'scratch',
               url: '/canvas/demo/scratch',
-              router: [
+              routes: [
                 {
-                  component: pages.Scratch,
+                  element: <Scratch/>,
                   path: '/canvas/demo/scratch',
                 },
               ],
@@ -179,9 +210,9 @@ export default {
               title: '图片处理',
               key: 'picture-handle',
               url: '/canvas/demo/picture-handle',
-              router: [
+              routes: [
                 {
-                  component: pages.PictureHandle,
+                  element: <PictureHandle/>,
                   path: '/canvas/demo/picture-handle',
                 },
               ],
@@ -197,9 +228,9 @@ export default {
               title: '折线图',
               key: 'line',
               url: '/canvas/echart/line',
-              router: [
+              routes: [
                 {
-                  component: pages.Line,
+                  element: <Line/>,
                   path: '/canvas/echart/line',
                 },
               ],
@@ -208,9 +239,9 @@ export default {
               key: 'bar',
               title: '柱状图',
               url: '/canvas/echart/bar',
-              router: [
+              routes: [
                 {
-                  component: pages.Bar,
+                  element: <Bar/>,
                   path: '/canvas/echart/bar',
                 },
               ],
@@ -219,9 +250,9 @@ export default {
               key: 'pie',
               title: '饼图',
               url: '/canvas/echart/pie',
-              router: [
+              routes: [
                 {
-                  component: pages.Pie,
+                  element: <Pie/>,
                   path: '/canvas/echart/pie',
                 },
               ],
@@ -237,9 +268,9 @@ export default {
               title: '动态线条',
               key: 'dynamicLine',
               url: '/canvas/particle/dynamicLine',
-              router: [
+              routes: [
                 {
-                  component: pages.DynamicLine,
+                  element: <DynamicLine/>,
                   path: '/canvas/particle/dynamicLine',
                 },
               ],
@@ -248,9 +279,9 @@ export default {
               title: '多彩蜂窝',
               key: 'honeycomb',
               url: '/canvas/particle/honeycomb',
-              router: [
+              routes: [
                 {
-                  component: pages.Honeycomb,
+                  element: <Honeycomb/>,
                   path: '/canvas/particle/honeycomb',
                 },
               ],
@@ -259,9 +290,9 @@ export default {
               title: '气泡跟随',
               key: 'followBubbles',
               url: '/canvas/particle/followBubbles',
-              router: [
+              routes: [
                 {
-                  component: pages.FollowBubbles,
+                  element: <FollowBubbles/>,
                   path: '/canvas/particle/followBubbles',
                 },
               ],
@@ -270,9 +301,9 @@ export default {
               title: '文字消散',
               key: 'textDissipation',
               url: '/canvas/particle/textDissipation',
-              router: [
+              routes: [
                 {
-                  component: pages.TextDissipation,
+                  element: <TextDissipation/>,
                   path: '/canvas/particle/textDissipation',
                 },
               ],
@@ -288,9 +319,9 @@ export default {
               title: '文档阅读',
               key: 'g6Research',
               url: '/canvas/g6/research',
-              router: [
+              routes: [
                 {
-                  component: pages.G6Research,
+                  element: <G6Research/>,
                   path: '/canvas/g6/research',
                 },
               ],
@@ -309,10 +340,10 @@ export default {
           icon: 'iconlianxi',
           key: 'threePractice',
           url: '/three/practice',
-          router: [
+          routes: [
             {
               path: '/three/practice',
-              component: pages.ThreePractice,
+              element: <ThreePractice/>,
             },
           ],
         },

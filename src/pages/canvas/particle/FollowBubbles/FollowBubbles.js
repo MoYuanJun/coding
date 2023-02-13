@@ -91,6 +91,7 @@ class Emitter {
 
   /**
    * @param {number} num 粒子数(要发射粒子数)
+   * @returns {object}
    * 其他参数和 Point 一致
    */
   emit = ({ x, y, num = 50, canvas, ...rest } = {}) => {

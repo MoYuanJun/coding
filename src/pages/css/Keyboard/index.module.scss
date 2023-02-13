@@ -1,12 +1,14 @@
+@use "sass:color";
+
 @mixin customize($color) {
-  color: lighten($color, 20%);
+  color: color.adjust($color, $lightness: 20%);
   background: $color;
 
   &.pressed,
   &:hover {
     box-shadow:
-      inset -6px -6px 16px lighten($color, 20%),
-      inset 6px 6px 16px darken($color: $color, $amount: 20%);
+      inset -6px -6px 16px color.adjust($color, $lightness: 20%),
+      inset 6px 6px 16px color.adjust($color: $color, $lightness: -20%);
   }
 }
 
@@ -56,7 +58,7 @@
     &:hover {
       color: #fff;
       box-shadow:
-        inset -6px -6px 16px#f6f8fa,
+        inset -6px -6px 16px #f6f8fa,
         inset 6px 6px 16px #c2ccdb;
       text-shadow:
         0 0 10px #f7f9fa,
@@ -87,7 +89,6 @@
   }
 }
 
-
 // 特殊键处理
 .key.back,
 .key.tab,
@@ -95,7 +96,7 @@
 .key.cap,
 .key.enter,
 .key.shift,
-.key.space{
+.key.space {
   flex: 1;
 }
 
@@ -121,12 +122,13 @@
   @include customize(#ee5a24);
 
   position: relative;
+
   &::after {
-    content: '';
+    content: "";
     width: 8px;
     height: 8px;
     border-radius: 50%;
-    background: rgba($color: #fff, $alpha: 0.5);
+    background: rgba($color: #fff, $alpha: 50%);
 
     top: 10px;
     right: 10px;
