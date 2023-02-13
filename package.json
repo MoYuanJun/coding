@@ -26,6 +26,6 @@
   "dependencies": {
     "@antv/g6": "^3.8.3",
     "@kunlunxu/brick": "^2.2.6",
-    "three": "^0.115.0"
+    "three": "^0.125.0"
   }
 }
