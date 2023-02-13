@@ -1,10 +1,13 @@
 {
-  "eslint.options": {
-    "configFile": "./node_modules/qy-create-react/.eslintrc.js"
+  "editor.codeActionsOnSave": { // 代码自动格式配置
+    "source.fixAll.eslint": true, // 根据 eslint 配置进行格式化, 需要安装 eslint 插件
+    "source.fixAll.stylelint": true // 根据 eslint 配置进行格式化, 需要安装 stylelint 插件
   },
-  // 开启自动修复
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true,
-    "source.fixAll.stylelint": true
-  },
+  "stylelint.validate": [
+    "css",
+    "less",
+    "postcss",
+    "scss",
+    "sass",
+  ],
 }

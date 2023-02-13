@@ -39,7 +39,7 @@ export default class {
     this.ctx = canvas.getContext('2d');
     this.container.appendChild(canvas);
     this.draw();
-  }
+  };
 
   // 绘制
   draw = () => {
@@ -47,7 +47,7 @@ export default class {
     this.ctx.drawImage(this.clockDial, 0, 0);
     this.ctx.drawImage(this.drawPointer(), 0, 0);
     requestAnimationFrame(this.draw);
-  }
+  };
 
   // 绘制表盘: 返回 canvas
   drawClockDial = () => {
@@ -88,6 +88,7 @@ export default class {
 
     // 3. 绘制刻度和数值: 绘制 60 个刻度, 每 5 个绘制一个大刻度
     ctx.translate(this.width / 2, this.height / 2);    // 设置原点的位置
+
     for (let i = 0; i < 60; i = i + 1) {
       // 绘制刻度
       ctx.beginPath();                              // 开始绘制路径
@@ -127,7 +128,7 @@ export default class {
     );
 
     return canvas;
-  }
+  };
 
   // 绘制指针
   drawPointer = () => {
@@ -157,7 +158,7 @@ export default class {
     ctx.arcTo(
       0, 0,
       - this.radius / 5, - this.originRadius / 2,
-      this.originRadius / 2
+      this.originRadius / 2,
     );
     ctx.strokeStyle = '#000';                               // 设置描边样式
     ctx.stroke();                                           // 描边
@@ -182,7 +183,7 @@ export default class {
     ctx.arcTo(
       0, 0,
       - this.radius / 5, - this.originRadius / 2,
-      this.originRadius / 2
+      this.originRadius / 2,
     );
     ctx.strokeStyle = '#000';  // 设置描边样式
     ctx.stroke();              // 描边
@@ -202,7 +203,7 @@ export default class {
     ctx.beginPath();                                 // 开始绘制路径
     ctx.arc(                                         // 绘制圆(曲线)
       this.radius - this.tickFontHeight - (this.tickFontSize / 2),
-      0, this.originRadius, 0, 2 * Math.PI
+      0, this.originRadius, 0, 2 * Math.PI,
     );
     ctx.fillStyle = '#ffff00';                       // 设置填充样式
     ctx.strokeStyle = 'red';                         // 设置描边样式
@@ -221,5 +222,5 @@ export default class {
     ctx.closePath();                                  // 结束路径绘制
     ctx.restore();                                    // 回退到上一个状态
     return canvas;
-  }
+  };
 }

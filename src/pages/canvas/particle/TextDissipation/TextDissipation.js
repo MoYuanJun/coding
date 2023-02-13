@@ -33,12 +33,12 @@ class Particle {
       this.y,
       this.radius,
       0,
-      2 * Math.PI
+      2 * Math.PI,
     );
     this.ctx.fill();
     this.ctx.closePath();
     this.ctx.restore();
-  }
+  };
 
   // 动画
   animation = () => {
@@ -47,7 +47,7 @@ class Particle {
     this.x += dx * this.speed * Math.random();
     this.y += dy * this.speed * Math.random();
     this.draw();
-  }
+  };
 }
 
 export default class {
@@ -73,14 +73,14 @@ export default class {
     this.container.appendChild(this.canvas);
     this.canvas.width = Number.parseFloat(width);
     this.canvas.height = Number.parseFloat(height);
-  }
+  };
 
   // 绘制文本内容
   drawText = () => {
     this.ctx.textAlign = 'center';
     this.ctx.font = '200px monospace';
     this.ctx.fillText(TEXT, this.canvas.width / 2, this.canvas.height / 2);
-  }
+  };
 
   // 创建粒子
   createParticles = () => {
@@ -89,12 +89,14 @@ export default class {
       this.canvas.width,
       this.canvas.height,
     );
+
     // 像素透明度不为 0 的创建对应的粒子
     for (let y = 0; y < this.canvas.height; y += this.density) {
       for (let x = 0; x < this.canvas.width; x += this.density) {
         // 当前像素点参数开始位置索引
         const index = ((y * this.canvas.width) + x) * 4;
         const [red, green, blue, alpha] = data.slice(index, index + 4);
+
         if (alpha > 0) {
           this.particles.push(new Particle({
             destX: x,
@@ -106,12 +108,12 @@ export default class {
         }
       }
     }
-  }
+  };
 
   // 动画
   animation = () => {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.particles.forEach(v => v.animation());
+    this.particles.forEach((v) => v.animation());
     window.requestAnimationFrame(this.animation);
-  }
+  };
 }

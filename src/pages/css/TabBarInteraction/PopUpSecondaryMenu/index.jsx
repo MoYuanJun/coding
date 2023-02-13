@@ -1,14 +1,5 @@
 // 参考: https://codepen.io/dev_loop/pen/pojJRKq
-import React from 'react';
 import scss from './index.module.scss';
-import {
-  HomeOutlined,
-  PlusOutlined,
-  SettingOutlined,
-  WeiboCircleOutlined,
-  TaobaoCircleOutlined,
-  AlipayCircleOutlined,
-} from '@ant-design/icons';
 
 export default () => (
   <div className={scss.body}>

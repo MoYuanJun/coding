@@ -7,11 +7,9 @@
   "scripts": {
     "start": "react-script start",
     "build": "react-script build",
-    "commit": "git-cz",
-    "release": "standard-version --release-as",
-    "release:100": "npm run release -- major",
-    "release:010": "npm run release -- minor",
-    "release:001": "npm run release -- patch"
+    "cz": "klx-cz",
+    "release": "klx-release",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -24,28 +22,11 @@
     "url": "https://github.com/qianyin925/canvas/issues"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.3.5",
-    "@commitlint/config-angular": "^8.3.4",
-    "commitizen": "^4.0.3",
-    "cross-env": "^7.0.2",
-    "cz-conventional-changelog": "^3.1.0",
-    "husky": "^4.2.3",
-    "qy-create-react": "^1.1.19",
-    "standard-version": "^7.1.0"
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+    "@kunlunxu/create-react-app": "^1.6.13"
   },
   "dependencies": {
     "@antv/g6": "^3.8.3",
-    "@kunlunxu/brick": "^2.2.5",
+    "@kunlunxu/brick": "^2.2.6",
     "three": "^0.115.0"
   }
 }

@@ -9,6 +9,7 @@ export default class Pie {
     if (!this.container) {
       return false;
     }
+
     const { width, height } = window.getComputedStyle(this.container);
     this.width = width;
     this.height = height;
@@ -18,5 +19,5 @@ export default class Pie {
 
     this.container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext('2d');
-  }
+  };
 }

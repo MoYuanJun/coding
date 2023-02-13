@@ -41,7 +41,7 @@ class Line {
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
     return `rgb(${r}, ${g}, ${b})`;
-  }
+  };
 
   // 重置: 当前 x, y, 是否初始化
   reset = (x, y, init) => {
@@ -67,7 +67,7 @@ class Line {
     } else {
       this.currentSegmentLen += 1;
     }
-  }
+  };
 
   // 移动: 绘制线条
   step = () => {
@@ -79,7 +79,7 @@ class Line {
     );
     this.drawParticle(x, y);
     this.reset(x, y);
-  }
+  };
 
   // 绘制粒子
   drawParticle = (x, y) => {
@@ -92,7 +92,7 @@ class Line {
     this.drawSpark(x, y);
     this.ctx.beginPath();
     this.ctx.restore();
-  }
+  };
 
   // 绘制火花
   drawSpark = (x, y) => {
@@ -105,13 +105,13 @@ class Line {
       );
       this.ctx.fillRect(rectX, rectY, this.sparkSize, this.sparkSize);
     }
-  }
+  };
 }
 
 export default class {
   constructor ({
     container = null,
-    ... lineOption
+    ...lineOption
   } = {}) {
     this.lines = [];              // 线条实例列表
     this.count = 50;              // 总数
@@ -145,9 +145,9 @@ export default class {
       -this.width / 2,
       -this.height / 2,
       this.width,
-      this.height
+      this.height,
     );
-  }
+  };
 
   // 循环
   loop = () => {
@@ -159,7 +159,7 @@ export default class {
       -this.width / 2,
       -this.height / 2,
       this.width,
-      this.height
+      this.height,
     );
 
     // 重置图形混合模式
@@ -171,13 +171,14 @@ export default class {
         ctx: this.ctx,
         width: this.width,
         height: this.height,
-        ... this.lineOption,
+        ...this.lineOption,
       }));
     }
-    this.lines.forEach(v => v.step());
+
+    this.lines.forEach((v) => v.step());
 
     // 设置动画
     requestAnimationFrame(this.loop);
-  }
+  };
 }
 

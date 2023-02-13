@@ -31,7 +31,7 @@ export default class Paiticle {
     this.canvas = document.createElement('canvas');
     this.container.appendChild(this.canvas);
     this.ctx = this.canvas.getContext('2d');
-  }
+  };
 
   // 渲染: canvas
   render = () => {
@@ -41,12 +41,12 @@ export default class Paiticle {
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     this.draw();
-  }
+  };
 
   // 绘制
   draw = () => {
     // 1. 更新 spots 速度
-    this.spots = this.spots.map(v => {
+    this.spots = this.spots.map((v) => {
       const x = ((v.x > this.width + 20 || v.x < -20) ? -1 : 1) * v.velocity.x;
       const y = ((v.y > this.height + 20 || v.y < -20) ? -1 : 1) * v.velocity.y;
       return {
@@ -65,7 +65,7 @@ export default class Paiticle {
 
     // 4. 添加动画
     requestAnimationFrame(this.draw);
-  }
+  };
 
   // 绑定事件
   bindEvent = () => {
@@ -73,11 +73,12 @@ export default class Paiticle {
     this.canvas.addEventListener('click', this.onClick);
     this.canvas.addEventListener('mousemove', this.onMouseMove);
     this.canvas.addEventListener('mouseleave', this.onMouseLeave);
-  }
+  };
 
   // 创建 spots
   createSpots = () => {
     const spots = [];
+
     for (let i = 0; i < this.width * this.height / this.density; i += 1) {
       spots.push({
         x: Math.random() * this.width,
@@ -88,41 +89,43 @@ export default class Paiticle {
         },
       });
     }
+
     this.spots = spots;
-  }
+  };
 
   // 绘制圆点
   drawSpots = () => {
     this.spots.length === 0 && this.createSpots();
-    const spots = this.tmpSpot ? [this.tmpSpot, ... this.spots] : this.spots;
+    const spots = this.tmpSpot ? [this.tmpSpot, ...this.spots] : this.spots;
 
     // 绘制点
     this.ctx.save();
     this.ctx.fillStyle = this.particleColor;
     this.ctx.globalAlpha = this.globalAlpha;
-    spots.forEach(v => {
+    spots.forEach((v) => {
       this.ctx.beginPath();
       this.ctx.arc(v.x, v.y, 1.5, 0, 2 * Math.PI);
       this.ctx.fill();
       this.ctx.closePath();
     });
     this.ctx.restore();
-  }
+  };
 
   // 绘制线线条
   drawLines = () => {
-    const spots = this.tmpSpot ? [this.tmpSpot, ... this.spots] : this.spots;
+    const spots = this.tmpSpot ? [this.tmpSpot, ...this.spots] : this.spots;
 
     // 循环绘制直线: 只有相邻的点之间才绘制连线
     this.ctx.save();
     this.ctx.strokeStyle = this.particleColor;
     this.ctx.lineWidth = .7;
+
     for (let i = 0; i < spots.length; i += 1) {
       for (let j = i + 1; j < spots.length; j += 1) {
         // 根据直角三角形定理计算两个点之间的距离
         const lineLength = Math.sqrt(
           Math.pow(spots[i].x - spots[j].x, 2) +
-          Math.pow(spots[i].y - spots[j].y, 2)
+          Math.pow(spots[i].y - spots[j].y, 2),
         );
         lineLength < this.maxLineLength && (
           this.ctx.beginPath(),
@@ -133,16 +136,17 @@ export default class Paiticle {
         );
       }
     }
+
     this.ctx.restore();
-  }
+  };
 
   // 容器大小改变
   onResize = () => {
     this.render();
-  }
+  };
 
   // 画布上点击鼠标: 以当前位置为左边插入点
-  onClick = event => {
+  onClick = (event) => {
     this.spots.push({
       x: event.offsetX,
       y: event.offsetY,
@@ -151,10 +155,10 @@ export default class Paiticle {
         y: (Math.random() - .5) * this.velocity,
       },
     });
-  }
+  };
 
   // 画布上鼠标移动: 设置临时点
-  onMouseMove = event => {
+  onMouseMove = (event) => {
     this.tmpSpot = {
       x: event.offsetX,
       y: event.offsetY,
@@ -163,10 +167,10 @@ export default class Paiticle {
         y: 0,
       },
     };
-  }
+  };
 
   // 鼠标移出画布: 清除临时点
   onMouseLeave = () => {
     this.tmpSpot = null;
-  }
+  };
 }

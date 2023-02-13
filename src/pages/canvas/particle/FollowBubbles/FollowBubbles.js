@@ -38,7 +38,7 @@ class Point {
     this.fillPoint ? ctx.fill() : ctx.stroke();
     ctx.closePath();
     ctx.restore();
-  }
+  };
 
   // 修改位置
   changePosition = () => {
@@ -54,7 +54,7 @@ class Point {
     ].sort((a, b) => (a - b));
     this.x = x;
     this.y = y;
-  }
+  };
 
   // 修改运动方向
   changeDirection = () => {
@@ -64,15 +64,16 @@ class Point {
       Math.random() < 0.001,
     ];
     this.direction += conds.includes(true) ? Math.random() * Math.PI : 0;
-  }
+  };
 
   // 修改粒子大小
   changeSize = () => {
     if (this.survival === Infinity) {
       return false;
     }
+
     this.size = this.size * (this.age / this.survival);
-  }
+  };
 
   // 动画
   animate = () => {
@@ -81,7 +82,7 @@ class Point {
     this.changePosition();
     this.changeDirection();
     this.draw();
-  }
+  };
 }
 
 // 粒子发射器
@@ -89,27 +90,28 @@ class Emitter {
   particles = [];
 
   /**
-   * @param {Number} num 粒子数(要发射粒子数)
+   * @param {number} num 粒子数(要发射粒子数)
    * 其他参数和 Point 一致
    */
-  emit = ({ x, y, num = 50, canvas, ... rest } = {}) => {
+  emit = ({ x, y, num = 50, canvas, ...rest } = {}) => {
     for (let i = 0; i < num; i += 1) {
       this.particles.push(new Point({
-        ... rest,
+        ...rest,
         canvas,
         x: x ?? Math.random() * canvas.width,
         y: y ?? Math.random() * canvas.height,
       }));
     }
+
     return this;
-  }
+  };
 
   // 粒子动画
   animate = () => {
-    this.particles.forEach(v => v.animate());
-    this.particles = this.particles.filter(v => !v.die);
+    this.particles.forEach((v) => v.animate());
+    this.particles = this.particles.filter((v) => !v.die);
     return this;
-  }
+  };
 }
 
 export default class {
@@ -145,7 +147,7 @@ export default class {
     this.onResize();
     this.container.appendChild(this.canvas);
     this.bindEvent();
-  }
+  };
 
   // 绑定事件
   bindEvent = () => {
@@ -158,13 +160,13 @@ export default class {
     const { width, height } = getComputedStyle(this.container);
     this.canvas.width = Number.parseFloat(width);
     this.canvas.height = Number.parseFloat(height);
-  }
+  };
 
   // 鼠标移动
-  onMouseMove = event => {
+  onMouseMove = (event) => {
     const { top, left } = this.canvas.getBoundingClientRect();
     const emitOption = {
-      ... this.mouseEmitterOption,
+      ...this.mouseEmitterOption,
       canvas: this.canvas,
       x: event.clientX - left,
       y: event.clientY - top,
@@ -172,15 +174,15 @@ export default class {
     this.mouseEmitter
       ? this.mouseEmitter.emit(emitOption)
       : (this.mouseEmitter = new Emitter().emit(emitOption));
-  }
+  };
 
   // 渲染粒子场发射器
   renderFieldEmitter = () => {
     this.fieldEmitter = new Emitter().emit({
-      ... this.fieldEmitterOption,
+      ...this.fieldEmitterOption,
       canvas: this.canvas,
     });
-  }
+  };
 
   // 动画
   animate = () => {
@@ -189,5 +191,5 @@ export default class {
     this.fieldEmitter.animate();
     this.mouseEmitter && this.mouseEmitter.animate();
     requestAnimationFrame(this.animate);
-  }
+  };
 }
