@@ -2,8 +2,16 @@
 name: openWrt
 
 on:
-  schedule:
-    - cron: '30 22 * * *'
+   # 手动触发事件
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+
 
 # 作业, see: https://docs.github.com/zh/actions/using-jobs/using-jobs-in-a-workflow
 jobs:
