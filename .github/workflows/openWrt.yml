@@ -21,5 +21,5 @@ jobs:
        - name: Checkout
          uses: actions/checkout@v3
        - run: |
-            apt update -y
+            sudo apt update -y
             
