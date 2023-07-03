@@ -29,6 +29,10 @@ import GamingConsole from './src/pages/css/GamingConsole';
 import TabBarInteraction from './src/pages/css/TabBarInteraction';
 import MacOSControlCenter from './src/pages/css/MacOSControlCenter';
 import MoreText from './src/pages/css/MoreText';
+
+// 博客 DEMO
+import BlogCrawler from './src/pages/blog/Crawler';
+
 import './src/assets/style';
 
 export default {
@@ -45,6 +49,25 @@ export default {
           path: '/',
           exact: true,
           element: <Home />,
+        },
+      ],
+    },
+    {
+      key: 'blog',
+      title: '博客 DEMO',
+      icon: 'HomeOutlined',
+      children: [
+        {
+          title: '反爬',
+          icon: 'iconlianxi',
+          key: 'blogCrawler',
+          url: '/blog/crawler',
+          routes: [
+            {
+              path: '/blog/crawler',
+              element: <BlogCrawler />,
+            },
+          ],
         },
       ],
     },

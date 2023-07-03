@@ -1,3 +1,6 @@
+/* stylelint-disable scss/operator-no-newline-after */
+@use "sass:math";
+
 $title-size: 14px;
 $border-width: 40px;
 $border-height: 4px;
@@ -24,50 +27,54 @@ $menu-pd-x: 20px;
   padding: $menu-pd-x $menu-pd-y;
 
   &::after {
-    content: '';
+    content: "";
     display: block;
     width: $border-width;
     background: #f90088;
     height: $border-height;
-    border-radius: $border-height / 2;
+    border-radius: math.div($border-height, 2);
 
     top: 0;
     position: absolute;
-    left: calc(
-      (#{$menu-width} - #{$border-height}) / 2 +
-      #{$menu-width} * var(--active-index) +
-      #{$menu-pd-x}
-    );
+
+    left:
+      calc(
+        math.div($menu-width - $border-height, 2) +
+        #{$menu-width} * var(--active-index) +
+        #{$menu-pd-x}
+      );
 
     transition: all 0.5s;
   }
 
   &.animation::after {
     animation: zoom 0.8s linear;
+
     @keyframes zoom {
       25% {
-        transform: translate(calc(var(--direction) * 40px), 0px) scaleX(1.5);
+        transform: translate(calc(var(--direction) * 40px), 0) scaleX(1.5);
       }
 
       50% {
-        transform: translate(calc(var(--direction) * 40px), 0px) scaleX(2);
+        transform: translate(calc(var(--direction) * 40px), 0) scaleX(2);
       }
 
       70% {
-        transform: translate(calc(var(--direction) * 40px), 0px) scaleX(1.5);
+        transform: translate(calc(var(--direction) * 40px), 0) scaleX(1.5);
       }
 
       100% {
-        transform: translate(0px, 0px) scaleX(1);
+        transform: translate(0, 0) scaleX(1);
       }
     }
   }
 
   &.animation {
     animation: swing 0.4s linear;
+
     @keyframes swing {
       50% {
-        transform: rotate(calc( (var(--active-index) - 1.5) * 2deg));
+        transform: rotate(calc((var(--active-index) - 1.5) * 2deg));
       }
 
       100% {
@@ -82,7 +89,7 @@ $menu-pd-x: 20px;
   overflow: hidden;
   width: $menu-width;
   height: $menu-height;
-  color: rgba($color: #000, $alpha: 0.4);
+  color: rgba($color: #000, $alpha: 40%);
 
   display: flex;
   align-items: center;
@@ -102,7 +109,7 @@ $menu-pd-x: 20px;
   }
 
   &.active {
-    .title  {
+    .title {
       opacity: 1;
       transform: translateY(0);
     }
@@ -113,7 +120,7 @@ $menu-pd-x: 20px;
   }
 
   &:hover {
-    .title  {
+    .title {
       opacity: 1;
       transform: translateY(0);
     }
