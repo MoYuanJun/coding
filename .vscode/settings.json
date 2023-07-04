@@ -10,4 +10,7 @@
     "scss",
     "sass",
   ],
+  "cSpell.words": [
+    "antd"
+  ],
 }
