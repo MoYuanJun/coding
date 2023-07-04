@@ -1,0 +1,9 @@
+/* stylelint-disable font-family-no-missing-generic-family-keyword */
+@font-face {
+  font-family: fonteditor;
+  src: url("./fonteditor.ttf");
+}
+
+.text {
+  font-family: fonteditor;
+}
