@@ -32,6 +32,7 @@ import MoreText from './src/pages/css/MoreText';
 
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
+import BlogCursorSuctionBottom from './src/pages/blog/CursorSuctionBottom';
 
 import './src/assets/style';
 
@@ -66,6 +67,18 @@ export default {
             {
               path: '/blog/crawler',
               element: <BlogCrawler />,
+            },
+          ],
+        },
+        {
+          title: '光标吸底',
+          icon: 'iconlianxi',
+          key: 'blogBlogCursorSuctionBottom',
+          url: '/blog/cursor-suction-bottom',
+          routes: [
+            {
+              path: '/blog/cursor-suction-bottom',
+              element: <BlogCursorSuctionBottom />,
             },
           ],
         },

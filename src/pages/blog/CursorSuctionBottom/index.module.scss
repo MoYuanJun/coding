@@ -1,0 +1,31 @@
+/* 这里设置动画 blink */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+}
+
+.cursor {
+  width: 1px;
+  height: 1em;
+  margin: 0 0 3px 2px;
+  vertical-align: middle;
+  display: inline-block;
+
+  background-color: #1e1e21;
+  animation: blink 1s infinite;
+}
+
+.wrapper {
+  height: 140px;
+  padding-right: 4px;
+  border: 20px solid #fff;
+  overflow: auto;
+  border-radius: 4px;
+  background-color: #fff;
+}
