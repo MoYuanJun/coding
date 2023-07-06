@@ -4,8 +4,6 @@ import scss from './index.module.scss';
 
 export default () => (
   <div className={scss.text}>
-    {/* &#x4E2D; */}
-    {/* &#x30; */}
-    &#x4fe0;
+    &#xFFE6;
   </div>
 );
