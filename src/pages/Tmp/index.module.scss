@@ -1,28 +1,3 @@
-.body {
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: absolute;
-
-  padding: 20px;
-  background: #fff;
-
-  // 基数
-  p:nth-child(odd) {
-    background: #f4f4f4;
-  }
-
-  // p:nth-child(2n + 1) {
-  //   background: #f4f4f4;
-  // }
-
-  // 偶数
-  p:nth-child(even) {
-    background: #ccc;
-  }
-
-  // p:nth-child(2n) {
-  //   background: #ccc;
-  // }
+.test {
+  color: #fff;
 }
