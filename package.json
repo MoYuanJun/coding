@@ -26,6 +26,7 @@
   "dependencies": {
     "@antv/g6": "^3.8.3",
     "@kunlunxu/brick": "^2.2.6",
+    "pdf-lib": "^1.17.1",
     "three": "^0.115.0"
   }
 }
