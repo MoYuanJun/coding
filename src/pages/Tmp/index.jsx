@@ -1,23 +1,43 @@
 /* eslint-disable no-unused-vars */
-import React, { useRef, useEffect } from 'react';
+import React, { useCallback, useState, Component } from 'react';
 
-export default () => {
-  const inputRef = useRef();
 
-  useEffect(() => {
-    const handler = (e) => {
-      console.log('手动绑定:', e.target.value);
-    };
+class A extends Component {
+  state = {
+    count: 2,
+  };
 
-    inputRef.current.addEventListener('change', handler);
+  handleClick = () => {
+    this.setState(
+      (pre) => ({ count: pre.count + 1 }),
+      () => {
+        // 获取修改后的状态
+        this.preState = this.state;
+      },
+    );
+  };
 
-    return () => document.removeEventListener('change', handler);
-  }, []);
+  render () {
+    return (
+      <div onClick={this.handleClick}>
+        {this.state.count}
+      </div>
+    );
+  }
+}
 
-  return (
-    <input
-      ref={inputRef}
-      onChange={(e) => console.log('React 绑定事件: ', e.target.value)}
-    />
-  );
-};
+export default A;
+
+// export default () => {
+//   const [count, setCount] = useState(1);
+
+//   const handleClick = useCallback(() => {
+//     setCount((pre) => (pre + 1));
+//   }, []);
+
+//   return (
+//     <div onClick={handleClick}>
+//       {count}
+//     </div>
+//   );
+// };
