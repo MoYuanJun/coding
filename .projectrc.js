@@ -32,6 +32,7 @@ import MoreText from './src/pages/css/MoreText';
 
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
+import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
 import BlogCursorSuctionBottom from './src/pages/blog/CursorSuctionBottom';
 
 import './src/assets/style';
@@ -79,6 +80,18 @@ export default {
             {
               path: '/blog/cursor-suction-bottom',
               element: <BlogCursorSuctionBottom />,
+            },
+          ],
+        },
+        {
+          title: '文本超出中间省略',
+          icon: 'iconlianxi',
+          key: 'intermediateEllipsis',
+          url: '/blog/intermediate-ellipsis',
+          routes: [
+            {
+              path: '/blog/intermediate-ellipsis',
+              element: <IntermediateEllipsis />,
             },
           ],
         },
