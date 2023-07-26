@@ -42,6 +42,24 @@ export default () => {
   const handleClick = useCallback(() => {
     setCount((pre) => (pre + 1));
   }, []);
+
+  console.log(
+    '--1',
+    <div>
+      111
+    </div>,
+  );
+
+  console.log(
+    <>
+      <div>
+        1
+      </div>
+      <div>
+        2
+      </div>
+    </>,
+  );
   console.log('%c [ mainRef ]-31', 'font-size:13px; background:pink; color:#bf2c9f;', mainRef);
   return (
     <div onClick={handleClick}>
@@ -53,3 +71,4 @@ export default () => {
     </div>
   );
 };
+
