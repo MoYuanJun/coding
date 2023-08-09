@@ -5,3 +5,54 @@
   display: flex;
   background: #fff;
 }
+
+.group:nth-child(1) {
+  background-color: #ff4d4f;
+}
+
+.group:nth-child(2) {
+  background-color: #ffa940;
+}
+
+.group:nth-child(3) {
+  background-color: #fadb14;
+}
+
+.right {
+  flex: 1;
+
+  margin-left: 48px;
+
+  // padding-left: 16px;
+  // margin-left: 48px;
+  // box-sizing: content-box;
+
+  .group {
+    margin-left: 16px;
+  }
+}
+
+.left {
+  flex: 3;
+
+  display: flex;
+
+  .group {
+    flex: 1;
+
+    &:not(:last-child) {
+      margin-right: 24px;
+    }
+  }
+}
+
+// 3x + 48
+
+// (x + 16) * 3
+// x
+
+// (x + 16)
+// x + 64
+// x + 16 + 48
+
+// 3 1
