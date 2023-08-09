@@ -1,5 +1,7 @@
+/* eslint-disable no-var */
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable no-unused-vars */
-import React, { useRef, useCallback, useState, Component } from 'react';
+import React, { useMemo, useCallback, useState, Component } from 'react';
 
 class A extends Component {
   handleRef = (ele) => {
@@ -36,38 +38,15 @@ const B = () => {
 };
 
 export default () => {
-  const mainRef = useRef();
-  const [count, setCount] = useState(1);
+  for (let i = 0; i < 3; i += 1) {
+    var data = useMemo(() => i, [i]);
+  }
 
-  const handleClick = useCallback(() => {
-    setCount((pre) => (pre + 1));
-  }, []);
+  console.log('%c [ data ]-46', 'font-size:13px; background:pink; color:#bf2c9f;', data);
 
-  console.log(
-    '--1',
-    <div>
-      111
-    </div>,
-  );
-
-  console.log(
-    <>
-      <div>
-        1
-      </div>
-      <div>
-        2
-      </div>
-    </>,
-  );
-  console.log('%c [ mainRef ]-31', 'font-size:13px; background:pink; color:#bf2c9f;', mainRef);
   return (
-    <div onClick={handleClick}>
-      {count}
-      <B
-        count={count}
-        ref={mainRef}
-      />
+    <div >
+      1
     </div>
   );
 };

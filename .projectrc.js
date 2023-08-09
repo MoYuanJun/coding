@@ -32,6 +32,7 @@ import MoreText from './src/pages/css/MoreText';
 
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
+import LayoutFourColumns from './src/pages/blog/LayoutFourColumns';
 import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
 import BlogCursorSuctionBottom from './src/pages/blog/CursorSuctionBottom';
 
@@ -95,6 +96,19 @@ export default {
             },
           ],
         },
+        {
+          title: '嵌套四栏等宽不等间距布局',
+          icon: 'iconlianxi',
+          key: 'LayoutFourColumns',
+          url: '/blog/layout-four-columns',
+          routes: [
+            {
+              path: '/blog/layout-four-columns',
+              element: <LayoutFourColumns />,
+            },
+          ],
+        },
+
       ],
     },
     {
