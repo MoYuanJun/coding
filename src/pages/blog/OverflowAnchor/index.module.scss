@@ -1,0 +1,11 @@
+.card1,
+.card2 {
+  :global(.ant-card-body) {
+    overflow: auto;
+    max-height: 500px;
+  }
+}
+
+.card2 :global(.ant-card-body) {
+  overflow-anchor: auto;
+}
