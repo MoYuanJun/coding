@@ -32,6 +32,7 @@ import MoreText from './src/pages/css/MoreText';
 
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
+import OverflowAnchor from './src/pages/blog/OverflowAnchor';
 import LayoutFourColumns from './src/pages/blog/LayoutFourColumns';
 import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
 import BlogCursorSuctionBottom from './src/pages/blog/CursorSuctionBottom';
@@ -108,7 +109,19 @@ export default {
             },
           ],
         },
+        {
+          title: '滚动锚点问题',
+          icon: 'iconlianxi',
+          key: 'OverflowAnchor',
+          url: '/blog/overflow-anchor',
+          routes: [
+            {
+              path: '/blog/overflow-anchor',
+              element: <OverflowAnchor />,
+            },
+          ],
 
+        }
       ],
     },
     {
