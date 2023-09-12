@@ -32,6 +32,7 @@ import MoreText from './src/pages/css/MoreText';
 
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
+import MidAutumn from './src/pages/blog/MidAutumn';
 import OverflowAnchor from './src/pages/blog/OverflowAnchor';
 import LayoutFourColumns from './src/pages/blog/LayoutFourColumns';
 import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
@@ -120,7 +121,18 @@ export default {
               element: <OverflowAnchor />,
             },
           ],
-
+        },
+        {
+          title: '中秋',
+          icon: 'iconlianxi',
+          key: 'MidAutumn',
+          url: '/blog/mid-autumn',
+          routes: [
+            {
+              path: '/blog/mid-autumn',
+              element: <MidAutumn />,
+            },
+          ],
         }
       ],
     },
