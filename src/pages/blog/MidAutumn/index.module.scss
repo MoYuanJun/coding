@@ -250,8 +250,8 @@
     }
 
     .eyelash {
-      top: -7px;
-      right: 1px;
+      top: -11px;
+      right: -2px;
       position: absolute;
       transform: rotate(50deg);
 
@@ -262,14 +262,13 @@
         height: 6px;
         display: block;
 
-        position: absolute;
         border-top-right-radius: 100%;
         border-right: 2px solid #290604;
       }
 
       &::before {
         transform-origin: bottom right;
-        transform: rotate(40deg);
+        transform: translateY(100%) rotate(40deg);
       }
     }
 
