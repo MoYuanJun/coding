@@ -9,12 +9,12 @@ export default () => (
       <div className={scss['ear-left']} />
       <div className={scss['ear-right']} />
     </div>
-    <div className={scss.girl}>
+    <div className={scss.male}>
       <div className={scss['eye-left']} />
       <div className={scss['eye-right']} />
       <div className={scss.mouth} />
     </div>
-    <div className={scss.male}>
+    <div className={scss.girl}>
       <div className={scss.eyebrow} />
       <div className={scss.eye}>
         <div className={scss['eye-item']}>
