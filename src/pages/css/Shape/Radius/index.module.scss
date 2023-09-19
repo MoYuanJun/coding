@@ -1,3 +1,13 @@
 .wrapper {
-  color: #fff;
+  display: flex;
+}
+
+.box {
+  background-color: #91caff;
+  width: 400px;
+  height: 200px;
+}
+
+.controller {
+  flex: 1;
 }
