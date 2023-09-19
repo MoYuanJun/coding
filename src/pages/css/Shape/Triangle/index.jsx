@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, {
   useMemo,
   useState,
@@ -14,12 +15,12 @@ const SETTING = [
   { defaultWidth: 120, label: '右边框', type: 'right', defaultColor: '#597ef7' },
 ];
 
-const getDefaultColor = type => (
-  SETTING.find(v => v.type === type).defaultColor
+const getDefaultColor = (type) => (
+  SETTING.find((v) => v.type === type).defaultColor
 );
 
-const getDefaultWidth = type => (
-  SETTING.find(v => v.type === type).defaultWidth
+const getDefaultWidth = (type) => (
+  SETTING.find((v) => v.type === type).defaultWidth
 );
 
 const useStateHook = () => {
@@ -46,21 +47,21 @@ const useStateHook = () => {
 
   const onChangeBorderWidth = useCallback((type, value) => {
     setSetting({
-      ... setting,
-      [type]: { ... setting[type], width: value },
+      ...setting,
+      [type]: { ...setting[type], width: value },
     });
   }, [setting]);
 
   const onChangeBorderColor = useCallback((type, value) => {
     setSetting({
-      ... setting,
-      [type]: { ... setting[type], color: value },
+      ...setting,
+      [type]: { ...setting[type], color: value },
     });
   }, [setting]);
 
   const onChangeContainer = useCallback((type, value) => {
     setSetting({
-      ... setting,
+      ...setting,
       [type]: value,
     });
   }, [setting]);
@@ -117,9 +118,9 @@ export default () => {
             onChange={state.onChangeContainer.bind(null, 'height')}
           />
         </Form.Item>
-        {SETTING.map(v => (
+        {SETTING.map((v) => (
           <React.Fragment key={v.type}>
-            <Form.Item label={ `${v.label}宽度`}>
+            <Form.Item label={`${v.label}宽度`}>
               <Slider
                 min={0}
                 max={200}
@@ -133,7 +134,9 @@ export default () => {
                 defaultValue={v.defaultColor}
                 onChange={state.onChangeBorderColor.bind(null, v.type)}>
                 <Select.Option value={v.defaultColor}>
-                  默认颜色({v.defaultColor})
+                  默认颜色(
+                  {v.defaultColor}
+                  )
                 </Select.Option>
                 <Select.Option value="transparent">
                   透明(transparent)
