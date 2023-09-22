@@ -11,6 +11,17 @@
     .ant-form-item {
       width: 25%;
       padding-left: 20px;
+
+      &:nth-last-child(4),
+      &:nth-last-child(5),
+      &:nth-last-child(6),
+      &:nth-last-child(7),
+      &:nth-last-child(8),
+      &:nth-last-child(9),
+      &:nth-last-child(10),
+      &:nth-last-child(11) {
+        width: 50%;
+      }
     }
   }
 }
