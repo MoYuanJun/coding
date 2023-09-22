@@ -4,9 +4,15 @@ import { Slider, Form, Select } from 'antd';
 import scss from './index.module.scss';
 
 const MAX_RADIUS_RADIUS = 800;
+const COLOR = {
+  BG: '#91caff',
+};
 
 export default () => {
   const [setting, setSetting] = useState({
+    width: 400,
+    height: 200,
+    bg: COLOR.BG,
     topLeftX: 50,
     topLeftY: 50,
     topRightX: 50,
@@ -18,6 +24,9 @@ export default () => {
   });
 
   const boxStyle = useMemo(() => ({
+    width: setting.width,
+    height: setting.height,
+    background: setting.bg,
     borderRadius: `${setting.topLeftX}px ${setting.topRightX}px ${setting.bottomRightX}px ${setting.bottomLeftX}px / ${setting.topLeftY}px ${setting.topRightY}px ${setting.bottomRightY}px ${setting.bottomLeftY}px`,
   }), [setting]);
 
@@ -100,6 +109,36 @@ export default () => {
             value={setting.bottomLeftY}
             onChange={handleChange.bind(null, 'bottomLeftY')}
           />
+        </Form.Item>
+        {/* 宽高 */}
+        <Form.Item label="宽度">
+          <Slider
+            min={0}
+            max={400}
+            value={setting.width}
+            onChange={handleChange.bind(null, 'width')}
+          />
+        </Form.Item>
+        <Form.Item label="高度">
+          <Slider
+            min={0}
+            max={200}
+            value={setting.height}
+            onChange={handleChange.bind(null, 'height')}
+          />
+        </Form.Item>
+        <Form.Item label="边框颜色">
+          <Select
+            value={setting.bg}
+            style={{ width: '100%' }}
+            onChange={handleChange.bind(null, 'bg')}>
+            <Select.Option value={COLOR.BG}>
+              实色
+            </Select.Option>
+            <Select.Option value="transparent">
+              透明
+            </Select.Option>
+          </Select>
         </Form.Item>
       </div>
     </div>
