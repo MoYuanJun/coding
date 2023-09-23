@@ -15,11 +15,7 @@ export default () => (
       title="三角形、梯形">
       <Triangle />
     </Card>
-    <Card
-      title="圆角"
-      bordered={false}>
-      <Radius />
-    </Card>
+    <Radius />
     <Card
       title="内凹圆角"
       bordered={false}>
