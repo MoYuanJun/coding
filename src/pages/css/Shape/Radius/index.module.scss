@@ -2,6 +2,13 @@
   display: flex;
 }
 
+.main {
+  min-width: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .controller {
   flex: 1;
   display: flex;

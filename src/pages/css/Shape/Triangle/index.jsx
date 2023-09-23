@@ -97,10 +97,12 @@ export default () => {
 
   return (
     <div className={scss.layout}>
-      <div
-        style={state.style}
-        className={scss.body}
-      />
+      <div className={scss.main}>
+        <div
+          style={state.style}
+          className={scss.body}
+        />
+      </div>
       <div className={scss.controller}>
         <Form.Item label="&emsp;容器宽度">
           <Slider

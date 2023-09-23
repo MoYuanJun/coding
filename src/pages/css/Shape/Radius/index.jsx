@@ -14,8 +14,8 @@ const COLOR = {
 
 export default () => {
   const [setting, setSetting] = useState({
-    width: 400,
-    height: 200,
+    width: 300,
+    height: 150,
     bg: COLOR.BG,
 
     // 圆角
@@ -59,10 +59,12 @@ export default () => {
 
   return (
     <div className={scss.wrapper}>
-      <div
-        style={boxStyle}
-        className={scss.box}
-      />
+      <div className={scss.main}>
+        <div
+          style={boxStyle}
+          className={scss.box}
+        />
+      </div>
       <div className={scss.controller}>
         {/* 水平半径 */}
         <Form.Item label="左上角水平半径">
