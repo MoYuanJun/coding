@@ -43,6 +43,7 @@ import './src/assets/style';
 export default {
   logo: { img: void 0, title: 'Coding' },
   iconFont: '//at.alicdn.com/t/font_1732251_i4cfzbz65vj.js',
+  useHashRouter: true, // 是否使用 hash 路由
   menu: [
     {
       url: '/',
