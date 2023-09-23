@@ -22,7 +22,7 @@
     "url": "https://github.com/qianyin925/canvas/issues"
   },
   "devDependencies": {
-    "@kunlunxu/create-react-app": "^1.9.4"
+    "@kunlunxu/create-react-app": "^1.10.0"
   },
   "dependencies": {
     "@antv/g6": "^3.8.3",
