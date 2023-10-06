@@ -29,6 +29,7 @@ import GamingConsole from './src/pages/css/GamingConsole';
 import TabBarInteraction from './src/pages/css/TabBarInteraction';
 import MacOSControlCenter from './src/pages/css/MacOSControlCenter';
 import MoreText from './src/pages/css/MoreText';
+import PopUpMenu from './src/pages/css/PopUpMenu';
 
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
@@ -241,12 +242,24 @@ export default {
         {
           title: '纯 CSS 多文本处理(展开更多)',
           icon: 'iconxuanxiangqia',
-          key: 'css',
+          key: 'cssMoreText',
           url: '/css/moreText',
           routes: [
             {
               path: '/css/moreText',
               element: <MoreText/>,
+            },
+          ],
+        },
+        {
+          title: '弹出式菜单',
+          icon: 'iconxuanxiangqia',
+          key: 'cssPopUpMenu',
+          url: '/css/pop-up-menu',
+          routes: [
+            {
+              path: '/css/pop-up-menu',
+              element: <PopUpMenu/>,
             },
           ],
         },
