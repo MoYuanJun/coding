@@ -28,74 +28,25 @@
 }
 
 .mene-toggle {
-  position: relative; // 触发层叠上下文
-  transition: all 0.4s;
-
   label {
     width: 100%;
     height: 100%;
-    display: block;
-    cursor: pointer;
-  }
-
-  &:hover {
-    background-color: #f0f0f0;
-  }
-}
-
-:global {
-  .anticon-close,
-  .anticon-tool {
-    width: 40px;
-    height: 40px;
+    display: flex;
     align-items: center;
     justify-content: center;
   }
 }
 
-.mene-item-wrapper {
-  opacity: 0;
-  transform-origin: 30px bottom;
-  transform: scale(0) translateY(200px);
-
-  transition: opacity 0.4s, transform 0.4s;
+// 获取焦点(开启状态)
+input:focus {
+  ~ .mene-toggle label[for="open"] {
+    display: none;
+  }
 }
 
-:global(#on) {
-  width: 0;
-  border: 0;
-  height: 0;
-  padding: 0;
-
-  // 隐藏
-  ~ .mene-toggle {
-    :global {
-      .anticon-close {
-        display: none;
-      }
-
-      .anticon-tool {
-        display: flex;
-      }
-    }
-  }
-
-  // 获取焦点(显示) - toggle 按钮
-  &:focus ~ .mene-toggle {
-    :global {
-      .anticon-close {
-        display: flex;
-      }
-
-      .anticon-tool {
-        display: none;
-      }
-    }
-  }
-
-  // 获取焦点(显示) - 菜单项整体包裹
-  &:focus ~ .mene-item-wrapper {
-    opacity: 1;
-    transform: scale(1) translateY(0);
+// 失去焦点(关闭状态)
+input:not(:focus) {
+  ~ .mene-toggle label[for="close"] {
+    display: none;
   }
 }

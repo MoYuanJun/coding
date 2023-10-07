@@ -2,15 +2,19 @@
 import React from 'react';
 import scss from './index.module.scss';
 
-import { AliwangwangOutlined, DeleteOutlined, PieChartOutlined, AppleOutlined, ToolOutlined, CloseOutlined  } from '@ant-design/icons';
+import {
+  ToolOutlined,
+  AppleOutlined,
+  CloseOutlined,
+  DeleteOutlined,
+  PieChartOutlined,
+  AliwangwangOutlined,
+} from '@ant-design/icons';
 
 export default () => (
   <div className={scss.body}>
     <div className={scss.mene}>
-      <input
-        id="on"
-        name="on"
-      />
+      <input id="open" />
       <div className={scss['mene-item-wrapper']}>
         <div className={scss['mene-item']}>
           <AliwangwangOutlined />
@@ -26,14 +30,13 @@ export default () => (
         </div>
       </div>
       <div className={scss['mene-toggle']}>
-        <label htmlFor="on">
+        <label htmlFor="open">
           <ToolOutlined />
         </label>
-        <label htmlFor="off">
+        <label htmlFor="close">
           <CloseOutlined />
         </label>
       </div>
-
     </div>
   </div>
 );
