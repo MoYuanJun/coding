@@ -34,6 +34,7 @@ import PopUpMenu from './src/pages/css/PopUpMenu';
 // 博客 DEMO
 import BlogCrawler from './src/pages/blog/Crawler';
 import MidAutumn from './src/pages/blog/MidAutumn';
+import VirtualScroll from './src/pages/blog/VirtualScroll';
 import OverflowAnchor from './src/pages/blog/OverflowAnchor';
 import LayoutFourColumns from './src/pages/blog/LayoutFourColumns';
 import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
@@ -64,6 +65,18 @@ export default {
       title: '博客 DEMO',
       icon: 'HomeOutlined',
       children: [
+        {
+          title: '虚拟滚动',
+          icon: 'iconlianxi',
+          key: 'blogVirtualScroll',
+          url: '/blog/virtual-scroll',
+          routes: [
+            {
+              path: '/blog/virtual-scroll',
+              element: <VirtualScroll />,
+            },
+          ],
+        },
         {
           title: '反爬',
           icon: 'iconlianxi',
