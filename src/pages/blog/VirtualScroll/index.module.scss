@@ -9,6 +9,10 @@
   box-shadow: 0 0 10px rgba($color: #000, $alpha: 30%);
 }
 
+.list {
+  box-sizing: border-box;
+}
+
 .item {
   height: 40px;
   display: flex;
