@@ -16,8 +16,8 @@ export default () => {
     const { clientHeight } = containerRef.current ?? {};
     const remainder = scrollTop % ITEM_SIZE;
 
-    // 要渲染的列表数量
-    const renderNum = Math.ceil(clientHeight / ITEM_SIZE) + (remainder !== 0 ? 1 : 0);
+    // 要渲染的列表数量(多渲染 4 条作为缓冲数据)
+    const renderNum = Math.ceil(clientHeight / ITEM_SIZE) + 4;
 
     // 要渲染的列表, 在源数据中的开始索引
     const startIndex = Math.floor(scrollTop / ITEM_SIZE);
@@ -25,7 +25,10 @@ export default () => {
     // 要渲染的列表, 在源数据中的结束索引
     const endIndx = startIndex + renderNum;
 
-    setPaddingTop(scrollTop - remainder);
+    // 多减去 2 * ITEM_SIZE, 目前是想在顶部多 2 条缓冲数据
+    const paddingTop = Math.max(0, scrollTop - remainder - (2 * ITEM_SIZE));
+
+    setPaddingTop(paddingTop);
     setRenderList(DATA_SOURCE.slice(startIndex, endIndx));
   }, []);
 
