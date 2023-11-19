@@ -3,9 +3,9 @@
 import React, { useCallback, useState, useEffect, useRef } from 'react';
 import scss from './static.module.scss';
 
-const ITEM_SIZE = 40;
-const DATA_SOURCE = Array.from({ length: 100000 }, (_, i) => `第 ${i + 1}条数据`);
-const CONTENT_HEIGHT = DATA_SOURCE.length * ITEM_SIZE;
+const ITEM_SIZE = 40; // 每条数据高度
+const DATA_SOURCE = Array.from({ length: 100000 }, (_, i) => `第 ${i + 1}条数据`); // 模拟数据
+const CONTENT_HEIGHT = DATA_SOURCE.length * ITEM_SIZE; // 列表内容总高度
 
 export default () => {
   const containerRef = useRef();
