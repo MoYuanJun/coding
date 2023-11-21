@@ -17,10 +17,10 @@ export default () => {
     const remainder = scrollTop % ITEM_SIZE;
 
     // 要渲染的列表, 在源数据中的开始索引
-    const startIndex = Math.floor(scrollTop / ITEM_SIZE);
+    const startIndex = Math.max(0, Math.floor(scrollTop / ITEM_SIZE) - 2);
 
     // 要渲染的列表数量
-    const renderNum = Math.ceil(clientHeight / ITEM_SIZE) + (remainder !== 0 ? 1 : 0);
+    const renderNum = Math.ceil(clientHeight / ITEM_SIZE) + 5;
 
     // 要渲染的列表, 在源数据中的结束索引
     const endIndx = startIndex + renderNum;
