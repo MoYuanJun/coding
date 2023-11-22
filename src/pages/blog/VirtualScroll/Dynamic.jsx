@@ -97,11 +97,18 @@ export default () => {
     // 要渲染的列表, 在源数据中的结束索引
     const endIndx = getEndIndex({ heights, startIndex, clientHeight });
 
-    // 多减去 2 * ITEM_SIZE, 目前是想在顶部多 2 条缓冲数据
-    const paddingTop = getOffset({ heights, startIndex });
+    // 调整 startIndex、endIndx: 目的是在顶部和底部加 2 条缓冲数据
+    const startIndexWithBuffer = Math.max(0, startIndex - 2);
+    const endIndxWithBuffer = endIndx + 2;
+
+    // 待渲染的列表偏移量(距离顶部的位置)
+    const paddingTop = getOffset({
+      heights,
+      startIndex: startIndexWithBuffer,
+    });
 
     setPaddingTop(paddingTop);
-    setRenderList(DATA_SOURCE.slice(startIndex, endIndx));
+    setRenderList(DATA_SOURCE.slice(startIndexWithBuffer, endIndxWithBuffer));
   }, [heights]);
 
   useEffect(() => {
