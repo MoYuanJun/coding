@@ -11,9 +11,7 @@ const DATA_SOURCE = Array.from({ length: 100000 }, (_, i) => ({
   height: Math.round(ITEM_SIZE + (Math.random() * 100)), // 当前数据高度
 }));
 
-const CONTENT_HEIGHT = DATA_SOURCE.length * ITEM_SIZE; // 列表内容总高度
-
-
+// 要渲染数据开始索引
 const getStartIndex = ({ heights, scrollTop }) => {
   let total = 0;
 
@@ -26,6 +24,7 @@ const getStartIndex = ({ heights, scrollTop }) => {
   }
 };
 
+// 要渲染数据结束索引
 const getEndIndex = ({ heights, startIndex, clientHeight }) => {
   let total = 0;
   let index = startIndex;
@@ -38,6 +37,7 @@ const getEndIndex = ({ heights, startIndex, clientHeight }) => {
   return index;
 };
 
+// 渲染列表的偏移值
 const getOffset = ({ heights, startIndex }) => {
   let total = 0;
 
@@ -50,6 +50,7 @@ const getOffset = ({ heights, startIndex }) => {
 
 const Row = ({ onResize, data }) => {
   const ref = useRef(null);
+
   useEffect(() => {
     const observer = new ResizeObserver(onResize.bind(null, data));
     observer.observe(ref.current);
@@ -72,10 +73,9 @@ export default () => {
   const [paddingTop, setPaddingTop] = useState(0);
   const [renderList, setRenderList] = useState([]);
 
-  const [scrollTop, setScrollTop] = useState(0);
-  const [heights, setHeights] = useState({  }); // index: 高度
+  const [heights, setHeights] = useState({}); // 记录已渲染过的节点高度: { [id]: 高度 }
 
-  //
+  // 列表总高度
   const listHeight = useMemo(() => DATA_SOURCE.reduce((total, ele, index) => {
     const value = heights[index] || ITEM_SIZE;
     return total + value;
