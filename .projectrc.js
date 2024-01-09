@@ -32,6 +32,7 @@ import MoreText from './src/pages/css/MoreText';
 import PopUpMenu from './src/pages/css/PopUpMenu';
 
 // 博客 DEMO
+import AuthCodes from './src/pages/blog/AuthCodes';
 import BlogCrawler from './src/pages/blog/Crawler';
 import MidAutumn from './src/pages/blog/MidAutumn';
 import VirtualScroll from './src/pages/blog/VirtualScroll';
@@ -65,6 +66,18 @@ export default {
       title: '博客 DEMO',
       icon: 'HomeOutlined',
       children: [
+        {
+          title: '验证码',
+          icon: 'iconlianxi',
+          key: 'blogAuthCodes',
+          url: '/blog/auth-codes',
+          routes: [
+            {
+              path: '/blog/auth-codes',
+              element: <AuthCodes />,
+            },
+          ],
+        },
         {
           title: '虚拟滚动',
           icon: 'iconlianxi',
