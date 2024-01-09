@@ -4,7 +4,7 @@ import React, { useState, useRef } from 'react';
 import scss from './com.module.scss';
 
 export default () => {
-  const [codes, setCode] = useState(Array.from({ length: 6 }, () => ''));
+  const [codes, setCodes] = useState(Array.from({ length: 6 }, () => ''));
   const inputsRef = useRef([]);
 
   return (
