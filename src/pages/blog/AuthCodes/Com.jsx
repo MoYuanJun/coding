@@ -24,6 +24,32 @@ export default () => {
     });
   }, []);
 
+  const handleDelete = useCallback((index, event) => {
+    const { key } = event;
+
+    // 是否按下删除键, 否提前结束
+    if (key !== 'Backspace') {
+      return;
+    }
+
+    // 1. 如果当前输入框有值, 则删除当前输入框内容
+    if (codes[index]) {
+      setCodes((pre) => {
+        const newData = [...pre];
+        newData[index] = '';
+        return newData;
+      });
+    } else if (index > 0) {
+      // 2. 如果当前输入框没有值(考虑下边界的情况 index === 0): 则删除上一个输入框内容, 并且光标聚焦到上一个输入框
+      setCodes((pre) => {
+        const newData = [...pre];
+        newData[index - 1] = '';
+        return newData;
+      });
+      inputsRef.current[index - 1].focus();
+    }
+  }, [codes]);
+
   return (
     <div>
       {codes.map((value, index) => (
@@ -33,6 +59,7 @@ export default () => {
           value={value}
           maxLength={1}
           className={scss.input}
+          onKeyDown={handleDelete.bind(null, index)}
           onChange={handleChange.bind(null, index)}
           ref={(ele) => (inputsRef.current[index] = ele)}
         />
