@@ -7,7 +7,7 @@ export default () => {
   console.log('%c [ 1 ]-3', 'font-size:13px; background:pink; color:#bf2c9f;', 1);
   return (
     <div style={{ width: '100%', height: '100%', background: '#fff', padding: 50  }}>
-      <Com />
+      <Com onValueChange={(codes) => console.log(codes)} />
     </div>
   );
 };
