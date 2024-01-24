@@ -1,9 +1,9 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-unused-vars */
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useEffect, useImperativeHandle, forwardRef } from 'react';
 import scss from './com.module.scss';
 
-export default ({ onValueChange }) => {
+export default forwardRef(({ onValueChange, onComplete }, ref) => {
   const [codes, setCodes] = useState(Array.from({ length: 6 }, () => ''));
   const inputsRef = useRef([]);
 
@@ -20,11 +20,16 @@ export default ({ onValueChange }) => {
         newData[index] = value;
       }
 
+      // 处理 onComplete
+      if (newData.every(Boolean) && onComplete) {
+        onComplete(newData.join(''));
+      }
+
       onValueChange?.(newData.join(''));
 
       return newData;
     });
-  }, [onValueChange]);
+  }, [onValueChange, onComplete]);
 
   const handleChange = useCallback((index, event) => {
     const currentValue = event.target.value.match(/[0-9]{1}/)
@@ -73,6 +78,27 @@ export default ({ onValueChange }) => {
     inputsRef.current[focusIndex]?.focus();
   }, [resetCodes]);
 
+  const handleOnFocus = useCallback((e) => {
+    e.target.select();
+  }, []);
+
+  useImperativeHandle(ref, () => ({
+    // 获取焦点
+    focus: (index = 0) => {
+      if (inputsRef.current) {
+        inputsRef.current[index].focus();
+      }
+    },
+    // 清空内容
+    clear: () => {
+      resetCodes(codes.map(() => ''));
+    },
+  }));
+
+  useEffect(() => {
+    inputsRef.current[0].focus();
+  }, []);
+
   return (
     <div>
       {codes.map((value, index) => (
@@ -83,6 +109,7 @@ export default ({ onValueChange }) => {
           maxLength={1}
           onPaste={handlePaste}
           className={scss.input}
+          onFocus={handleOnFocus}
           onKeyDown={handleDelete.bind(null, index)}
           onChange={handleChange.bind(null, index)}
           ref={(ele) => (inputsRef.current[index] = ele)}
@@ -90,4 +117,4 @@ export default ({ onValueChange }) => {
       ))}
     </div>
   );
-};
+});
