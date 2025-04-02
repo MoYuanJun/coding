@@ -40,6 +40,7 @@ import OverflowAnchor from './src/pages/blog/OverflowAnchor';
 import LayoutFourColumns from './src/pages/blog/LayoutFourColumns';
 import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
 import BlogCursorSuctionBottom from './src/pages/blog/CursorSuctionBottom';
+import MacDocker from './src/pages/blog/MacDocker';
 
 import './src/assets/style';
 
@@ -66,6 +67,18 @@ export default {
       title: '博客 DEMO',
       icon: 'HomeOutlined',
       children: [
+        {
+          title: 'Mac Docker',
+          icon: 'iconlianxi',
+          key: 'macDocker',
+          url: '/blog/mac-docker',
+          routes: [
+            {
+              path: '/blog/mac-docker',
+              element: <MacDocker />,
+            },
+          ],
+        },
         {
           title: '验证码',
           icon: 'iconlianxi',
