@@ -10,9 +10,7 @@ export default () => {
   return (
     <div style={{ width: '100%', height: '100%', background: '#fff', padding: 50  }}>
       <Com ref={ref} />
-      <Button onClick={() => ref.current?.clear()}>
-        清空
-      </Button>
+
     </div>
   );
 };
