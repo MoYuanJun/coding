@@ -29,6 +29,9 @@ $size: 60px;
 .item {
   border-radius: 8px;
 
+  // transition: all 0.08s;
+  transition: all calc(var(--time) * 1s);
+
   width: calc(var(--scale) * $size);
   height: calc(var(--scale) * $size);
   margin-left: calc(var(--scale) * 5px);

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useMemo, useRef, useState } from 'react';
 import scss from './index.module.scss';
 
 
@@ -65,22 +65,43 @@ const Item = ({ color, clientX  }) => {
 
 export default () => {
   const [clientX, setClientX] = useState(null);
+  const wrapperRef = useRef(null);
+
+
+  const handleMouseEnter = useCallback((e) => {
+    wrapperRef.current.style.setProperty('--time', 0.08);
+
+    setClientX(e.clientX);
+
+    setTimeout(
+      () => wrapperRef.current.style.setProperty('--time', 0),
+      100,
+    );
+  }, []);
 
   const handleMouseMove = useCallback((e) => {
     setClientX(e.clientX);
   }, []);
 
   const handleMouseLeave = useCallback(() => {
+    wrapperRef.current.style.setProperty('--time', 0.08);
+
     setClientX(null);
+
+    setTimeout(
+      () => wrapperRef.current.style.setProperty('--time', 0),
+      100,
+    );
   }, []);
 
   return (
     <div className={scss.main}>
       <div
+        ref={wrapperRef}
+        className={scss.wrapper}
         onMouseMove={handleMouseMove}
-        onMouseEnter={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        className={scss.wrapper}>
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}>
         {data.map((v) => (
           <Item
             color={v.color}
