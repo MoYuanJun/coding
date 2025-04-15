@@ -40,7 +40,7 @@ import OverflowAnchor from './src/pages/blog/OverflowAnchor';
 import LayoutFourColumns from './src/pages/blog/LayoutFourColumns';
 import IntermediateEllipsis from './src/pages/blog/IntermediateEllipsis';
 import BlogCursorSuctionBottom from './src/pages/blog/CursorSuctionBottom';
-import MacDocker from './src/pages/blog/MacDocker';
+import MacDock from './src/pages/blog/MacDock';
 
 import './src/assets/style';
 
@@ -68,14 +68,14 @@ export default {
       icon: 'HomeOutlined',
       children: [
         {
-          title: 'Mac Docker',
+          title: 'Mac Dock',
           icon: 'iconlianxi',
-          key: 'macDocker',
-          url: '/blog/mac-docker',
+          key: 'macDock',
+          url: '/blog/mac-dock',
           routes: [
             {
-              path: '/blog/mac-docker',
-              element: <MacDocker />,
+              path: '/blog/mac-dock',
+              element: <MacDock />,
             },
           ],
         },
