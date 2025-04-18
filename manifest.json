@@ -2,7 +2,7 @@
   "name": "Minimal app to try PWA",
   "short_name": "Minimal PWA",
   "display": "fullscreen",
-  "start_url": "/",
+  "start_url": "/coding",
   "theme_color": "#8888ff",
   "background_color": "#aaaaff",
   "icons": [
